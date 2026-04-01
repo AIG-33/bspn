@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "BSPN — Belarusian Scientific and Production Association of Employers",
+    "description": "Uniting and protecting Belarusian business since 1990. Over 35 years on the side of entrepreneurs."
+  },
+  "nav": {
+    "about": "About",
+    "aboutMission": "Mission & Values",
+    "aboutHistory": "History",
+    "aboutLeadership": "Leadership",
+    "aboutAchievements": "Achievements",
+    "aboutAssociations": "Industry Associations",
+    "forBusiness": "For Business",
+    "faq": "FAQ",
+    "courtPractice": "Court Practice",
+    "experts": "Expert Directory",
+    "advocacy": "Government Relations",
+    "membership": "Membership",
+    "membershipBenefits": "Benefits",
+    "membershipTypes": "Membership Types",
+    "membershipJoin": "Join",
+    "membershipDirectory": "Member Directory",
+    "events": "Events",
+    "news": "News",
+    "contacts": "Contacts",
+    "joinCta": "Join BSPN",
+    "login": "Log in",
+    "cabinet": "Dashboard",
+    "language": "RU"
+  },
+  "hero": {
+    "title": "Your voice in dialogue with government and a partner in business development",
+    "subtitle": "Uniting and protecting Belarusian business since 1990. Over 35 years on the side of entrepreneurs.",
+    "joinButton": "Join the union",
+    "learnMore": "Learn more",
+    "statMembers": "member companies",
+    "statCouncils": "government councils",
+    "statYears": "years of experience",
+    "statAssociations": "industry associations"
+  },
+  "values": {
+    "title": "Why BSPN?",
+    "protection": {
+      "title": "Protection",
+      "description": "Lobbying in 20+ government bodies, legal support",
+      "message": "We protect your business at the legislative level"
+    },
+    "knowledge": {
+      "title": "Knowledge",
+      "description": "Expertise, consulting, training, analytics",
+      "message": "We provide tools for growth"
+    },
+    "community": {
+      "title": "Community",
+      "description": "Networking, member directory, events",
+      "message": "You become part of a strong community"
+    },
+    "connections": {
+      "title": "Connections",
+      "description": "International contacts, ambassadors, export",
+      "message": "We open new markets and opportunities"
+    }
+  },
+  "directions": {
+    "title": "Key Areas of Work",
+    "consumerProtection": "Consumer Extremism Protection",
+    "advocacy": "Government Relations",
+    "courtPractice": "Court Practice",
+    "experts": "Expert Directory",
+    "dataProtection": "Data Protection",
+    "faq": "FAQ & Knowledge Base",
+    "international": "International Relations",
+    "membersOnly": "Members Only",
+    "openAccess": "Open Access",
+    "joinToAccess": "Join to get access"
+  },
+  "cta": {
+    "title": "Join BSPN",
+    "subtitle": "Become part of a strong business community",
+    "step1": "Fill out the application",
+    "step2": "Get approved",
+    "step3": "Enjoy the benefits",
+    "button": "Submit membership application",
+    "memberCount": "Already 94+ members. Join us!",
+    "wantMore": "Want more? Join BSPN",
+    "memberAccess": "Become a member for full access"
+  },
+  "news": {
+    "title": "Latest News",
+    "viewAll": "All news",
+    "events": "Upcoming Events",
+    "viewAllEvents": "All events",
+    "register": "Register"
+  },
+  "footer": {
+    "address": "22 Fabrichnaya St., Minsk",
+    "quickLinks": "Quick Links",
+    "copyright": "© {year} BSPN. All rights reserved.",
+    "privacy": "Privacy Policy"
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "resetPassword": "Reset password"
+  },
+  "common": {
+    "readMore": "Read more",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "search": "Search",
+    "filter": "Filter",
+    "download": "Download",
+    "share": "Share",
+    "membersOnly": "Members Only",
+    "all": "All"
+  }
+}
