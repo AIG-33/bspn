@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, LogOut, User } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { SITE } from "@/lib/constants";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { useUser } from "@/components/auth-provider";
 
 interface NavItem {
   label: string;
@@ -28,6 +29,7 @@ export function Header() {
   const params = useParams();
   const locale = params.locale as string;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, loading, signOut } = useUser();
 
   const navItems: NavItem[] = [
     {
@@ -133,21 +135,49 @@ export function Header() {
             <Globe className="h-4 w-4" />
             {t("language")}
           </Link>
-          <Link
-            href="/login"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            {t("login")}
-          </Link>
-          <Link
-            href="/membership/join"
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "bg-cta text-cta-foreground hover:bg-cta/90"
-            )}
-          >
-            {t("joinCta")}
-          </Link>
+          {!loading && user ? (
+            <>
+              <Link
+                href="/cabinet"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "sm" }),
+                  "gap-1.5"
+                )}
+              >
+                <User className="h-3.5 w-3.5" />
+                Кабинет
+              </Link>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={signOut}
+                className="gap-1.5 text-muted-foreground"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+                Выйти
+              </Button>
+            </>
+          ) : !loading ? (
+            <>
+              <Link
+                href="/login"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "sm" })
+                )}
+              >
+                {t("login")}
+              </Link>
+              <Link
+                href="/membership/join"
+                className={cn(
+                  buttonVariants({ size: "sm" }),
+                  "bg-cta text-cta-foreground hover:bg-cta/90"
+                )}
+              >
+                {t("joinCta")}
+              </Link>
+            </>
+          ) : null}
         </div>
 
         {/* Mobile Menu */}
@@ -203,26 +233,55 @@ export function Header() {
                   </div>
                 ))}
                 <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
-                  <Link
-                    href="/login"
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      buttonVariants({ variant: "outline" }),
-                      "w-full justify-center"
-                    )}
-                  >
-                    {t("login")}
-                  </Link>
-                  <Link
-                    href="/membership/join"
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      buttonVariants(),
-                      "w-full justify-center bg-cta text-cta-foreground hover:bg-cta/90"
-                    )}
-                  >
-                    {t("joinCta")}
-                  </Link>
+                  {!loading && user ? (
+                    <>
+                      <Link
+                        href="/cabinet"
+                        onClick={() => setMobileOpen(false)}
+                        className={cn(
+                          buttonVariants({ variant: "outline" }),
+                          "w-full justify-center gap-1.5"
+                        )}
+                      >
+                        <User className="h-4 w-4" />
+                        Личный кабинет
+                      </Link>
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          setMobileOpen(false);
+                          signOut();
+                        }}
+                        className="w-full justify-center gap-1.5 text-muted-foreground"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Выйти
+                      </Button>
+                    </>
+                  ) : !loading ? (
+                    <>
+                      <Link
+                        href="/login"
+                        onClick={() => setMobileOpen(false)}
+                        className={cn(
+                          buttonVariants({ variant: "outline" }),
+                          "w-full justify-center"
+                        )}
+                      >
+                        {t("login")}
+                      </Link>
+                      <Link
+                        href="/membership/join"
+                        onClick={() => setMobileOpen(false)}
+                        className={cn(
+                          buttonVariants(),
+                          "w-full justify-center bg-cta text-cta-foreground hover:bg-cta/90"
+                        )}
+                      >
+                        {t("joinCta")}
+                      </Link>
+                    </>
+                  ) : null}
                 </div>
               </nav>
             </SheetContent>

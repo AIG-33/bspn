@@ -23,7 +23,9 @@ import {
   Building2,
   Heart,
   Send,
+  Loader2,
 } from "lucide-react";
+import { submitApplication } from "@/lib/actions/applications";
 
 const industries = [
   "Промышленность",
@@ -100,8 +102,38 @@ export default function JoinPage() {
     }
   };
 
-  const handleSubmit = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    setError("");
+
+    const result = await submitApplication({
+      companyName: form.company,
+      companyUnp: form.unp,
+      companyAddress: "",
+      companyActivity: form.industry,
+      companyEmployees: "",
+      companyYear: "",
+      contactName: form.name,
+      contactPosition: "",
+      contactEmail: form.email,
+      contactPhone: form.phone,
+      membershipType: "standard",
+      goals: form.interests,
+      additionalInfo: form.message,
+      documentsConsent: form.consent,
+    });
+
+    if (!result.success) {
+      setError(result.error ?? "Произошла ошибка при отправке заявки");
+      setLoading(false);
+      return;
+    }
+
     setSubmitted(true);
+    setLoading(false);
   };
 
   if (submitted) {
@@ -385,12 +417,18 @@ export default function JoinPage() {
               </div>
             )}
 
+            {error && (
+              <div className="mt-4 rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                {error}
+              </div>
+            )}
+
             {/* Navigation */}
             <div className="mt-8 flex items-center justify-between">
               <Button
                 variant="outline"
                 onClick={() => setStep(step - 1)}
-                disabled={step === 0}
+                disabled={step === 0 || loading}
                 className="gap-1"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -409,11 +447,15 @@ export default function JoinPage() {
               ) : (
                 <Button
                   onClick={handleSubmit}
-                  disabled={!canProceed()}
+                  disabled={!canProceed() || loading}
                   className="gap-1 bg-cta text-cta-foreground hover:bg-cta/90"
                 >
-                  <Send className="h-4 w-4" />
-                  Отправить заявку
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                  {loading ? "Отправляем..." : "Отправить заявку"}
                 </Button>
               )}
             </div>
