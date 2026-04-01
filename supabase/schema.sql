@@ -270,6 +270,36 @@ CREATE TABLE faq_items (
 );
 
 -- ============================================================
+-- ADVOCACY DIRECTIONS
+-- ============================================================
+CREATE TABLE advocacy_directions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  icon_name TEXT NOT NULL DEFAULT 'FileText',
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  results TEXT[] NOT NULL DEFAULT '{}',
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  published BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- ADVOCACY INITIATIVES
+-- ============================================================
+CREATE TABLE advocacy_initiatives (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'discussion', 'completed')),
+  deadline TEXT,
+  description TEXT NOT NULL,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  published BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
 -- Auto-update updated_at trigger
 -- ============================================================
 CREATE OR REPLACE FUNCTION update_updated_at()
@@ -287,7 +317,8 @@ BEGIN
   FOREACH t IN ARRAY ARRAY[
     'profiles', 'members', 'member_applications', 'news', 'events',
     'blog_posts', 'experts', 'court_cases', 'documents',
-    'consultations', 'invoices', 'faq_items'
+    'consultations', 'invoices', 'faq_items',
+    'advocacy_directions', 'advocacy_initiatives'
   ] LOOP
     EXECUTE format(
       'CREATE TRIGGER set_updated_at BEFORE UPDATE ON %I FOR EACH ROW EXECUTE FUNCTION update_updated_at()',
@@ -313,6 +344,8 @@ ALTER TABLE consultations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE invoices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE faq_items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE advocacy_directions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE advocacy_initiatives ENABLE ROW LEVEL SECURITY;
 
 -- Helper: check if current user is admin
 CREATE OR REPLACE FUNCTION is_admin()
@@ -344,6 +377,12 @@ CREATE POLICY "Admins manage blog posts" ON blog_posts FOR ALL USING (is_admin()
 CREATE POLICY "Admins manage experts" ON experts FOR ALL USING (is_admin());
 CREATE POLICY "Admins manage court cases" ON court_cases FOR ALL USING (is_admin());
 CREATE POLICY "Admins manage faq" ON faq_items FOR ALL USING (is_admin());
+
+CREATE POLICY "Public can read published advocacy_directions" ON advocacy_directions FOR SELECT USING (published = true);
+CREATE POLICY "Admins manage advocacy_directions" ON advocacy_directions FOR ALL USING (is_admin());
+
+CREATE POLICY "Public can read published advocacy_initiatives" ON advocacy_initiatives FOR SELECT USING (published = true);
+CREATE POLICY "Admins manage advocacy_initiatives" ON advocacy_initiatives FOR ALL USING (is_admin());
 
 -- MEMBERS
 CREATE POLICY "Authenticated can read members" ON members FOR SELECT USING (auth.role() = 'authenticated');

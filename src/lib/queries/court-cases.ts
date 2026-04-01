@@ -30,3 +30,13 @@ export async function getCourtCases(
   if (error) throw error;
   return (data ?? []) as CourtCase[];
 }
+
+export async function getAllCourtCases(): Promise<CourtCase[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("court_cases")
+    .select("*")
+    .order("date", { ascending: false });
+  if (error) throw error;
+  return (data ?? []) as CourtCase[];
+}

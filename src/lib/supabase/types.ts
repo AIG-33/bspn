@@ -193,6 +193,30 @@ export type Notification = {
   created_at: string;
 };
 
+export type AdvocacyDirection = {
+  id: string;
+  icon_name: string;
+  title: string;
+  description: string;
+  results: string[];
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type AdvocacyInitiative = {
+  id: string;
+  title: string;
+  status: "active" | "discussion" | "completed";
+  deadline: string | null;
+  description: string;
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
 export type FaqItem = {
   id: string;
   question: string;

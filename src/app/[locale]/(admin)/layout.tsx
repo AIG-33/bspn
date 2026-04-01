@@ -22,6 +22,10 @@ import {
   CreditCard,
   Bell,
   Home,
+  HelpCircle,
+  Scale,
+  UserCheck,
+  Megaphone,
 } from "lucide-react";
 
 const adminNav = [
@@ -35,6 +39,10 @@ const adminNav = [
     { href: "/admin/events", label: "Мероприятия", icon: CalendarDays },
     { href: "/admin/blog", label: "Блог", icon: BookOpen },
     { href: "/admin/documents", label: "Документы", icon: FileText },
+    { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
+    { href: "/admin/court-practice", label: "Суд. практика", icon: Scale },
+    { href: "/admin/experts", label: "Эксперты", icon: UserCheck },
+    { href: "/admin/advocacy", label: "Адвокация", icon: Megaphone },
   ]},
   { section: "Аналитика", items: [
     { href: "/admin/analytics", label: "Статистика", icon: BarChart3 },

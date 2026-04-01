@@ -36,20 +36,36 @@ export async function updateSession(request: NextRequest) {
 
   const isProtectedRoute =
     strippedPath.startsWith("/cabinet") || strippedPath.startsWith("/admin");
+  const isAdminRoute = strippedPath.startsWith("/admin");
   const isAuthRoute =
     strippedPath.startsWith("/login") ||
     strippedPath.startsWith("/register") ||
     strippedPath.startsWith("/forgot-password");
 
+  const locale = pathname.match(/^\/(ru|en)/)?.[1] || "ru";
+
   if (isProtectedRoute && !user) {
-    const locale = pathname.match(/^\/(ru|en)/)?.[1] || "ru";
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}/login`;
     return NextResponse.redirect(url);
   }
 
+  if (isAdminRoute && user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single();
+
+    const role = profile?.role;
+    if (role !== "admin" && role !== "superadmin") {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${locale}/cabinet`;
+      return NextResponse.redirect(url);
+    }
+  }
+
   if (isAuthRoute && user) {
-    const locale = pathname.match(/^\/(ru|en)/)?.[1] || "ru";
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}/cabinet`;
     return NextResponse.redirect(url);

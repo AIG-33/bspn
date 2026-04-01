@@ -19,6 +19,16 @@ export async function getExperts(search?: string, specialization?: string): Prom
   return (data ?? []) as Expert[];
 }
 
+export async function getAllExperts(): Promise<Expert[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("experts")
+    .select("*")
+    .order("name", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as Expert[];
+}
+
 export async function getExpertById(id: string): Promise<Expert | null> {
   const supabase = await createClient();
   const { data, error } = await supabase.from("experts").select("*").eq("id", id).single();

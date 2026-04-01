@@ -22,3 +22,13 @@ export async function getFaqItems(search?: string, category?: string): Promise<F
   if (error) throw error;
   return (data ?? []) as FaqItem[];
 }
+
+export async function getAllFaqItems(): Promise<FaqItem[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("faq_items")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as FaqItem[];
+}
