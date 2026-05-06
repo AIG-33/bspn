@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,

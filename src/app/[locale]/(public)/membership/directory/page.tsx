@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Lock, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 
 export default function DirectoryPage() {

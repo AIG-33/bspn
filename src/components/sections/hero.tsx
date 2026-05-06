@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { ArrowRight, PlayCircle, Sparkles, MoveDown } from "lucide-react";
 import { STATS } from "@/lib/constants";
 import { AnimatedCounter } from "@/components/sections/animated-counter";

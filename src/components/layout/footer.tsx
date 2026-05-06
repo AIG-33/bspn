@@ -5,7 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 
 export function Footer() {

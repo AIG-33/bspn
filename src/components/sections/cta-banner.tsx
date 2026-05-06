@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { ArrowRight, ClipboardList, MessageCircle, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
