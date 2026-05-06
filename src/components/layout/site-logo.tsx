@@ -33,7 +33,7 @@ export function SiteLogo({
   if (variant === "plain") {
     return (
       <Image
-        src="/images/bspn-logo-mark.png"
+        src="/images/bspn-logo-mark@2x.png"
         alt={alt}
         width={img}
         height={img}
@@ -54,7 +54,7 @@ export function SiteLogo({
       )}
     >
       <Image
-        src="/images/bspn-logo-mark.png"
+        src="/images/bspn-logo-mark@2x.png"
         alt=""
         width={img}
         height={img}

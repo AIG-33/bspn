@@ -91,16 +91,17 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden items-center gap-0.5 lg:flex">
             {navItems.map((item) => (
               <div key={item.href} className="group relative">
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors",
-                    "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
+                    "flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold transition-all",
+                    "text-foreground/80 hover:text-foreground hover:bg-foreground/8",
+                    "group-hover:bg-foreground/8 group-hover:text-foreground",
                     pathname.startsWith(item.href) &&
-                      "text-foreground bg-foreground/5"
+                      "text-foreground bg-gradient-to-r from-primary/15 to-[var(--cta)]/15"
                   )}
                 >
                   {item.label}
@@ -111,19 +112,20 @@ export function Header() {
 
                 {item.children && (
                   <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                    <div className="glass-strong min-w-[260px] rounded-2xl p-1.5 shadow-xl">
+                    <div className="min-w-[280px] rounded-2xl border border-border/60 bg-popover p-1.5 shadow-2xl ring-1 ring-black/5 dark:bg-popover dark:ring-white/10">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
                           className={cn(
-                            "block rounded-xl px-3 py-2 text-sm transition-colors",
-                            "text-muted-foreground hover:bg-foreground/5 hover:text-foreground",
+                            "group/item relative block rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-all",
+                            "text-foreground/85",
+                            "hover:bg-gradient-to-r hover:from-primary/12 hover:via-[var(--cta)]/10 hover:to-[var(--gold)]/10 hover:text-foreground hover:shadow-sm hover:translate-x-0.5",
                             pathname === child.href &&
-                              "bg-primary/10 text-primary font-medium"
+                              "bg-gradient-to-r from-primary/15 via-[var(--cta)]/12 to-[var(--gold)]/12 text-primary"
                           )}
                         >
-                          {child.label}
+                          <span className="relative z-10">{child.label}</span>
                         </Link>
                       ))}
                     </div>
@@ -196,20 +198,21 @@ export function Header() {
                   <Menu className="h-5 w-5" />
                 )}
               </SheetTrigger>
-              <SheetContent side="right" className="w-full sm:w-80 glass-strong border-l border-white/10">
+              <SheetContent side="right" className="w-full sm:w-80 bg-background border-l border-border">
                 <SheetTitle className="sr-only">
                   {t("a11y.openMenu")}
                 </SheetTitle>
-                <nav className="flex flex-col gap-1 pt-4">
+                <nav className="flex flex-col gap-0.5 pt-4">
                   {navItems.map((item) => (
                     <div key={item.href}>
                       <Link
                         href={item.href}
                         onClick={() => setMobileOpen(false)}
                         className={cn(
-                          "block rounded-xl px-3 py-2.5 text-base font-medium transition-colors",
-                          "text-foreground hover:bg-foreground/5",
-                          pathname.startsWith(item.href) && "bg-foreground/5"
+                          "block rounded-xl px-3 py-2.5 text-base font-semibold transition-all",
+                          "text-foreground hover:bg-gradient-to-r hover:from-primary/12 hover:via-[var(--cta)]/10 hover:to-[var(--gold)]/10",
+                          pathname.startsWith(item.href) &&
+                            "bg-gradient-to-r from-primary/15 to-[var(--cta)]/12"
                         )}
                       >
                         {item.label}
@@ -220,10 +223,10 @@ export function Header() {
                           href={child.href}
                           onClick={() => setMobileOpen(false)}
                           className={cn(
-                            "block rounded-xl px-6 py-2 text-sm transition-colors",
-                            "text-muted-foreground hover:text-foreground",
+                            "block rounded-xl px-6 py-2 text-sm font-medium transition-all",
+                            "text-foreground/75 hover:text-foreground hover:bg-foreground/5",
                             pathname === child.href &&
-                              "text-primary font-medium"
+                              "text-primary font-semibold bg-primary/10"
                           )}
                         >
                           {child.label}

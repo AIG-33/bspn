@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { SiteLogo } from "@/components/layout/site-logo";
 
 export default function AuthLayout({
   children,
@@ -29,10 +30,17 @@ export default function AuthLayout({
         <LanguageSwitcher />
       </div>
 
-      <Link href="/" className="mb-8 flex items-center gap-2.5 group">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--aurora-1)] via-primary to-[var(--cta)] text-white font-heading font-bold shadow-lg group-hover:scale-105 transition-transform">
-          {t("site.logoMark")}
-        </div>
+      <Link
+        href="/"
+        className="mb-8 flex items-center gap-2.5 group"
+        aria-label={t("site.name")}
+      >
+        <SiteLogo
+          size="lg"
+          priority
+          alt={t("site.name")}
+          className="transition-transform group-hover:scale-105"
+        />
         <span className="font-heading text-xl font-semibold">
           {t("site.name")}
         </span>
