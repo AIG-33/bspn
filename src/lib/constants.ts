@@ -1,12 +1,6 @@
 export const SITE = {
-  name: "БСПН",
-  fullName:
-    "Белорусский союз предпринимателей и нанимателей им. проф. М.С. Кунявского",
   domain: "bspn.by",
   foundedYear: 1990,
-  address: "ул. Фабричная 22, Минск",
-  phone: "+375 17 210-18-42",
-  email: "info@bspn.by",
   socialLinks: {
     telegram: "https://t.me/bspn_by",
     facebook: "https://facebook.com/bspn.by",

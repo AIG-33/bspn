@@ -1,7 +1,8 @@
-import { getAllCourtCases } from "@/lib/queries/court-cases";
-import { AdminCourtPracticeClient } from "./court-practice-client";
+"use client";
 
-export default async function AdminCourtPracticePage() {
-  const cases = await getAllCourtCases();
-  return <AdminCourtPracticeClient initialData={cases} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { Scale } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={Scale} titleKey="courtPractice" />;
 }

@@ -1,7 +1,8 @@
-import { getAllFaqItems } from "@/lib/queries/faq";
-import { AdminFaqClient } from "./faq-client";
+"use client";
 
-export default async function AdminFaqPage() {
-  const items = await getAllFaqItems();
-  return <AdminFaqClient initialData={items} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { HelpCircle } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={HelpCircle} titleKey="faq" />;
 }

@@ -1,10 +1,8 @@
-import { getAllAdvocacyDirections, getAllAdvocacyInitiatives } from "@/lib/queries/advocacy";
-import { AdminAdvocacyClient } from "./advocacy-client";
+"use client";
 
-export default async function AdminAdvocacyPage() {
-  const [directions, initiatives] = await Promise.all([
-    getAllAdvocacyDirections(),
-    getAllAdvocacyInitiatives(),
-  ]);
-  return <AdminAdvocacyClient initialDirections={directions} initialInitiatives={initiatives} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { Megaphone } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={Megaphone} titleKey="advocacy" />;
 }

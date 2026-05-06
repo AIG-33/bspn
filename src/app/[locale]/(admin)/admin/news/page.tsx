@@ -1,7 +1,8 @@
-import { getAllNews } from "@/lib/queries/news";
-import { AdminNewsClient } from "./news-client";
+"use client";
 
-export default async function AdminNewsPage() {
-  const news = await getAllNews();
-  return <AdminNewsClient initialData={news} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { Newspaper } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={Newspaper} titleKey="news" />;
 }

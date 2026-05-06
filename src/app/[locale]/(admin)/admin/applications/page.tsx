@@ -1,7 +1,8 @@
-import { getMemberApplications } from "@/lib/queries/members";
-import { ApplicationsClient } from "./applications-client";
+"use client";
 
-export default async function ApplicationsPage() {
-  const applications = await getMemberApplications();
-  return <ApplicationsClient initialData={applications} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { Shield } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={Shield} titleKey="applications" />;
 }

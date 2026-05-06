@@ -1,222 +1,200 @@
+import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
-import { Card, CardContent } from "@/components/ui/card";
+import { GlassCard } from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { CheckCircle, X, ArrowRight, Star } from "lucide-react";
+import { CheckCircle2, X, ArrowRight, Star } from "lucide-react";
 
-const membershipTypes = [
+interface MemberTypeDef {
+  key: "associated" | "solidary" | "active" | "full";
+  popular: boolean;
+  features: { id: number; included: boolean }[];
+}
+
+const TYPES: MemberTypeDef[] = [
   {
-    name: "Ассоциированное",
-    description: "Для компаний, которые хотят познакомиться с БСПН",
-    price: "от 200",
-    period: "BYN / год",
+    key: "associated",
     popular: false,
     features: [
-      { text: "Участие в открытых мероприятиях", included: true },
-      { text: "Рассылка новостей и обзоров", included: true },
-      { text: "Базовые консультации", included: true },
-      { text: "Каталог членов", included: false },
-      { text: "Шаблоны документов", included: false },
-      { text: "Представительство в госорганах", included: false },
-      { text: "Международные контакты", included: false },
-      { text: "Личный кабинет", included: false },
+      { id: 1, included: true },
+      { id: 2, included: true },
+      { id: 3, included: true },
+      { id: 4, included: false },
+      { id: 5, included: false },
+      { id: 7, included: false },
+      { id: 8, included: false },
+      { id: 9, included: false },
     ],
   },
   {
-    name: "Солидарное",
-    description: "Для малого бизнеса и ИП, готовых к участию",
-    price: "от 350",
-    period: "BYN / год",
+    key: "solidary",
     popular: false,
     features: [
-      { text: "Участие во всех мероприятиях", included: true },
-      { text: "Рассылка новостей и обзоров", included: true },
-      { text: "Юридические консультации", included: true },
-      { text: "Каталог членов (просмотр)", included: true },
-      { text: "Шаблоны документов", included: true },
-      { text: "Представительство в госорганах", included: false },
-      { text: "Международные контакты", included: false },
-      { text: "Личный кабинет (базовый)", included: true },
+      { id: 1, included: true },
+      { id: 2, included: true },
+      { id: 3, included: true },
+      { id: 4, included: true },
+      { id: 5, included: true },
+      { id: 7, included: false },
+      { id: 8, included: false },
+      { id: 9, included: true },
     ],
   },
   {
-    name: "Действительное",
-    description: "Для среднего бизнеса — полный набор услуг",
-    price: "от 500",
-    period: "BYN / год",
+    key: "active",
     popular: true,
     features: [
-      { text: "Участие во всех мероприятиях", included: true },
-      { text: "Рассылка новостей и обзоров", included: true },
-      { text: "Юридические и экономические консультации", included: true },
-      { text: "Каталог членов (полный доступ)", included: true },
-      { text: "Все шаблоны документов", included: true },
-      { text: "Представительство в госорганах", included: true },
-      { text: "Международные контакты", included: true },
-      { text: "Личный кабинет (полный)", included: true },
+      { id: 1, included: true },
+      { id: 2, included: true },
+      { id: 6, included: true },
+      { id: 11, included: true },
+      { id: 10, included: true },
+      { id: 7, included: true },
+      { id: 8, included: true },
+      { id: 9, included: true },
     ],
   },
   {
-    name: "Полномочное",
-    description: "Для крупного бизнеса и отраслевых лидеров",
-    price: "от 1 000",
-    period: "BYN / год",
+    key: "full",
     popular: false,
     features: [
-      { text: "Все преимущества действительного членства", included: true },
-      { text: "Место в Правлении БСПН", included: true },
-      { text: "Приоритетная экспертная поддержка", included: true },
-      { text: "Участие в формировании позиции БСПН", included: true },
-      { text: "Персональный менеджер", included: true },
-      { text: "Участие в международных миссиях", included: true },
-      { text: "Размещение логотипа на сайте БСПН", included: true },
-      { text: "Индивидуальные аналитические отчёты", included: true },
+      { id: 12, included: true },
+      { id: 13, included: true },
+      { id: 14, included: true },
+      { id: 15, included: true },
+      { id: 16, included: true },
+      { id: 17, included: true },
+      { id: 18, included: true },
+      { id: 19, included: true },
     ],
   },
 ];
 
 export default function MembershipTypesPage() {
+  const t = useTranslations("memberTypes");
+  const tCommon = useTranslations("common");
+
   return (
     <>
       <PageHeader
-        title="Виды членства"
-        description="Выберите подходящий формат участия в БСПН — от ознакомительного до полного представительства"
+        title={t("pageTitle")}
+        description={t("pageDescription")}
       />
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        {/* Pricing Cards */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          {membershipTypes.map((type) => (
-            <Card
-              key={type.name}
+          {TYPES.map((type) => (
+            <GlassCard
+              key={type.key}
               className={cn(
-                "relative flex flex-col",
-                type.popular && "border-primary shadow-lg ring-1 ring-primary/20"
+                "relative flex flex-col p-6",
+                type.popular && "ring-1 ring-primary/40 glow-primary"
               )}
             >
               {type.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground gap-1">
+                  <Badge className="gap-1 rounded-full bg-gradient-to-r from-primary to-[var(--cta)] text-white shadow-lg">
                     <Star className="h-3 w-3" />
-                    Рекомендуем
+                    {t("popular")}
                   </Badge>
                 </div>
               )}
-              <CardContent className="flex flex-1 flex-col p-6">
-                <h3 className="font-heading text-lg font-bold">{type.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {type.description}
-                </p>
 
-                <div className="mt-4">
-                  <span className="font-mono text-3xl font-bold">
-                    {type.price}
-                  </span>
-                  <span className="ml-1 text-sm text-muted-foreground">
-                    {type.period}
-                  </span>
-                </div>
+              <h3 className="font-heading text-lg font-bold">
+                {t(`${type.key}Name`)}
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {t(`${type.key}Desc`)}
+              </p>
 
-                <ul className="mt-6 flex-1 space-y-3">
-                  {type.features.map(({ text, included }) => (
-                    <li
-                      key={text}
-                      className={cn(
-                        "flex items-start gap-2 text-sm",
-                        included
-                          ? "text-foreground"
-                          : "text-muted-foreground/50"
-                      )}
-                    >
-                      {included ? (
-                        <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-                      ) : (
-                        <X className="mt-0.5 h-4 w-4 shrink-0" />
-                      )}
-                      {text}
-                    </li>
-                  ))}
-                </ul>
+              <div className="mt-4">
+                <span className="font-mono text-3xl font-bold">
+                  {t(`${type.key}Price`)}
+                </span>
+                <span className="ml-1 text-sm text-muted-foreground">
+                  {tCommon("byPerYear")}
+                </span>
+              </div>
 
-                <Link
-                  href="/membership/join"
-                  className={cn(
-                    buttonVariants({
-                      variant: type.popular ? "default" : "outline",
-                    }),
-                    "mt-6 w-full justify-center",
-                    type.popular &&
-                      "bg-cta text-cta-foreground hover:bg-cta/90"
-                  )}
-                >
-                  Выбрать
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </CardContent>
-            </Card>
+              <ul className="mt-6 flex-1 space-y-3">
+                {type.features.map(({ id, included }) => (
+                  <li
+                    key={id}
+                    className={cn(
+                      "flex items-start gap-2 text-sm",
+                      included
+                        ? "text-foreground"
+                        : "text-muted-foreground/40"
+                    )}
+                  >
+                    {included ? (
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                    ) : (
+                      <X className="mt-0.5 h-4 w-4 shrink-0" />
+                    )}
+                    {t(`f${id}`)}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/membership/join"
+                className={cn(
+                  buttonVariants({
+                    variant: type.popular ? "default" : "outline",
+                  }),
+                  "mt-6 w-full justify-center rounded-xl",
+                  type.popular &&
+                    "bg-cta text-cta-foreground hover:bg-cta/90 glow-cta"
+                )}
+              >
+                {t("select")}
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </GlassCard>
           ))}
         </div>
 
-        {/* Conditions */}
-        <div className="mt-16 rounded-2xl bg-muted p-8 sm:p-10">
-          <h2 className="font-heading text-2xl font-bold">Условия вступления</h2>
-          <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div>
-              <h3 className="font-heading text-base font-semibold">
-                Кто может вступить
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Юридические лица и индивидуальные предприниматели,
-                зарегистрированные в Республике Беларусь, разделяющие цели и
-                задачи БСПН.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-heading text-base font-semibold">
-                Процедура вступления
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Подайте онлайн-заявку → получите звонок от представителя БСПН в
-                течение 24 часов → получите одобрение Правления → оплатите взнос.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-heading text-base font-semibold">
-                Размер взносов
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Размер ежегодного членского взноса зависит от вида членства и
-                размера компании. Вступительный взнос не взимается.
-              </p>
-            </div>
+        <GlassCard className="mt-20 p-8 sm:p-10">
+          <h2 className="font-heading text-2xl font-bold">
+            {t("conditionsTitle")}
+          </h2>
+          <div className="mt-6 grid gap-8 sm:grid-cols-3">
+            {[1, 2, 3].map((n) => (
+              <div key={n}>
+                <h3 className="font-heading text-base font-semibold">
+                  {t(`cond${n}Title`)}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {t(`cond${n}Desc`)}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
+        </GlassCard>
 
-        {/* CTA */}
         <div className="mt-12 text-center">
-          <p className="text-base text-muted-foreground">
-            Не уверены, какой тип подходит? Свяжитесь с нами — поможем выбрать.
-          </p>
+          <p className="text-base text-muted-foreground">{t("ctaText")}</p>
           <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/membership/join"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "bg-cta text-cta-foreground hover:bg-cta/90 px-8 rounded-xl"
+                "rounded-xl bg-cta px-8 text-cta-foreground hover:bg-cta/90 glow-cta"
               )}
             >
-              Подать заявку
+              {tCommon("applyNow")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
               href="/contacts"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "px-8 rounded-xl"
+                "rounded-xl px-8"
               )}
             >
-              Связаться с нами
+              {tCommon("contactUs")}
             </Link>
           </div>
         </div>

@@ -1,17 +1,5 @@
-import { PageHeader } from "@/components/sections/page-header";
-import { getBlogPosts } from "@/lib/queries/blog";
-import { BlogClient } from "./blog-client";
+import { ComingSoonPage } from "@/components/sections/coming-soon";
 
-export default async function BlogPage() {
-  const posts = await getBlogPosts();
-
-  return (
-    <>
-      <PageHeader
-        title="Блог"
-        description="Экспертные статьи, аналитика и практические руководства от специалистов БСПН"
-      />
-      <BlogClient initialData={posts} />
-    </>
-  );
+export default function BlogPage() {
+  return <ComingSoonPage pageKey="blog" />;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -15,43 +16,60 @@ import {
   Menu,
   X,
   LogOut,
-  ChevronRight,
   Shield,
   BarChart3,
   MessageSquare,
   CreditCard,
-  Bell,
   Home,
   HelpCircle,
   Scale,
   UserCheck,
   Megaphone,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { useUser } from "@/components/auth-provider";
 
-const adminNav = [
-  { section: "Основное", items: [
-    { href: "/admin", label: "Дашборд", icon: LayoutDashboard },
-    { href: "/admin/members", label: "Члены", icon: Users, badge: 3 },
-    { href: "/admin/applications", label: "Заявки", icon: Shield, badge: 5 },
-  ]},
-  { section: "Контент", items: [
-    { href: "/admin/news", label: "Новости", icon: Newspaper },
-    { href: "/admin/events", label: "Мероприятия", icon: CalendarDays },
-    { href: "/admin/blog", label: "Блог", icon: BookOpen },
-    { href: "/admin/documents", label: "Документы", icon: FileText },
-    { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
-    { href: "/admin/court-practice", label: "Суд. практика", icon: Scale },
-    { href: "/admin/experts", label: "Эксперты", icon: UserCheck },
-    { href: "/admin/advocacy", label: "Адвокация", icon: Megaphone },
-  ]},
-  { section: "Аналитика", items: [
-    { href: "/admin/analytics", label: "Статистика", icon: BarChart3 },
-    { href: "/admin/consultations", label: "Консультации", icon: MessageSquare },
-    { href: "/admin/billing", label: "Финансы", icon: CreditCard },
-  ]},
-  { section: "Система", items: [
-    { href: "/admin/settings", label: "Настройки", icon: Settings },
-  ]},
+interface AdminItem {
+  href: string;
+  labelKey: string;
+  icon: LucideIcon;
+  badge?: number;
+}
+
+const ADMIN_NAV: { sectionKey: string; items: AdminItem[] }[] = [
+  {
+    sectionKey: "sectionMain",
+    items: [
+      { href: "/admin", labelKey: "dashboard", icon: LayoutDashboard },
+      { href: "/admin/members", labelKey: "members", icon: Users, badge: 3 },
+      { href: "/admin/applications", labelKey: "applications", icon: Shield, badge: 5 },
+    ],
+  },
+  {
+    sectionKey: "sectionContent",
+    items: [
+      { href: "/admin/news", labelKey: "news", icon: Newspaper },
+      { href: "/admin/events", labelKey: "events", icon: CalendarDays },
+      { href: "/admin/blog", labelKey: "blog", icon: BookOpen },
+      { href: "/admin/documents", labelKey: "documents", icon: FileText },
+      { href: "/admin/faq", labelKey: "faq", icon: HelpCircle },
+      { href: "/admin/court-practice", labelKey: "courtPractice", icon: Scale },
+      { href: "/admin/experts", labelKey: "experts", icon: UserCheck },
+      { href: "/admin/advocacy", labelKey: "advocacy", icon: Megaphone },
+    ],
+  },
+  {
+    sectionKey: "sectionAnalytics",
+    items: [
+      { href: "/admin/analytics", labelKey: "analytics", icon: BarChart3 },
+      { href: "/admin/consultations", labelKey: "consultations", icon: MessageSquare },
+      { href: "/admin/billing", labelKey: "billing", icon: CreditCard },
+    ],
+  },
+  {
+    sectionKey: "sectionSystem",
+    items: [{ href: "/admin/settings", labelKey: "settings", icon: Settings }],
+  },
 ];
 
 export default function AdminLayout({
@@ -59,18 +77,21 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const t = useTranslations("admin");
+  const tNav = useTranslations("nav");
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { signOut } = useUser();
 
   const sidebarContent = (
     <nav className="space-y-6">
-      {adminNav.map(({ section, items }) => (
-        <div key={section}>
+      {ADMIN_NAV.map(({ sectionKey, items }) => (
+        <div key={sectionKey}>
           <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            {section}
+            {t(sectionKey)}
           </p>
           <div className="mt-2 space-y-0.5">
-            {items.map(({ href, label, icon: Icon, badge }) => {
+            {items.map(({ href, labelKey, icon: Icon, badge }) => {
               const isActive =
                 pathname === href ||
                 (href !== "/admin" && pathname.startsWith(href));
@@ -80,21 +101,23 @@ export default function AdminLayout({
                   href={href}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    "flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      ? "bg-gradient-to-r from-primary to-[var(--cta)] text-white shadow-md"
+                      : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                   )}
                 >
                   <Icon className="h-4 w-4 shrink-0" />
-                  <span className="flex-1">{label}</span>
+                  <span className="flex-1">{t(labelKey)}</span>
                   {badge && (
-                    <Badge className={cn(
-                      "h-5 min-w-5 justify-center text-[10px] px-1.5",
-                      isActive
-                        ? "bg-white/20 text-primary-foreground"
-                        : "bg-cta text-cta-foreground"
-                    )}>
+                    <Badge
+                      className={cn(
+                        "h-5 min-w-5 justify-center px-1.5 text-[10px]",
+                        isActive
+                          ? "bg-white/20 text-white"
+                          : "bg-cta text-cta-foreground"
+                      )}
+                    >
                       {badge}
                     </Badge>
                   )}
@@ -109,57 +132,64 @@ export default function AdminLayout({
 
   return (
     <div className="flex min-h-screen">
-      {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-border lg:bg-muted/30">
-        <div className="flex h-14 items-center gap-2 border-b border-border px-4">
+      <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-foreground/5 glass">
+        <div className="flex h-14 items-center gap-2 border-b border-foreground/5 px-4">
           <Shield className="h-5 w-5 text-primary" />
-          <span className="font-heading text-sm font-bold">БСПН Admin</span>
+          <span className="font-heading text-sm font-bold">
+            {t("panelName")}
+          </span>
         </div>
-        <div className="flex-1 overflow-y-auto p-3">
-          {sidebarContent}
-        </div>
-        <div className="border-t border-border p-3">
+        <div className="flex-1 overflow-y-auto p-3">{sidebarContent}</div>
+        <div className="border-t border-foreground/5 p-3 space-y-0.5">
           <Link
             href="/"
-            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted"
+            className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
           >
             <Home className="h-4 w-4" />
-            На сайт
+            {t("back")}
           </Link>
-          <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted">
+          <button
+            type="button"
+            onClick={signOut}
+            className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
+          >
             <LogOut className="h-4 w-4" />
-            Выйти
+            {tNav("logout")}
           </button>
         </div>
       </aside>
 
-      {/* Mobile Header */}
       <div className="flex flex-1 flex-col">
-        <header className="flex h-14 items-center justify-between border-b border-border px-4 lg:hidden">
+        <header className="flex h-14 items-center justify-between border-b border-foreground/5 glass px-4 lg:hidden">
           <div className="flex items-center gap-2">
             <Shield className="h-5 w-5 text-primary" />
-            <span className="font-heading text-sm font-bold">Admin</span>
+            <span className="font-heading text-sm font-bold">
+              {t("panelName")}
+            </span>
           </div>
           <button onClick={() => setSidebarOpen(!sidebarOpen)}>
             {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </header>
 
-        {/* Mobile Sidebar Overlay */}
         {sidebarOpen && (
           <>
-            <div className="fixed inset-0 z-40 bg-black/50 lg:hidden" onClick={() => setSidebarOpen(false)} />
-            <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-background border-r border-border p-3 overflow-y-auto lg:hidden">
-              <div className="flex h-10 items-center gap-2 mb-4">
+            <div
+              className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+              onClick={() => setSidebarOpen(false)}
+            />
+            <aside className="fixed inset-y-0 left-0 z-40 w-64 overflow-y-auto glass-strong p-3 lg:hidden">
+              <div className="mb-4 flex h-10 items-center gap-2">
                 <Shield className="h-5 w-5 text-primary" />
-                <span className="font-heading text-sm font-bold">БСПН Admin</span>
+                <span className="font-heading text-sm font-bold">
+                  {t("panelName")}
+                </span>
               </div>
               {sidebarContent}
             </aside>
           </>
         )}
 
-        {/* Main Content */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
       </div>
     </div>

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bspn.by";
-  const locales = ["ru", "en"];
+  const locales = ["ru", "en", "zh"];
   const now = new Date();
 
   const publicRoutes = [

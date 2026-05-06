@@ -5,7 +5,7 @@ import { updateSession } from "@/lib/supabase/middleware";
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const supabaseResponse = await updateSession(request);
 
   if (supabaseResponse.headers.get("location")) {
@@ -22,5 +22,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/(ru|en)/:path*"],
+  matcher: ["/", "/(ru|en|zh)/:path*"],
 };

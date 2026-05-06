@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
-import { Card, CardContent } from "@/components/ui/card";
+import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +19,7 @@ import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   ArrowLeft,
-  CheckCircle,
+  CheckCircle2,
   User,
   Building2,
   Heart,
@@ -27,41 +28,40 @@ import {
 } from "lucide-react";
 import { submitApplication } from "@/lib/actions/applications";
 
-const industries = [
-  "Промышленность",
-  "Транспорт и логистика",
-  "Строительство",
-  "IT и цифровые технологии",
-  "Торговля и услуги",
-  "Агропромышленный комплекс",
-  "Финансы и страхование",
-  "Образование",
-  "Здравоохранение",
-  "Энергетика",
-  "Консалтинг",
-  "Другое",
-];
+const INDUSTRY_KEYS = [
+  "industry1",
+  "industry2",
+  "industry3",
+  "industry4",
+  "industry5",
+  "industry6",
+  "industry7",
+  "industry8",
+  "industry9",
+  "industry10",
+  "industry11",
+  "industry12",
+] as const;
 
-const interests = [
-  { id: "advocacy", label: "Защита интересов в госорганах" },
-  { id: "legal", label: "Юридические консультации" },
-  { id: "tax", label: "Налоговые вопросы" },
-  { id: "networking", label: "Нетворкинг и мероприятия" },
-  { id: "international", label: "Международные связи" },
-  { id: "templates", label: "Шаблоны документов" },
-  { id: "data-protection", label: "Защита персональных данных" },
-];
-
-const steps = [
-  { icon: User, label: "Контакт" },
-  { icon: Building2, label: "Компания" },
-  { icon: Heart, label: "Интересы" },
-  { icon: Send, label: "Отправка" },
-];
+const INTEREST_KEYS = [
+  "interest1",
+  "interest2",
+  "interest3",
+  "interest4",
+  "interest5",
+  "interest6",
+  "interest7",
+] as const;
 
 export default function JoinPage() {
+  const t = useTranslations("join");
+  const tCommon = useTranslations("common");
+
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -74,7 +74,10 @@ export default function JoinPage() {
     consent: false,
   });
 
-  const updateForm = (field: string, value: string | boolean | string[] | null) => {
+  const updateForm = (
+    field: string,
+    value: string | boolean | string[] | null
+  ) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -86,6 +89,13 @@ export default function JoinPage() {
         : [...prev.interests, id],
     }));
   };
+
+  const STEPS = [
+    { icon: User, label: t("stepContact") },
+    { icon: Building2, label: t("stepCompany") },
+    { icon: Heart, label: t("stepInterests") },
+    { icon: Send, label: t("stepConfirm") },
+  ];
 
   const canProceed = () => {
     switch (step) {
@@ -101,9 +111,6 @@ export default function JoinPage() {
         return false;
     }
   };
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -127,7 +134,7 @@ export default function JoinPage() {
     });
 
     if (!result.success) {
-      setError(result.error ?? "Произошла ошибка при отправке заявки");
+      setError(result.error ?? t("errorGeneric"));
       setLoading(false);
       return;
     }
@@ -139,20 +146,24 @@ export default function JoinPage() {
   if (submitted) {
     return (
       <>
-        <PageHeader title="Заявка отправлена!" />
+        <PageHeader
+          title={t("successTitle")}
+          align="center"
+          variant="aurora"
+        />
         <div className="mx-auto max-w-xl px-4 py-16 text-center sm:px-6 lg:px-8">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-success/10">
-            <CheckCircle className="h-10 w-10 text-success" />
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-success/10 glow-primary">
+            <CheckCircle2 className="h-10 w-10 text-success" />
           </div>
           <h2 className="mt-6 font-heading text-2xl font-bold">
-            Спасибо за вашу заявку!
+            {t("successHeader")}
           </h2>
-          <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-            Мы получили вашу заявку на вступление в БСПН. Наш представитель
-            свяжется с вами в течение 24 часов для уточнения деталей.
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            {t("successText")}
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Подтверждение отправлено на <strong>{form.email}</strong>
+            {t("successEmail")}{" "}
+            <strong className="text-foreground">{form.email}</strong>
           </p>
         </div>
       </>
@@ -162,14 +173,16 @@ export default function JoinPage() {
   return (
     <>
       <PageHeader
-        title="Вступить в БСПН"
-        description="Заполните заявку за 2 минуты — мы свяжемся с вами в течение 24 часов"
+        title={t("pageTitle")}
+        description={t("pageDescription")}
+        variant="aurora"
+        align="center"
       />
       <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Progress Bar */}
+        {/* Progress */}
         <div className="mb-10">
           <div className="flex items-center justify-between">
-            {steps.map((s, i) => (
+            {STEPS.map((s, i) => (
               <div
                 key={i}
                 className={cn(
@@ -179,16 +192,16 @@ export default function JoinPage() {
               >
                 <div
                   className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-full border-2 transition-colors",
+                    "flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all",
                     i < step
                       ? "border-success bg-success text-success-foreground"
                       : i === step
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border"
+                        ? "border-primary bg-primary text-primary-foreground glow-primary"
+                        : "border-foreground/15"
                   )}
                 >
                   {i < step ? (
-                    <CheckCircle className="h-5 w-5" />
+                    <CheckCircle2 className="h-5 w-5" />
                   ) : (
                     <s.icon className="h-5 w-5" />
                   )}
@@ -199,274 +212,255 @@ export default function JoinPage() {
               </div>
             ))}
           </div>
-          <div className="mt-3 h-1.5 w-full rounded-full bg-muted">
+          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-primary transition-all duration-300"
-              style={{ width: `${((step + 1) / steps.length) * 100}%` }}
+              className="h-full rounded-full bg-gradient-to-r from-primary to-[var(--cta)] transition-all duration-500"
+              style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
             />
           </div>
         </div>
 
-        {/* Step Content */}
-        <Card>
-          <CardContent className="p-6 sm:p-8">
-            {step === 0 && (
-              <div className="space-y-5">
-                <h2 className="font-heading text-xl font-bold">
-                  Контактная информация
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="name">ФИО руководителя *</Label>
-                    <Input
-                      id="name"
-                      value={form.name}
-                      onChange={(e) => updateForm("name", e.target.value)}
-                      placeholder="Иванов Иван Иванович"
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => updateForm("email", e.target.value)}
-                      placeholder="director@company.by"
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="phone">Телефон *</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={(e) => updateForm("phone", e.target.value)}
-                      placeholder="+375 29 123-45-67"
-                      className="mt-1.5"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {step === 1 && (
-              <div className="space-y-5">
-                <h2 className="font-heading text-xl font-bold">
-                  О компании
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="company">Название компании *</Label>
-                    <Input
-                      id="company"
-                      value={form.company}
-                      onChange={(e) => updateForm("company", e.target.value)}
-                      placeholder="ООО «Компания»"
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="unp">УНП</Label>
-                    <Input
-                      id="unp"
-                      value={form.unp}
-                      onChange={(e) => updateForm("unp", e.target.value)}
-                      placeholder="123456789"
-                      className="mt-1.5"
-                    />
-                  </div>
-                  <div>
-                    <Label>Сфера деятельности *</Label>
-                    <Select
-                      value={form.industry}
-                      onValueChange={(v) => updateForm("industry", v)}
-                    >
-                      <SelectTrigger className="mt-1.5">
-                        <SelectValue placeholder="Выберите отрасль" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {industries.map((ind) => (
-                          <SelectItem key={ind} value={ind}>
-                            {ind}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {step === 2 && (
-              <div className="space-y-5">
-                <h2 className="font-heading text-xl font-bold">
-                  Что вас интересует?
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  Выберите направления, которые важны для вашего бизнеса
-                </p>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {interests.map(({ id, label }) => (
-                    <button
-                      key={id}
-                      type="button"
-                      onClick={() => toggleInterest(id)}
-                      className={cn(
-                        "flex items-center gap-3 rounded-xl border p-4 text-left text-sm transition-all",
-                        form.interests.includes(id)
-                          ? "border-primary bg-primary/5 text-foreground"
-                          : "border-border hover:border-primary/30"
-                      )}
-                    >
-                      <div
-                        className={cn(
-                          "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border",
-                          form.interests.includes(id)
-                            ? "border-primary bg-primary text-primary-foreground"
-                            : "border-border"
-                        )}
-                      >
-                        {form.interests.includes(id) && (
-                          <CheckCircle className="h-3.5 w-3.5" />
-                        )}
-                      </div>
-                      {label}
-                    </button>
-                  ))}
+        <GlassCard className="p-6 sm:p-8">
+          {step === 0 && (
+            <div className="space-y-5">
+              <h2 className="font-heading text-xl font-bold">
+                {t("step1Title")}
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="name">{t("labelName")}</Label>
+                  <Input
+                    id="name"
+                    value={form.name}
+                    onChange={(e) => updateForm("name", e.target.value)}
+                    placeholder={t("placeholderName")}
+                    className="mt-1.5"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="message">Дополнительный комментарий</Label>
-                  <Textarea
-                    id="message"
-                    value={form.message}
-                    onChange={(e) => updateForm("message", e.target.value)}
-                    placeholder="Расскажите подробнее о ваших ожиданиях..."
+                  <Label htmlFor="email">{t("labelEmail")}</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => updateForm("email", e.target.value)}
+                    placeholder={t("placeholderEmail")}
                     className="mt-1.5"
-                    rows={3}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">{t("labelPhone")}</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => updateForm("phone", e.target.value)}
+                    placeholder={t("placeholderPhone")}
+                    className="mt-1.5"
                   />
                 </div>
               </div>
-            )}
-
-            {step === 3 && (
-              <div className="space-y-5">
-                <h2 className="font-heading text-xl font-bold">
-                  Подтверждение заявки
-                </h2>
-                <div className="space-y-4 rounded-xl bg-muted p-5 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">ФИО</span>
-                    <span className="font-medium">{form.name}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Email</span>
-                    <span className="font-medium">{form.email}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Телефон</span>
-                    <span className="font-medium">{form.phone}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Компания</span>
-                    <span className="font-medium">{form.company}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Отрасль</span>
-                    <span className="font-medium">{form.industry}</span>
-                  </div>
-                  {form.unp && (
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">УНП</span>
-                      <span className="font-medium">{form.unp}</span>
-                    </div>
-                  )}
-                  <div>
-                    <span className="text-muted-foreground">Интересы:</span>
-                    <div className="mt-1 flex flex-wrap gap-1.5">
-                      {form.interests.map((id) => {
-                        const interest = interests.find((i) => i.id === id);
-                        return (
-                          <span
-                            key={id}
-                            className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
-                          >
-                            {interest?.label}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={form.consent}
-                    onChange={(e) => updateForm("consent", e.target.checked)}
-                    className="mt-1 h-4 w-4 rounded border-border accent-primary"
-                  />
-                  <span className="text-sm text-muted-foreground leading-relaxed">
-                    Я даю согласие на обработку персональных данных в
-                    соответствии с Политикой конфиденциальности БСПН и
-                    подтверждаю достоверность указанных сведений.
-                  </span>
-                </label>
-              </div>
-            )}
-
-            {error && (
-              <div className="mt-4 rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-                {error}
-              </div>
-            )}
-
-            {/* Navigation */}
-            <div className="mt-8 flex items-center justify-between">
-              <Button
-                variant="outline"
-                onClick={() => setStep(step - 1)}
-                disabled={step === 0 || loading}
-                className="gap-1"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Назад
-              </Button>
-
-              {step < steps.length - 1 ? (
-                <Button
-                  onClick={() => setStep(step + 1)}
-                  disabled={!canProceed()}
-                  className="gap-1 bg-primary text-primary-foreground hover:bg-primary/90"
-                >
-                  Далее
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              ) : (
-                <Button
-                  onClick={handleSubmit}
-                  disabled={!canProceed() || loading}
-                  className="gap-1 bg-cta text-cta-foreground hover:bg-cta/90"
-                >
-                  {loading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Send className="h-4 w-4" />
-                  )}
-                  {loading ? "Отправляем..." : "Отправить заявку"}
-                </Button>
-              )}
             </div>
-          </CardContent>
-        </Card>
+          )}
 
-        {/* Trust */}
+          {step === 1 && (
+            <div className="space-y-5">
+              <h2 className="font-heading text-xl font-bold">
+                {t("step2Title")}
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="company">{t("labelCompany")}</Label>
+                  <Input
+                    id="company"
+                    value={form.company}
+                    onChange={(e) => updateForm("company", e.target.value)}
+                    placeholder={t("placeholderCompany")}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="unp">{t("labelUnp")}</Label>
+                  <Input
+                    id="unp"
+                    value={form.unp}
+                    onChange={(e) => updateForm("unp", e.target.value)}
+                    placeholder={t("placeholderUnp")}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
+                  <Label>{t("labelIndustry")}</Label>
+                  <Select
+                    value={form.industry}
+                    onValueChange={(v) => updateForm("industry", v)}
+                  >
+                    <SelectTrigger className="mt-1.5">
+                      <SelectValue placeholder={t("placeholderIndustry")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {INDUSTRY_KEYS.map((key) => (
+                        <SelectItem key={key} value={t(key)}>
+                          {t(key)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && (
+            <div className="space-y-5">
+              <h2 className="font-heading text-xl font-bold">
+                {t("step3Title")}
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                {t("step3Subtitle")}
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {INTEREST_KEYS.map((key) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => toggleInterest(key)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-2xl border p-4 text-left text-sm transition-all",
+                      form.interests.includes(key)
+                        ? "border-primary bg-primary/10 text-foreground"
+                        : "border-foreground/10 hover:border-primary/30 hover:bg-foreground/5"
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border",
+                        form.interests.includes(key)
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-foreground/15"
+                      )}
+                    >
+                      {form.interests.includes(key) && (
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                      )}
+                    </div>
+                    {t(key)}
+                  </button>
+                ))}
+              </div>
+              <div>
+                <Label htmlFor="message">{t("labelMessage")}</Label>
+                <Textarea
+                  id="message"
+                  value={form.message}
+                  onChange={(e) => updateForm("message", e.target.value)}
+                  placeholder={t("placeholderMessage")}
+                  className="mt-1.5"
+                  rows={3}
+                />
+              </div>
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="space-y-5">
+              <h2 className="font-heading text-xl font-bold">
+                {t("step4Title")}
+              </h2>
+              <div className="space-y-3 rounded-2xl bg-muted/50 p-5 text-sm">
+                <Row label={t("summaryName")} value={form.name} />
+                <Row label={t("labelEmail").replace(" *", "")} value={form.email} />
+                <Row label={t("labelPhone").replace(" *", "")} value={form.phone} />
+                <Row label={t("summaryCompany")} value={form.company} />
+                <Row label={t("summaryIndustry")} value={form.industry} />
+                {form.unp && <Row label={t("summaryUnp")} value={form.unp} />}
+                <div>
+                  <span className="text-muted-foreground">
+                    {t("summaryInterests")}:
+                  </span>
+                  <div className="mt-1 flex flex-wrap gap-1.5">
+                    {form.interests.map((key) => (
+                      <span
+                        key={key}
+                        className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+                      >
+                        {t(key as (typeof INTEREST_KEYS)[number])}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={form.consent}
+                  onChange={(e) => updateForm("consent", e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-foreground/20 accent-primary"
+                />
+                <span className="text-sm leading-relaxed text-muted-foreground">
+                  {t("consent")}
+                </span>
+              </label>
+            </div>
+          )}
+
+          {error && (
+            <div className="mt-4 rounded-xl border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+              {error}
+            </div>
+          )}
+
+          <div className="mt-8 flex items-center justify-between">
+            <Button
+              variant="outline"
+              onClick={() => setStep(step - 1)}
+              disabled={step === 0 || loading}
+              className="gap-1 rounded-xl"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              {tCommon("back")}
+            </Button>
+
+            {step < STEPS.length - 1 ? (
+              <Button
+                onClick={() => setStep(step + 1)}
+                disabled={!canProceed()}
+                className="gap-1 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                {tCommon("next")}
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            ) : (
+              <Button
+                onClick={handleSubmit}
+                disabled={!canProceed() || loading}
+                className="gap-1 rounded-xl bg-cta text-cta-foreground hover:bg-cta/90 glow-cta"
+              >
+                {loading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Send className="h-4 w-4" />
+                )}
+                {loading ? t("sending") : t("send")}
+              </Button>
+            )}
+          </div>
+        </GlassCard>
+
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Заявка обрабатывается в течение 24 часов. Мы не передаём ваши данные третьим лицам.
+          {t("trust")}
         </p>
       </div>
     </>
+  );
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between gap-3">
+      <span className="text-muted-foreground">{label}</span>
+      <span className="text-right font-medium">{value}</span>
+    </div>
   );
 }

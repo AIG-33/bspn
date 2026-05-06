@@ -1,7 +1,8 @@
-import { getAllMembers } from "@/lib/queries/members";
-import { MembersClient } from "./members-client";
+"use client";
 
-export default async function MembersPage() {
-  const members = await getAllMembers();
-  return <MembersClient initialData={members} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { Users } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={Users} titleKey="members" />;
 }

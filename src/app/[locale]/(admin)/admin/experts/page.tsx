@@ -1,7 +1,8 @@
-import { getAllExperts } from "@/lib/queries/experts";
-import { AdminExpertsClient } from "./experts-client";
+"use client";
 
-export default async function AdminExpertsPage() {
-  const experts = await getAllExperts();
-  return <AdminExpertsClient initialData={experts} />;
+import { AdminStub } from "@/components/sections/admin-stub";
+import { UserCheck } from "lucide-react";
+
+export default function Page() {
+  return <AdminStub icon={UserCheck} titleKey="experts" />;
 }

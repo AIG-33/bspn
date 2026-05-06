@@ -1,8 +1,8 @@
-import { getDocuments } from "@/lib/queries/documents";
-import { DocumentsClient } from "./documents-client";
+"use client";
 
-export default async function DocumentsPage() {
-  const documents = await getDocuments();
+import { FileText } from "lucide-react";
+import { CabinetStub } from "@/components/sections/cabinet-stub";
 
-  return <DocumentsClient initialData={documents} />;
+export default function DocumentsPage() {
+  return <CabinetStub icon={FileText} titleKey="menuDocuments" />;
 }

@@ -1,17 +1,5 @@
-import { PageHeader } from "@/components/sections/page-header";
-import { getNews } from "@/lib/queries/news";
-import { NewsClient } from "./news-client";
+import { ComingSoonPage } from "@/components/sections/coming-soon";
 
-export default async function NewsPage() {
-  const news = await getNews();
-
-  return (
-    <>
-      <PageHeader
-        title="Новости"
-        description="Последние новости БСПН, изменения в законодательстве и события делового сообщества Беларуси"
-      />
-      <NewsClient initialData={news} />
-    </>
-  );
+export default function NewsPage() {
+  return <ComingSoonPage pageKey="news" />;
 }

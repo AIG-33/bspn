@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/i18n/navigation";
-import { UserPlus, Loader2, CheckCircle } from "lucide-react";
+import { UserPlus, Loader2, CheckCircle2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function RegisterPage() {
+  const t = useTranslations("auth");
+  const tCommon = useTranslations("common");
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,17 +29,17 @@ export default function RegisterPage() {
     setError("");
 
     if (password !== passwordConfirm) {
-      setError("Пароли не совпадают");
+      setError(tCommon("error"));
       return;
     }
 
     if (password.length < 8) {
-      setError("Пароль должен содержать минимум 8 символов");
+      setError(tCommon("error"));
       return;
     }
 
     if (!consent) {
-      setError("Необходимо принять условия использования");
+      setError(tCommon("error"));
       return;
     }
 
@@ -44,9 +48,7 @@ export default function RegisterPage() {
     const { error: authError } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: { name },
-      },
+      options: { data: { name } },
     });
 
     if (authError) {
@@ -61,128 +63,132 @@ export default function RegisterPage() {
 
   if (success) {
     return (
-      <Card>
-        <CardContent className="p-6 sm:p-8 text-center">
-          <CheckCircle className="mx-auto h-12 w-12 text-green-500" />
-          <h1 className="mt-4 font-heading text-2xl font-bold">
-            Регистрация завершена
-          </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Мы отправили письмо на <strong>{email}</strong>. Перейдите по ссылке
-            в письме для подтверждения аккаунта.
-          </p>
-          <Link
-            href="/login"
-            className="mt-6 inline-block text-sm font-medium text-primary hover:underline"
-          >
-            Перейти к входу
-          </Link>
-        </CardContent>
-      </Card>
+      <GlassCard variant="strong" className="p-7 sm:p-9 text-center">
+        <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-success/15 text-success">
+          <CheckCircle2 className="h-7 w-7" />
+        </div>
+        <h1 className="mt-5 font-heading text-2xl font-bold">
+          {t("registerSuccess")}
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {t("checkEmail")} <strong className="text-foreground">{email}</strong>
+        </p>
+        <Link
+          href="/login"
+          className="mt-6 inline-block text-sm font-medium text-primary hover:underline"
+        >
+          {t("backToLogin")}
+        </Link>
+      </GlassCard>
     );
   }
 
   return (
-    <Card>
-      <CardContent className="p-6 sm:p-8">
-        <h1 className="font-heading text-2xl font-bold">Регистрация</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Создайте аккаунт для доступа к личному кабинету члена БСПН
-        </p>
+    <GlassCard variant="strong" className="p-7 sm:p-9">
+      <h1 className="font-heading text-2xl font-bold">
+        {t("registerTitle")}
+      </h1>
+      <p className="mt-2 text-sm text-muted-foreground">
+        {t("registerSubtitle")}
+      </p>
 
-        {error && (
-          <div className="mt-4 rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div>
-            <Label htmlFor="name">ФИО</Label>
-            <Input
-              id="name"
-              placeholder="Иванов Иван Иванович"
-              className="mt-1.5"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="director@company.by"
-              className="mt-1.5"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="password">Пароль</Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="Минимум 8 символов"
-              className="mt-1.5"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={8}
-            />
-          </div>
-          <div>
-            <Label htmlFor="password-confirm">Подтвердите пароль</Label>
-            <Input
-              id="password-confirm"
-              type="password"
-              placeholder="Повторите пароль"
-              className="mt-1.5"
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              required
-            />
-          </div>
-
-          <label className="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              className="mt-1 h-4 w-4 rounded border-border accent-primary"
-              checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
-            />
-            <span className="text-xs text-muted-foreground leading-relaxed">
-              Я принимаю условия использования и даю согласие на обработку
-              персональных данных
-            </span>
-          </label>
-
-          <Button
-            type="submit"
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-            disabled={loading}
-          >
-            {loading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <UserPlus className="mr-2 h-4 w-4" />
-            )}
-            {loading ? "Регистрация..." : "Зарегистрироваться"}
-          </Button>
-        </form>
-
-        <div className="mt-6 text-center text-sm text-muted-foreground">
-          Уже есть аккаунт?{" "}
-          <Link
-            href="/login"
-            className="font-medium text-primary hover:underline"
-          >
-            Войти
-          </Link>
+      {error && (
+        <div className="mt-4 rounded-xl border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          {error}
         </div>
-      </CardContent>
-    </Card>
+      )}
+
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <div>
+          <Label htmlFor="name">{t("name")}</Label>
+          <Input
+            id="name"
+            placeholder={t("namePlaceholder")}
+            className="mt-1.5"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor="email">{t("email")}</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder={t("emailPlaceholder")}
+            className="mt-1.5"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor="password">{t("password")}</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder={t("passwordPlaceholder")}
+            className="mt-1.5"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={8}
+          />
+        </div>
+        <div>
+          <Label htmlFor="password-confirm">{t("confirmPassword")}</Label>
+          <Input
+            id="password-confirm"
+            type="password"
+            placeholder={t("passwordPlaceholder")}
+            className="mt-1.5"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            required
+          />
+        </div>
+
+        <label className="flex cursor-pointer items-start gap-3">
+          <input
+            type="checkbox"
+            className="mt-1 h-4 w-4 rounded border-foreground/20 accent-primary"
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+          />
+          <span className="text-xs leading-relaxed text-muted-foreground">
+            {t("agreementPrefix")}{" "}
+            <Link
+              href="/about"
+              className="font-medium text-primary hover:underline"
+            >
+              {t("agreement")}
+            </Link>
+          </span>
+        </label>
+
+        <Button
+          type="submit"
+          className="w-full rounded-xl bg-gradient-to-r from-primary to-[var(--cta)] text-primary-foreground hover:opacity-95 glow-primary"
+          disabled={loading}
+        >
+          {loading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <UserPlus className="mr-2 h-4 w-4" />
+          )}
+          {loading ? t("loading") : t("signUp")}
+        </Button>
+      </form>
+
+      <div className="mt-6 text-center text-sm text-muted-foreground">
+        {t("hasAccount")}{" "}
+        <Link
+          href="/login"
+          className="font-medium text-primary hover:underline"
+        >
+          {t("signIn")}
+        </Link>
+      </div>
+    </GlassCard>
   );
 }
