@@ -89,7 +89,9 @@
     "statCouncils": "政府委员会",
     "statYears": "年经验",
     "statAssociations": "行业协会",
-    "scrollHint": "向下滑动"
+    "scrollHint": "向下滑动",
+    "imageAlt": "BSPN 理事会在白俄罗斯共和国国旗前的政府大厅会议",
+    "imageCaption": "BSPN 理事会会议"
   },
   "values": {
     "tag": "为什么选择 BSPN",

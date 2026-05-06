@@ -89,7 +89,9 @@
     "statCouncils": "government councils",
     "statYears": "years of experience",
     "statAssociations": "industry associations",
-    "scrollHint": "Scroll down"
+    "scrollHint": "Scroll down",
+    "imageAlt": "BSPN Council meeting in a government hall with the state flag of the Republic of Belarus",
+    "imageCaption": "BSPN Council meeting"
   },
   "values": {
     "tag": "Why BSPN",
