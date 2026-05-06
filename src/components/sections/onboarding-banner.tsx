@@ -17,8 +17,8 @@ export function OnboardingBanner() {
   ];
 
   return (
-    <section className="relative px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl -mt-12 sm:-mt-16">
+    <section className="relative px-4 pt-4 sm:px-6 sm:pt-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
         <GlassCard
           variant="strong"
           className="relative overflow-hidden p-6 sm:p-8 lg:p-10"

@@ -34,7 +34,7 @@ export function HeroSection() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#0a1628]/85 via-[#0a1628]/65 to-[#0a1628]/95"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#0a1628]/85 via-[#0a1628]/65 to-[#0a1628]/70"
       />
       <div
         aria-hidden
@@ -42,10 +42,14 @@ export function HeroSection() {
       />
       <div
         aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent to-background"
+      />
+      <div
+        aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 dot-pattern text-white/5"
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-14 sm:px-6 sm:pb-16 sm:pt-16 lg:px-8 lg:pb-20 lg:pt-24">
+      <div className="relative mx-auto max-w-7xl px-4 pb-6 pt-14 sm:px-6 sm:pb-8 sm:pt-16 lg:px-8 lg:pb-10 lg:pt-24">
         <div className="max-w-2xl animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5 text-[var(--gold)]" />
