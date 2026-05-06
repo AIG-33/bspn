@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { SiteLogo } from "@/components/layout/site-logo";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 
@@ -45,9 +46,14 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md text-white font-heading font-bold">
-                {t("site.logoMark")}
-              </div>
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md ring-1 ring-white/15">
+                <SiteLogo
+                  variant="plain"
+                  size="md"
+                  alt={t("site.name")}
+                  className="h-7 w-7"
+                />
+              </span>
               <span className="font-heading text-xl font-semibold">
                 {t("site.name")}
               </span>

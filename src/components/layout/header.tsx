@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { SiteLogo } from "@/components/layout/site-logo";
 import { useUser } from "@/components/auth-provider";
 
 interface NavItem {
@@ -73,10 +74,17 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full">
       <div className="glass-strong border-b border-white/10 dark:border-white/5">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--aurora-1)] via-primary to-[var(--cta)] text-white font-heading font-bold text-sm shadow-lg group-hover:scale-105 transition-transform">
-              {t("site.logoMark")}
-            </div>
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 group"
+            aria-label={t("site.name")}
+          >
+            <SiteLogo
+              size="sm"
+              priority
+              alt={t("site.name")}
+              className="transition-transform group-hover:scale-105"
+            />
             <span className="hidden font-heading text-lg font-semibold sm:block">
               {t("site.name")}
             </span>
