@@ -1,40 +1,56 @@
 import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { YandexMap } from "@/components/sections/yandex-map";
+import { OrganizationCard } from "@/components/sections/organization-card";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const BSPN_LAT = 53.885448;
+const BSPN_LON = 27.590362;
 
 interface ContactBlock {
   icon: LucideIcon;
   titleKey: "officeTitle" | "phoneTitle" | "emailTitle" | "hoursTitle";
   valueKey: "address" | "phone" | "email" | "hours";
   href?: (val: string) => string;
+  accent: string;
 }
 
 const BLOCKS: ContactBlock[] = [
-  { icon: MapPin, titleKey: "officeTitle", valueKey: "address" },
+  {
+    icon: MapPin,
+    titleKey: "officeTitle",
+    valueKey: "address",
+    accent: "from-primary to-[var(--cta)]",
+  },
   {
     icon: Phone,
     titleKey: "phoneTitle",
     valueKey: "phone",
     href: (v) => `tel:${v.replace(/\s/g, "")}`,
+    accent: "from-[var(--cta)] to-[var(--gold)]",
   },
   {
     icon: Mail,
     titleKey: "emailTitle",
     valueKey: "email",
     href: (v) => `mailto:${v}`,
+    accent: "from-[var(--gold)] to-[var(--aurora-2)]",
   },
-  { icon: Clock, titleKey: "hoursTitle", valueKey: "hours" },
+  {
+    icon: Clock,
+    titleKey: "hoursTitle",
+    valueKey: "hours",
+    accent: "from-[var(--aurora-2)] to-primary",
+  },
 ];
 
 export default function ContactsPage() {
   const t = useTranslations("page.contacts");
   const tSite = useTranslations("site");
 
-  const valueOf = (
-    key: ContactBlock["valueKey"]
-  ): string => {
+  const valueOf = (key: ContactBlock["valueKey"]): string => {
     if (key === "address" || key === "phone" || key === "email") {
       return tSite(key);
     }
@@ -48,22 +64,25 @@ export default function ContactsPage() {
         description={t("description")}
         variant="aurora"
       />
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <div className="grid gap-5 sm:grid-cols-2">
-          {BLOCKS.map(({ icon: Icon, titleKey, valueKey, href }) => {
+
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {BLOCKS.map(({ icon: Icon, titleKey, valueKey, href, accent }) => {
             const value = valueOf(valueKey);
             const content = (
-              <>
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[var(--cta)] text-white shadow-lg">
-                  <Icon className="h-6 w-6" />
+              <GlassCard hoverable className="h-full p-5">
+                <div
+                  className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${accent} text-white shadow-md`}
+                >
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="font-heading text-base font-semibold uppercase tracking-wider text-muted-foreground">
+                <h3 className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-xs">
                   {t(titleKey)}
                 </h3>
-                <p className="mt-2 text-base font-medium leading-relaxed text-foreground">
+                <p className="mt-1.5 text-sm font-medium leading-relaxed text-foreground sm:text-base">
                   {value}
                 </p>
-              </>
+              </GlassCard>
             );
 
             return href ? (
@@ -72,16 +91,43 @@ export default function ContactsPage() {
                 href={href(value)}
                 className="block transition-transform hover:-translate-y-1"
               >
-                <GlassCard hoverable className="h-full p-6 sm:p-7">
-                  {content}
-                </GlassCard>
+                {content}
               </a>
             ) : (
-              <GlassCard key={titleKey} className="h-full p-6 sm:p-7">
-                {content}
-              </GlassCard>
+              <div key={titleKey}>{content}</div>
             );
           })}
+        </div>
+
+        <div className="mt-10">
+          <YandexMap lat={BSPN_LAT} lon={BSPN_LON} />
+        </div>
+
+        <div className="mt-10">
+          <OrganizationCard />
+        </div>
+
+        <div className="mt-10">
+          <GlassCard variant="strong" className="overflow-hidden p-6 sm:p-8">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[var(--cta)] text-white shadow-lg">
+                <Send className="h-5 w-5" />
+              </div>
+              <div>
+                <h2 className="font-heading text-lg font-bold sm:text-xl">
+                  {t("writeUs")}
+                </h2>
+                <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                  <a
+                    href={`mailto:${tSite("email")}`}
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {tSite("email")}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </div>
     </>
