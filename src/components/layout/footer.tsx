@@ -150,17 +150,17 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-3">
             <Link
-              href="/about"
-              className="text-xs text-white/50 hover:text-white/80 transition-colors"
+              href="/legal/privacy"
+              className="text-xs text-white/60 hover:text-white transition-colors"
             >
-              {t("footer.privacy")}
+              {t("legal.navPrivacy")}
             </Link>
             <span className="text-white/20">·</span>
             <Link
-              href="/about"
-              className="text-xs text-white/50 hover:text-white/80 transition-colors"
+              href="/legal/terms"
+              className="text-xs text-white/60 hover:text-white transition-colors"
             >
-              {t("footer.terms")}
+              {t("legal.navTerms")}
             </Link>
             <span className="text-white/20">·</span>
             <LanguageSwitcher variant="footer" />

@@ -1,18 +1,27 @@
 {
   "meta": {
-    "title": "BSPN — the union for those building business in Belarus",
-    "description": "New to running a business? BSPN has been protecting, advising and opening international doors since 1990. Join the union of 94+ companies.",
-    "keywords": "BSPN, business union, Belarus, membership, legal support",
-    "siteName": "BSPN"
+    "title": "BSPN — Belarus Business Union: market entry, investments and government relations for foreign and local companies",
+    "description": "Since 1990 BSPN (Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky) defends business interests before Belarusian government authorities, helps foreign companies enter the Belarus market, supports inbound investment and provides legal expertise. ~150 member companies, 7 industry associations, 20+ government advisory councils.",
+    "keywords": "BSPN, business union Belarus, doing business in Belarus, enter Belarus market, foreign companies Belarus, market entry Belarus, invest in Belarus, Belarus investment, government relations Belarus, business advocacy Belarus, lobbying Belarus, legal support Belarus, Belarus tax consulting, Minsk business, Kunyavsky union, employers union Belarus, arbitration court Belarus, Belarus Hi-Tech Park, free economic zones Belarus, Eurasian Economic Union, EAEU market access",
+    "siteName": "BSPN — Belarus Business Union",
+    "ogTitle": "BSPN — Belarus Business Union of 150+ companies since 1990",
+    "ogDescription": "Government relations in Belarus, market entry for foreign companies, investment advisory, legal protection and SME advocacy. Your gateway to doing business in Belarus."
   },
   "site": {
     "name": "BSPN",
     "fullName": "Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky",
     "shortName": "BSPN Business Union",
-    "tagline": "The union for those building business in Belarus",
+    "tagline": "Strong business — strong Belarus. Since 1990.",
+    "longTagline": "Defending business interests before Belarusian government authorities, helping foreign companies enter the Belarus market and supporting investment projects",
     "address": "22 Fabrichnaya St., Minsk, Belarus",
     "phone": "+375 17 210-18-42",
     "email": "info@bspn.by",
+    "founded": "1990",
+    "members": "~150",
+    "membersDetail": "around 150 small, mid-sized and large businesses",
+    "employees": "50,000+",
+    "councils": "20+",
+    "associations": "7",
     "logoMark": "BS"
   },
   "a11y": {
@@ -376,23 +385,24 @@
     "ach5Year": "2021"
   },
   "associations": {
-    "pageTitle": "Industry Associations",
-    "pageDescription": "7 associations covering Belarus's key economic sectors",
+    "pageTitle": "BSPN Industry Associations",
+    "pageDescription": "Seven sector associations under BSPN — uniting elevator, dental, tourism, woodworking, construction, non-food retail and SME-support businesses across Belarus",
+    "intro": "Each association is a sector platform within BSPN. We help companies from the same industry shape regulation together, exchange best practice and break into new markets. If your business operates in one of these sectors, a powerful union is already standing behind you.",
     "membersLabel": "member organizations",
-    "industry": "Industrial enterprises",
-    "industryDesc": "Manufacturing companies. Represents interests in industrial policy, pricing and technical regulation.",
-    "logistics": "Transport and logistics",
-    "logisticsDesc": "Cargo and passenger carriers, logistics operators. Works with the Ministry of Transport on tariffs and conditions.",
-    "construction": "Construction organizations",
-    "constructionDesc": "Construction firms, design organizations, building materials manufacturers. Helps shape construction standards.",
-    "it": "IT and digital",
-    "itDesc": "IT companies, software developers and digital service providers. Promotes the IT industry's interests.",
-    "trade": "Trade and services",
-    "tradeDesc": "Retailers, networks, service businesses. Protects rights in trade legislation and pricing.",
-    "agro": "Agro-industrial complex",
-    "agroDesc": "Agricultural and processing enterprises. Works with the Ministry of Agriculture on support and development.",
-    "msb": "Small and medium business",
-    "msbDesc": "Sole proprietors and smaller companies. Protects SME rights, simplifies regulation and removes barriers."
+    "lift": "Association of Elevator Industry Companies",
+    "liftDesc": "Manufacturers, installers and service operators of elevator equipment. Engages with Gospromnadzor and the Ministry of Housing & Utilities on technical regulations, certification and safe operation of elevators in residential and commercial buildings across Belarus.",
+    "dental": "Association of Dental Organizations",
+    "dentalDesc": "Private dental clinics and practices. Defends interests before the Ministry of Health and during licensing; sets service standards, runs continuing education and group purchasing of consumables and equipment.",
+    "nonfood": "Association of Non-Food Producers and Retailers",
+    "nonfoodDesc": "Producers, importers and retail networks in non-food. Works with the Ministry of Antimonopoly Regulation and Trade (MART) on pricing, labelling, consumer extremism protection and competition policy.",
+    "tourism": "Association of Tourism Organizations",
+    "tourismDesc": "Tour operators, travel agents, hotels and excursion services. Supports inbound tourism, digitalization, simpler visa rules and promotion of Belarus as a tourist destination.",
+    "wood": "Association of Wood Processors",
+    "woodDesc": "Timber processing, furniture, joinery and wooden construction materials. Works with the Ministry of Forestry and Bellesbumprom on export programs, FSC certification and access to raw materials.",
+    "construction": "Construction Builders Association",
+    "constructionDesc": "Builders, design firms and construction-materials makers. Co-shapes Belarusian technical codes (TKP/TNPA) and state programs. Defends contractors in dealings with state customers and tender disputes.",
+    "smesupport": "SME Support Infrastructure Association",
+    "smesupportDesc": "Business incubators, entrepreneurship centers, technology parks and SME finance funds. Coordinates Belarus's SME-support infrastructure and runs joint programs with the Ministry of Economy and the State Committee on Science & Technology."
   },
   "membership": {
     "pageTitle": "BSPN Membership",
@@ -715,5 +725,275 @@
     "consultations": "Consultations",
     "billing": "Finance",
     "settings": "Settings"
+  },
+  "legal": {
+    "navPrivacy": "Privacy Policy",
+    "navTerms": "Terms of Use",
+    "lastUpdated": "Last updated: 6 May 2026",
+    "tableOfContents": "Contents",
+    "downloadPdf": "Download PDF",
+    "contactBlock": {
+      "title": "Questions and requests",
+      "description": "For any questions regarding personal data processing or the terms of use of this website, please contact us:",
+      "email": "info@bspn.by",
+      "addressLabel": "Registered address:",
+      "address": "22 Fabrichnaya Str., 220033, Minsk, Republic of Belarus"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "subtitle": "How BSPN processes and protects your personal data in accordance with the laws of the Republic of Belarus",
+      "intro": "This Privacy Policy (the \"Policy\") describes how the Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky (\"BSPN\", \"Operator\", \"we\") processes and protects personal data of individuals who visit bspn.by or interact with us through any other channel. The Policy is drafted in accordance with the Law of the Republic of Belarus No. 99-Z of 7 May 2021 \"On the Protection of Personal Data\", the Law of the Republic of Belarus No. 455-Z of 10 November 2008 \"On Information, Informatisation and Information Protection\", and other applicable laws of the Republic of Belarus.",
+      "sections": [
+        {
+          "id": "operator",
+          "title": "1. Personal Data Operator",
+          "paragraphs": [
+            "The personal data operator is the Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky (short name — BSPN), payer's account number (UNP) 100073850, registered address: 22 Fabrichnaya Str., 220033, Minsk, Republic of Belarus.",
+            "Contact for the person responsible for the organisation of personal data processing: e-mail info@bspn.by, phone +375 17 210-18-42."
+          ]
+        },
+        {
+          "id": "scope",
+          "title": "2. Scope",
+          "paragraphs": [
+            "This Policy applies to all personal data BSPN receives from data subjects through bspn.by, membership applications, consultation requests, newsletter subscriptions, events, e-mail, telephone and other channels.",
+            "The Policy does not apply to third-party websites that may be linked from BSPN's site. BSPN bears no responsibility for the privacy practices of such third parties."
+          ]
+        },
+        {
+          "id": "categories",
+          "title": "3. Categories of personal data",
+          "paragraphs": [
+            "BSPN processes the following categories of personal data:",
+            "— full name, position, name of the organisation the data subject works for or represents;",
+            "— contact details: phone number, e-mail address, postal address;",
+            "— information voluntarily provided by the subject in forms, applications, requests, questionnaires;",
+            "— technical data: IP address, browser type and version, device type, operating system, referrer, pages visited, cookies and identifiers automatically transmitted when visiting the site;",
+            "— payment data for membership fees and services (processed via an acquiring bank — BSPN does not store card details)."
+          ]
+        },
+        {
+          "id": "purposes",
+          "title": "4. Purposes and legal grounds",
+          "paragraphs": [
+            "BSPN processes personal data exclusively for the following purposes:",
+            "— review of membership applications and conclusion of membership agreements;",
+            "— provision of consulting, legal, advocacy and information services to members and interested parties;",
+            "— organisation of participation in events, government councils, forums, working groups;",
+            "— delivery of information and promotional materials about BSPN's activities, subject to the data subject's consent;",
+            "— compliance with statutory obligations of BSPN under the laws of the Republic of Belarus (accounting, tax, statistical reporting);",
+            "— ensuring the security and proper functioning of the site, traffic analytics.",
+            "Legal grounds for processing are: the data subject's consent (Article 5 of Law No. 99-Z), performance of a contract to which the data subject is a party, compliance with statutory duties imposed on the Operator, and the legitimate interests of BSPN where they do not override the rights of the data subject."
+          ]
+        },
+        {
+          "id": "consent",
+          "title": "5. Consent and its withdrawal",
+          "paragraphs": [
+            "Consent to the processing of personal data is given by the data subject freely, specifically, knowingly and unambiguously — by ticking the appropriate box on the website form or by another act clearly indicating consent.",
+            "The data subject may withdraw consent at any time by sending a written request to info@bspn.by or to BSPN's postal address. BSPN will cease processing and erase the personal data within 15 working days of receiving the withdrawal, except where processing is required by the laws of the Republic of Belarus."
+          ]
+        },
+        {
+          "id": "transfer",
+          "title": "6. Transfer to third parties",
+          "paragraphs": [
+            "BSPN does not sell personal data and does not transfer it to third parties for commercial purposes. Transfer is permitted only in the following cases:",
+            "— to authorised state authorities of the Republic of Belarus on the grounds and in the manner prescribed by law;",
+            "— to acquiring banks and payment operators — to the extent required for processing payments;",
+            "— to authorised employees of BSPN and engaged consultants acting under a contract that includes confidentiality obligations;",
+            "— to industry associations and partners of the Union — only with the data subject's explicit consent.",
+            "Any transfer is governed by an agreement that ensures an appropriate level of protection in accordance with Law No. 99-Z."
+          ]
+        },
+        {
+          "id": "cross-border",
+          "title": "7. Cross-border transfers",
+          "paragraphs": [
+            "Cross-border transfers of personal data are made only to countries that ensure an adequate level of protection for the rights of data subjects, or with the data subject's written consent in accordance with Article 9 of Law No. 99-Z.",
+            "The list of countries providing an adequate level of protection is approved by the National Personal Data Protection Center of the Republic of Belarus."
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "8. Retention periods",
+          "paragraphs": [
+            "Personal data is retained for as long as necessary to achieve the purposes of processing, but no longer than:",
+            "— the term of the relevant agreement (membership, services) plus 3 years thereafter for dispute resolution;",
+            "— the period prescribed by the laws of the Republic of Belarus for accounting and tax records (typically not less than 5 years);",
+            "— until the consent is withdrawn — for data processed on the basis of consent (newsletters, marketing communications)."
+          ]
+        },
+        {
+          "id": "security",
+          "title": "9. Security measures",
+          "paragraphs": [
+            "BSPN takes all reasonable legal, organisational and technical measures to protect personal data from unlawful or accidental access, destruction, modification, blocking, copying, distribution or other unlawful actions:",
+            "— HTTPS/TLS encryption of data in transit;",
+            "— access controls for employees and confidentiality undertakings;",
+            "— regular backups and integrity monitoring;",
+            "— employee training on personal data protection;",
+            "— incident response logs and procedures."
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "10. Rights of the data subject",
+          "paragraphs": [
+            "Pursuant to Articles 11–15 of Law No. 99-Z, the data subject has the right to:",
+            "— receive information about the processing of their personal data;",
+            "— modify, correct, erase or block their personal data;",
+            "— withdraw consent at any time;",
+            "— lodge a complaint with the National Personal Data Protection Center of the Republic of Belarus or with a court in the manner prescribed by law.",
+            "Requests are sent in writing to info@bspn.by or by post. Response time — within 15 working days."
+          ]
+        },
+        {
+          "id": "cookies",
+          "title": "11. Cookies and analytics",
+          "paragraphs": [
+            "bspn.by uses cookies and similar technologies to ensure the functioning of the site, save user preferences (language, theme) and collect anonymous traffic statistics.",
+            "Third-party analytics services (where used) process data under their own policies. Users may disable cookies in their browser settings at any time, although this may limit website functionality."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "12. Changes to the Policy",
+          "paragraphs": [
+            "BSPN may amend this Policy. The current version is always available at bspn.by/legal/privacy. Material changes are additionally communicated to members by e-mail."
+          ]
+        },
+        {
+          "id": "complaint",
+          "title": "13. Supervisory authority",
+          "paragraphs": [
+            "The supervisory authority for the protection of personal data in the Republic of Belarus is the National Personal Data Protection Center. Address: 14 Bersona Str., Minsk. Website: cpd.by."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "subtitle": "Conditions for using bspn.by, registering an Account and engaging with BSPN",
+      "intro": "These Terms of Use (the \"Terms\") govern the relationship between the Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky (\"BSPN\", \"Union\", \"we\") and any individual or legal entity (\"User\") that uses bspn.by and its services. The Terms are drafted in accordance with the Civil Code of the Republic of Belarus, the Law of the Republic of Belarus No. 90-Z of 9 January 2002 \"On Consumer Protection\", the Law of the Republic of Belarus No. 113-Z of 28 December 2009 \"On Electronic Documents and Electronic Digital Signatures\" and other applicable laws.",
+      "sections": [
+        {
+          "id": "general",
+          "title": "1. General provisions and acceptance",
+          "paragraphs": [
+            "These Terms constitute a public offer within the meaning of Article 407 of the Civil Code of the Republic of Belarus. Use of the site, including Account registration, form submission or newsletter subscription, constitutes the User's full and unconditional acceptance of the Terms.",
+            "If the User disagrees with any part of the Terms, they must stop using the site."
+          ]
+        },
+        {
+          "id": "definitions",
+          "title": "2. Definitions",
+          "paragraphs": [
+            "\"Site\" — the online resource located at bspn.by, including all subdomains and pages.",
+            "\"User\" — any person using the site in any form.",
+            "\"Member\" — a legal entity or sole entrepreneur that has entered into a membership agreement with BSPN.",
+            "\"Account\" — a private section of the site accessible to a registered User by login and password.",
+            "\"Content\" — text, graphic, audiovisual and other materials posted on the site."
+          ]
+        },
+        {
+          "id": "registration",
+          "title": "3. Registration and Account",
+          "paragraphs": [
+            "Registration is voluntary. Upon registration, the User must provide accurate data and keep it up to date.",
+            "The User is solely responsible for keeping their login and password confidential. All actions performed within the Account are deemed to have been performed by the User.",
+            "If credentials are compromised, the User must immediately notify BSPN at info@bspn.by."
+          ]
+        },
+        {
+          "id": "rules",
+          "title": "4. Rules of use",
+          "paragraphs": [
+            "When using the site, the User undertakes:",
+            "— to comply with the laws of the Republic of Belarus;",
+            "— not to infringe the rights and legitimate interests of BSPN or third parties;",
+            "— not to upload materials containing state, commercial or other legally protected secrets;",
+            "— not to engage in actions disrupting the normal functioning of the site (DDoS attacks, unauthorised access, distribution of malicious code)."
+          ]
+        },
+        {
+          "id": "services",
+          "title": "5. BSPN services",
+          "paragraphs": [
+            "BSPN provides members and other interested parties with information, legal, consulting, advocacy and educational services in accordance with the Union's bylaws and regulations.",
+            "The scope and procedure for the provision of services are determined by the membership agreement, supplementary agreements, and regulations of BSPN's councils and committees.",
+            "Information published openly on the site (news, analytics, explanations) is for reference only and does not constitute legal advice within the meaning of the laws on legal aid."
+          ]
+        },
+        {
+          "id": "membership-fees",
+          "title": "6. Membership fees and payment",
+          "paragraphs": [
+            "Membership fee amounts and payment procedures are determined by BSPN's Presidium and recorded in the membership agreement.",
+            "Online payments are processed via an acquiring bank. BSPN does not store card details. Refunds are made in accordance with the Law on Consumer Protection and the agreement."
+          ]
+        },
+        {
+          "id": "ip",
+          "title": "7. Intellectual property",
+          "paragraphs": [
+            "All intellectual property on the site (texts, images, video, logos, design, source code) is owned by BSPN or used with the rights holders' permission and is protected under the copyright laws of the Republic of Belarus.",
+            "Use of the content without BSPN's written permission is not allowed, except for citation with attribution."
+          ]
+        },
+        {
+          "id": "prohibited",
+          "title": "8. Prohibited actions",
+          "paragraphs": [
+            "The User must not:",
+            "— share their credentials with third parties;",
+            "— use the site for spam, fraud or distribution of unlawful information;",
+            "— scrape or automatically collect data from the site without BSPN's written consent;",
+            "— reproduce, duplicate, copy or commercially exploit the site without BSPN's consent."
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "9. Liability",
+          "paragraphs": [
+            "BSPN takes reasonable efforts to ensure that the site operates correctly but does not guarantee uninterrupted or error-free operation.",
+            "BSPN is not liable for any losses incurred by the User as a result of using or being unable to use the site, except as expressly required by the laws of the Republic of Belarus.",
+            "The User is responsible for the accuracy of the data provided and for all actions performed within their Account."
+          ]
+        },
+        {
+          "id": "force-majeure",
+          "title": "10. Force majeure",
+          "paragraphs": [
+            "The parties are released from liability for partial or total failure to perform if it is caused by force majeure (natural disasters, military actions, changes in legislation, acts of public authorities, power or telecommunications outages)."
+          ]
+        },
+        {
+          "id": "law",
+          "title": "11. Governing law and dispute resolution",
+          "paragraphs": [
+            "The Terms are governed by the laws of the Republic of Belarus.",
+            "Disputes arising from use of the site and BSPN's services are resolved through negotiations. Failing agreement, disputes are referred to the BSPN Court of Arbitration (where an arbitration agreement is in place) or to the economic court at BSPN's seat under the Economic Procedure Code of the Republic of Belarus."
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "12. Changes to the Terms",
+          "paragraphs": [
+            "BSPN may unilaterally amend the Terms. The current version is published at bspn.by/legal/terms and takes effect upon publication unless explicitly stated otherwise.",
+            "Continued use of the site after publication of the changes constitutes the User's agreement with the new version."
+          ]
+        },
+        {
+          "id": "contacts",
+          "title": "13. Details and contacts",
+          "paragraphs": [
+            "Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky, UNP 100073850.",
+            "Address: 22 Fabrichnaya Str., 220033, Minsk, Republic of Belarus.",
+            "Phone: +375 17 210-18-42, e-mail: info@bspn.by."
+          ]
+        }
+      ]
+    }
   }
 }
