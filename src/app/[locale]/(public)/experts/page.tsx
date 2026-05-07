@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
@@ -12,6 +13,7 @@ import {
   Award,
   BadgeCheck,
   Building2,
+  ChevronDown,
   ExternalLink,
   FlaskConical,
   Globe2,
@@ -45,13 +47,12 @@ export async function generateMetadata({
 
 interface Expert {
   id: string;
-  initials: string;
-  /** lucide icon shown next to specialisation tag in the hero strip */
+  photo: string;
+  photoAlt: string;
   specialtyIcon: LucideIcon;
   roleIcons: LucideIcon[];
   topicIcons: LucideIcon[];
   siteLabel: string;
-  /** External anchor href (for "Site" button), pulled from i18n */
   siteUrlKey: string;
   tracksUrlKey: string;
 }
@@ -59,7 +60,8 @@ interface Expert {
 const EXPERTS: Expert[] = [
   {
     id: "g1",
-    initials: "МГ",
+    photo: "/images/experts/gorbatsevich.jpg",
+    photoAlt: "Максим Сергеевич Горбацевич",
     specialtyIcon: FlaskConical,
     roleIcons: [Globe2, Award, ScrollText, BadgeCheck, Megaphone, Handshake],
     topicIcons: [
@@ -93,6 +95,57 @@ const TOPIC_KEYS = [
   "topic9",
   "topic10",
 ] as const;
+
+interface DetailsBlockProps {
+  icon: LucideIcon;
+  iconClassName: string;
+  title: string;
+  count?: number;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}
+
+function DetailsBlock({
+  icon: Icon,
+  iconClassName,
+  title,
+  count,
+  children,
+  defaultOpen = false,
+}: DetailsBlockProps) {
+  return (
+    <details
+      className="group rounded-2xl border border-border/60 bg-background/40 transition-colors open:bg-background/60 open:shadow-sm"
+      open={defaultOpen}
+    >
+      <summary
+        className={cn(
+          "flex cursor-pointer list-none items-center gap-3 rounded-2xl px-4 py-3.5 select-none",
+          "hover:bg-foreground/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+        )}
+      >
+        <span
+          className={cn(
+            "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+            iconClassName
+          )}
+        >
+          <Icon className="h-4 w-4" />
+        </span>
+        <span className="font-heading text-sm font-bold uppercase tracking-wide text-foreground/85">
+          {title}
+        </span>
+        {typeof count === "number" && (
+          <span className="rounded-full bg-foreground/[0.06] px-2 py-0.5 text-[11px] font-semibold tabular-nums text-muted-foreground">
+            {count}
+          </span>
+        )}
+        <ChevronDown className="ml-auto h-4 w-4 text-muted-foreground transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="px-4 pb-4 pt-1">{children}</div>
+    </details>
+  );
+}
 
 export default function ExpertsPage() {
   const t = useTranslations("experts");
@@ -140,7 +193,7 @@ export default function ExpertsPage() {
           {EXPERTS.map((expert) => (
             <article
               key={expert.id}
-              className="relative overflow-hidden rounded-3xl border border-border/60 bg-card p-6 shadow-sm sm:p-8 lg:p-10"
+              className="relative overflow-hidden rounded-3xl border border-border/60 bg-card shadow-sm"
             >
               <div
                 aria-hidden
@@ -151,13 +204,29 @@ export default function ExpertsPage() {
                 className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full bg-[var(--cta)] opacity-[0.07] blur-3xl"
               />
 
-              {/* Header row */}
-              <div className="relative grid gap-6 lg:grid-cols-[auto,1fr] lg:items-start lg:gap-8">
-                <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-[var(--aurora-1)] via-primary to-[var(--cta)] font-heading text-3xl font-bold text-white shadow-xl glow-primary sm:h-28 sm:w-28">
-                  {expert.initials}
+              <div className="relative grid gap-0 lg:grid-cols-[260px,1fr]">
+                {/* Photo column */}
+                <div className="relative isolate aspect-[4/5] w-full lg:aspect-auto lg:min-h-full">
+                  <Image
+                    src={expert.photo}
+                    alt={expert.photoAlt}
+                    fill
+                    sizes="(min-width: 1024px) 260px, 100vw"
+                    priority
+                    className="object-cover"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card"
+                  />
+                  <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm lg:hidden">
+                    <FlaskConical className="h-3 w-3" />
+                    {t(`${expert.id}.specialty`)}
+                  </div>
                 </div>
 
-                <div className="min-w-0">
+                {/* Content column */}
+                <div className="p-6 sm:p-8 lg:p-10">
                   <h3 className="font-heading text-2xl font-bold leading-tight sm:text-3xl">
                     {t(`${expert.id}.name`)}
                   </h3>
@@ -173,128 +242,121 @@ export default function ExpertsPage() {
                       {t(`${expert.id}.since`)}
                     </span>
                   </div>
+
+                  {/* Bio */}
+                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    {t(`${expert.id}.bio`)}
+                  </p>
+
+                  {/* Philosophy quote */}
+                  <figure className="mt-6 rounded-2xl border-l-4 border-l-[var(--gold)] bg-gradient-to-r from-amber-50/50 to-transparent p-4 dark:from-amber-950/15 dark:to-transparent sm:p-5">
+                    <blockquote className="font-heading text-sm italic leading-relaxed text-foreground/85 sm:text-base">
+                      {t(`${expert.id}.philosophy`)}
+                    </blockquote>
+                    <figcaption className="mt-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80">
+                      {t("philosophyTitle")}
+                    </figcaption>
+                  </figure>
+
+                  {/* Collapsible details */}
+                  <div className="mt-6 space-y-2.5">
+                    <DetailsBlock
+                      icon={Award}
+                      iconClassName="bg-primary/10 text-primary"
+                      title={t("rolesTitle")}
+                      count={ROLE_KEYS.length}
+                    >
+                      <ul className="mt-2 space-y-2.5">
+                        {ROLE_KEYS.map((rk, i) => {
+                          const Icon = expert.roleIcons[i] || BadgeCheck;
+                          return (
+                            <li
+                              key={rk}
+                              className="flex gap-3 rounded-xl border border-border/40 bg-background/60 p-3 text-sm leading-relaxed text-foreground/85"
+                            >
+                              <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/15 to-[var(--cta)]/10 text-primary">
+                                <Icon className="h-3.5 w-3.5" />
+                              </span>
+                              <span>{t(`${expert.id}.${rk}`)}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </DetailsBlock>
+
+                    <DetailsBlock
+                      icon={Landmark}
+                      iconClassName="bg-[var(--cta)]/10 text-[var(--cta)]"
+                      title={t("topicsTitle")}
+                      count={TOPIC_KEYS.length}
+                    >
+                      <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+                        {TOPIC_KEYS.map((tk, i) => {
+                          const Icon = expert.topicIcons[i] || ScrollText;
+                          return (
+                            <li
+                              key={tk}
+                              className="flex items-start gap-2.5 rounded-xl border border-border/40 bg-background/60 px-3 py-2 text-sm leading-snug text-foreground/85"
+                            >
+                              <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--cta)]" />
+                              <span>{t(`${expert.id}.${tk}`)}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </DetailsBlock>
+
+                    <DetailsBlock
+                      icon={ScrollText}
+                      iconClassName="bg-[var(--gold)]/20 text-[var(--gold)]"
+                      title={t("trackTitle")}
+                    >
+                      <p className="mt-2 rounded-2xl bg-gradient-to-br from-primary/8 via-[var(--cta)]/6 to-[var(--gold)]/8 p-5 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                        {t(`${expert.id}.track`)}
+                      </p>
+                    </DetailsBlock>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="mt-6 flex flex-wrap gap-2.5">
+                    <Link
+                      href="/contacts"
+                      className={cn(
+                        buttonVariants({ size: "default" }),
+                        "rounded-xl bg-cta text-cta-foreground hover:bg-cta/90"
+                      )}
+                    >
+                      <Mail className="mr-1 h-4 w-4" />
+                      {t("contactBtn")}
+                    </Link>
+                    <a
+                      href={t(`${expert.id}.${expert.siteUrlKey}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        buttonVariants({ variant: "outline", size: "default" }),
+                        "rounded-xl"
+                      )}
+                    >
+                      <Building2 className="mr-1 h-4 w-4" />
+                      {expert.siteLabel}
+                      <ExternalLink className="ml-1 h-3.5 w-3.5 opacity-70" />
+                    </a>
+                    <a
+                      href={t(`${expert.id}.${expert.tracksUrlKey}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "default" }),
+                        "rounded-xl"
+                      )}
+                    >
+                      <ScrollText className="mr-1 h-4 w-4" />
+                      {t("tracksBtn")}
+                      <ExternalLink className="ml-1 h-3.5 w-3.5 opacity-70" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-
-              {/* Bio */}
-              <p className="relative mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                {t(`${expert.id}.bio`)}
-              </p>
-
-              {/* Philosophy */}
-              <figure className="relative mt-6 rounded-2xl border-l-4 border-l-[var(--gold)] bg-gradient-to-r from-amber-50/50 to-transparent p-5 dark:from-amber-950/15 dark:to-transparent">
-                <blockquote className="font-heading text-base italic leading-relaxed text-foreground/85 sm:text-lg">
-                  {t(`${expert.id}.philosophy`)}
-                </blockquote>
-                <figcaption className="mt-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground/80">
-                  {t("philosophyTitle")}
-                </figcaption>
-              </figure>
-
-              {/* Roles + topics grid */}
-              <div className="relative mt-8 grid gap-6 lg:grid-cols-2">
-                {/* Expert roles */}
-                <div>
-                  <h4 className="mb-3 flex items-center gap-2 font-heading text-sm font-bold uppercase tracking-wide text-foreground/85">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Award className="h-4 w-4" />
-                    </span>
-                    {t("rolesTitle")}
-                  </h4>
-                  <ul className="space-y-2.5">
-                    {ROLE_KEYS.map((rk, i) => {
-                      const Icon = expert.roleIcons[i] || BadgeCheck;
-                      return (
-                        <li
-                          key={rk}
-                          className="flex gap-3 rounded-xl border border-border/40 bg-background/60 p-3 text-sm leading-relaxed text-foreground/85"
-                        >
-                          <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/15 to-[var(--cta)]/10 text-primary">
-                            <Icon className="h-3.5 w-3.5" />
-                          </span>
-                          <span>{t(`${expert.id}.${rk}`)}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-
-                {/* Government topics */}
-                <div>
-                  <h4 className="mb-3 flex items-center gap-2 font-heading text-sm font-bold uppercase tracking-wide text-foreground/85">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--cta)]/10 text-[var(--cta)]">
-                      <Landmark className="h-4 w-4" />
-                    </span>
-                    {t("topicsTitle")}
-                  </h4>
-                  <ul className="grid gap-2">
-                    {TOPIC_KEYS.map((tk, i) => {
-                      const Icon = expert.topicIcons[i] || ScrollText;
-                      return (
-                        <li
-                          key={tk}
-                          className="flex items-start gap-2.5 rounded-xl border border-border/40 bg-background/60 px-3 py-2 text-sm leading-snug text-foreground/85"
-                        >
-                          <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--cta)]" />
-                          <span>{t(`${expert.id}.${tk}`)}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Track record */}
-              <div className="relative mt-8 rounded-2xl bg-gradient-to-br from-primary/8 via-[var(--cta)]/6 to-[var(--gold)]/8 p-5 sm:p-6">
-                <h4 className="flex items-center gap-2 font-heading text-sm font-bold uppercase tracking-wide text-foreground/85">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--gold)]/20 text-[var(--gold)]">
-                    <ScrollText className="h-4 w-4" />
-                  </span>
-                  {t("trackTitle")}
-                </h4>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                  {t(`${expert.id}.track`)}
-                </p>
-              </div>
-
-              {/* Actions */}
-              <div className="relative mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/contacts"
-                  className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "rounded-xl bg-cta text-cta-foreground hover:bg-cta/90"
-                  )}
-                >
-                  <Mail className="mr-1 h-4 w-4" />
-                  {t("contactBtn")}
-                </Link>
-                <a
-                  href={t(`${expert.id}.${expert.siteUrlKey}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ variant: "outline", size: "lg" }),
-                    "rounded-xl"
-                  )}
-                >
-                  <Building2 className="mr-1 h-4 w-4" />
-                  {t("siteBtn")} · {expert.siteLabel}
-                  <ExternalLink className="ml-1 h-3.5 w-3.5 opacity-70" />
-                </a>
-                <a
-                  href={t(`${expert.id}.${expert.tracksUrlKey}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "lg" }),
-                    "rounded-xl"
-                  )}
-                >
-                  <ScrollText className="mr-1 h-4 w-4" />
-                  {t("tracksBtn")}
-                  <ExternalLink className="ml-1 h-3.5 w-3.5 opacity-70" />
-                </a>
               </div>
             </article>
           ))}
