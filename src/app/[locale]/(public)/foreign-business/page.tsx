@@ -24,6 +24,7 @@ import {
   Globe2,
   Target,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -32,35 +33,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "foreignBusiness" });
+  const tNav = await getTranslations({ locale, namespace: "nav" });
   const tMeta = await getTranslations({ locale, namespace: "meta" });
-  return {
+  return pageMetadata({
+    locale,
+    path: "foreign-business",
     title: t("pageTitle"),
     description: t("pageDescription"),
+    eyebrow: tNav("foreignBusiness"),
     keywords: tMeta("keywords")
       .split(",")
       .map((k) => k.trim())
       .filter(Boolean),
-    alternates: {
-      canonical: `/${locale}/foreign-business`,
-      languages: {
-        ru: "/ru/foreign-business",
-        en: "/en/foreign-business",
-        zh: "/zh/foreign-business",
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale,
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-      url: `/${locale}/foreign-business`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-    },
-  };
+  });
 }
 
 const WHY_BLOCKS = [

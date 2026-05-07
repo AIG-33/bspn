@@ -12,6 +12,7 @@ import {
   Newspaper,
   ArrowRight,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -20,22 +21,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "business" });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "business",
     title: t("sectionTitle"),
     description: t("sectionDescription"),
-    alternates: {
-      canonical: `/${locale}/business`,
-      languages: {
-        ru: "/ru/business",
-        en: "/en/business",
-        zh: "/zh/business",
-      },
-    },
-    openGraph: {
-      title: t("sectionTitle"),
-      description: t("sectionDescription"),
-    },
-  };
+    eyebrow: tNav("businessSection"),
+  });
 }
 
 const SUBSECTIONS = [

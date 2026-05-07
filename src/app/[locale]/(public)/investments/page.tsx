@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   Target,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -28,35 +29,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "investments" });
+  const tNav = await getTranslations({ locale, namespace: "nav" });
   const tMeta = await getTranslations({ locale, namespace: "meta" });
-  return {
+  return pageMetadata({
+    locale,
+    path: "investments",
     title: t("pageTitle"),
     description: t("pageDescription"),
+    eyebrow: tNav("investments"),
     keywords: tMeta("keywords")
       .split(",")
       .map((k) => k.trim())
       .filter(Boolean),
-    alternates: {
-      canonical: `/${locale}/investments`,
-      languages: {
-        ru: "/ru/investments",
-        en: "/en/investments",
-        zh: "/zh/investments",
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale,
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-      url: `/${locale}/investments`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-    },
-  };
+  });
 }
 
 const WHY = [

@@ -9,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import { Shield, BookOpen, Handshake, Heart, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -17,18 +18,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "mission" });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "about/mission",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/about/mission`,
-      languages: {
-        ru: "/ru/about/mission",
-        en: "/en/about/mission",
-        zh: "/zh/about/mission",
-      },
-    },
-  };
+    eyebrow: tNav("about"),
+  });
 }
 
 const VALUES: { key: number; icon: LucideIcon }[] = [

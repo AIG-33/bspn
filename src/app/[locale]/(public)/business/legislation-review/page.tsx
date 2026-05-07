@@ -12,6 +12,7 @@ import {
   Globe2,
   Mail,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 const NS = "business.legislationReview" as const;
 
@@ -22,19 +23,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: NS });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "business/legislation-review",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/business/legislation-review`,
-      languages: {
-        ru: "/ru/business/legislation-review",
-        en: "/en/business/legislation-review",
-        zh: "/zh/business/legislation-review",
-      },
-    },
-    openGraph: { title: t("pageTitle"), description: t("pageDescription") },
-  };
+    eyebrow: tNav("businessSection"),
+  });
 }
 
 const BLOCKS = [

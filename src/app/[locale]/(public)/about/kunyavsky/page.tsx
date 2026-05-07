@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { GraduationCap, Building2, Lightbulb, Award } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -12,22 +13,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "kunyavsky" });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "about/kunyavsky",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/about/kunyavsky`,
-      languages: {
-        ru: "/ru/about/kunyavsky",
-        en: "/en/about/kunyavsky",
-        zh: "/zh/about/kunyavsky",
-      },
-    },
-    openGraph: {
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-    },
-  };
+    eyebrow: tNav("about"),
+  });
 }
 
 const SECTIONS = [

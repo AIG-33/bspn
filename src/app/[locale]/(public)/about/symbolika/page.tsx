@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Sparkles, Scroll, PenTool, BookOpen, Trophy } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -13,30 +14,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "symbolika" });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "about/symbolika",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/about/symbolika`,
-      languages: {
-        ru: "/ru/about/symbolika",
-        en: "/en/about/symbolika",
-        zh: "/zh/about/symbolika",
-      },
-    },
-    openGraph: {
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-      images: [
-        {
-          url: "/images/bspn-logo-512.png",
-          width: 512,
-          height: 512,
-          alt: t("altLogo"),
-        },
-      ],
-    },
-  };
+    eyebrow: tNav("about"),
+    alt: t("altLogo"),
+  });
 }
 
 const SECTIONS = [

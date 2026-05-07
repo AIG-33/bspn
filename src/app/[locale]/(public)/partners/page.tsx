@@ -13,6 +13,7 @@ import {
   Building2,
   ArrowRight,
 } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -21,19 +22,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "partners" });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "partners",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/partners`,
-      languages: {
-        ru: "/ru/partners",
-        en: "/en/partners",
-        zh: "/zh/partners",
-      },
-    },
-    openGraph: { title: t("pageTitle"), description: t("pageDescription") },
-  };
+    eyebrow: tNav("about"),
+  });
 }
 
 const GROUPS = [

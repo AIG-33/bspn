@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Handshake, Briefcase, HardHat, ShieldAlert } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 const NS = "business.socialLabor" as const;
 
@@ -14,19 +15,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: NS });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "business/social-labor",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/business/social-labor`,
-      languages: {
-        ru: "/ru/business/social-labor",
-        en: "/en/business/social-labor",
-        zh: "/zh/business/social-labor",
-      },
-    },
-    openGraph: { title: t("pageTitle"), description: t("pageDescription") },
-  };
+    eyebrow: tNav("businessSection"),
+  });
 }
 
 const BLOCKS = [

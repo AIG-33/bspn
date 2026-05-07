@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { BarChart3, ClipboardList, Activity } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 const NS = "business.research" as const;
 
@@ -14,19 +15,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: NS });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "business/research",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/business/research`,
-      languages: {
-        ru: "/ru/business/research",
-        en: "/en/business/research",
-        zh: "/zh/business/research",
-      },
-    },
-    openGraph: { title: t("pageTitle"), description: t("pageDescription") },
-  };
+    eyebrow: tNav("businessSection"),
+  });
 }
 
 const STUDIES = [

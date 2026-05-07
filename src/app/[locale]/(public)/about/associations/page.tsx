@@ -13,6 +13,7 @@ import {
   Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
 const ASSOCIATIONS: { key: string; icon: LucideIcon; members: number }[] = [
   { key: "lift", icon: ArrowUpToLine, members: 22 },
@@ -31,23 +32,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "associations" });
-  return {
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  return pageMetadata({
+    locale,
+    path: "about/associations",
     title: t("pageTitle"),
     description: t("pageDescription"),
-    alternates: {
-      canonical: `/${locale}/about/associations`,
-      languages: {
-        ru: "/ru/about/associations",
-        en: "/en/about/associations",
-        zh: "/zh/about/associations",
-      },
-    },
-    openGraph: {
-      title: t("pageTitle"),
-      description: t("pageDescription"),
-      type: "website",
-    },
-  };
+    eyebrow: tNav("about"),
+  });
 }
 
 export default function AssociationsPage() {

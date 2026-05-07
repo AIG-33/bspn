@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { LegalDocument } from "./legal-document";
+import { pageMetadata } from "@/lib/seo";
 
 const DOCS = ["privacy", "terms"] as const;
 type LegalDoc = (typeof DOCS)[number];
@@ -23,11 +24,15 @@ export async function generateMetadata({
     locale,
     namespace: `legal.${doc}`,
   });
+  const tLegal = await getTranslations({ locale, namespace: "legal" });
 
-  return {
+  return pageMetadata({
+    locale,
+    path: `legal/${doc}`,
     title: t("title"),
     description: t("subtitle"),
-  };
+    eyebrow: tLegal("section"),
+  });
 }
 
 export default async function LegalDocPage({

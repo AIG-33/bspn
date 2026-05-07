@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
+import { buildOgImageUrl, OG_SIZE } from "@/lib/og";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bspn.by";
 
@@ -39,6 +40,11 @@ export async function generateMetadata({
     }
   })();
 
+  // Pages that don't define their own OG images inherit this fallback.
+  // The locale homepage itself has a colocated `opengraph-image.tsx`
+  // that wins over the URL below for `/[locale]` only.
+  const fallbackOg = buildOgImageUrl({ title: ogTitle, locale });
+
   return {
     title: {
       default: t("title"),
@@ -60,9 +66,9 @@ export async function generateMetadata({
       url: `${SITE_URL}/${locale}`,
       images: [
         {
-          url: "/images/bspn-logo-512.png",
-          width: 512,
-          height: 512,
+          url: fallbackOg,
+          width: OG_SIZE.width,
+          height: OG_SIZE.height,
           alt: t("siteName"),
         },
       ],
@@ -71,7 +77,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: ogTitle,
       description: ogDescription,
-      images: ["/images/bspn-logo-512.png"],
+      images: [fallbackOg],
     },
     alternates: {
       canonical: `/${locale}`,
