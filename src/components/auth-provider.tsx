@@ -61,10 +61,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAdmin = role === "admin" || role === "superadmin";
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    setRole(null);
-    window.location.href = "/";
+    try {
+      await supabase.auth.signOut();
+    } catch (err) {
+      console.error("[auth] signOut failed", err);
+    }
+    // Navigate to the localized homepage with a hard reload — this resets
+    // every React state slice (including the auth context and any open
+    // dropdowns) without forcing a re-render mid-logout, which would
+    // unmount the trigger of an open menu and break BaseUI focus restoration.
+    const match =
+      typeof window !== "undefined"
+        ? window.location.pathname.match(/^\/(ru|en|zh)/)
+        : null;
+    const locale = match?.[1] ?? "ru";
+    window.location.replace(`/${locale}`);
   };
 
   return (
