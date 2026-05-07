@@ -86,7 +86,13 @@
     "businessResearch": "研究成果",
     "businessPress": "Business-Press Online",
     "foreignBusiness": "面向外资企业",
-    "investments": "在白俄罗斯投资"
+    "investments": "在白俄罗斯投资",
+    "membersOnly": "会员",
+    "newsEvents": "新闻与活动",
+    "aboutGroup": "关于联盟",
+    "aboutPeopleGroup": "人物与成就",
+    "businessAnalytics": "分析与综述",
+    "businessServices": "会员服务"
   },
   "onboarding": {
     "tag": "刚刚接触?没问题。",

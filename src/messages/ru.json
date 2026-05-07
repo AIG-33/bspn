@@ -86,7 +86,13 @@
     "businessResearch": "Результаты исследований",
     "businessPress": "Бизнес-Пресс онлайн",
     "foreignBusiness": "Для иностранных компаний",
-    "investments": "Инвестиции в Беларусь"
+    "investments": "Инвестиции в Беларусь",
+    "membersOnly": "Членам",
+    "newsEvents": "Новости и события",
+    "aboutGroup": "О союзе",
+    "aboutPeopleGroup": "Люди и достижения",
+    "businessAnalytics": "Аналитика и обзоры",
+    "businessServices": "Услуги бизнесу"
   },
   "onboarding": {
     "tag": "Новичок? Это нормально.",

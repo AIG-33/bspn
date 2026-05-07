@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Crown } from "lucide-react";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { buttonVariants } from "@/components/ui/button-variants";
@@ -22,13 +22,13 @@ export function Footer() {
     { label: t("nav.contacts"), href: "/contacts" },
   ];
 
-  const businessLinks = [
+  const businessLinks: { label: string; href: string; memberOnly?: boolean }[] = [
     { label: t("nav.businessLegislation"), href: "/business/legislation-review" },
     { label: t("nav.businessEconomy"), href: "/business/economy" },
-    { label: t("nav.advocacy"), href: "/advocacy" },
+    { label: t("nav.advocacy"), href: "/advocacy", memberOnly: true },
     { label: t("nav.councils"), href: "/councils" },
-    { label: t("nav.arbitration"), href: "/arbitration" },
-    { label: t("nav.dataProtection"), href: "/data-protection" },
+    { label: t("nav.arbitration"), href: "/arbitration", memberOnly: true },
+    { label: t("nav.dataProtection"), href: "/data-protection", memberOnly: true },
   ];
 
   const investorLinks = [
@@ -120,9 +120,17 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="group inline-flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-white"
                   >
                     {link.label}
+                    {link.memberOnly && (
+                      <span
+                        className="inline-flex items-center gap-1 rounded-full border border-amber-300/40 bg-amber-300/10 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-amber-200"
+                        title={t("nav.membersOnly")}
+                      >
+                        <Crown className="h-2.5 w-2.5" />
+                      </span>
+                    )}
                   </Link>
                 </li>
               ))}

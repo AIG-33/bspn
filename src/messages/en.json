@@ -86,7 +86,13 @@
     "businessResearch": "Research",
     "businessPress": "Business-Press online",
     "foreignBusiness": "For foreign companies",
-    "investments": "Invest in Belarus"
+    "investments": "Invest in Belarus",
+    "membersOnly": "Members",
+    "newsEvents": "News & events",
+    "aboutGroup": "About BSPN",
+    "aboutPeopleGroup": "People & achievements",
+    "businessAnalytics": "Analytics & reviews",
+    "businessServices": "Business services"
   },
   "onboarding": {
     "tag": "New here? That's fine.",
