@@ -181,7 +181,7 @@ export default function ExpertsPage() {
 
               <div className="relative grid gap-0 lg:grid-cols-[260px,1fr]">
                 {/* Photo column */}
-                <div className="relative isolate aspect-[4/5] w-full lg:aspect-auto lg:min-h-full">
+                <div className="relative isolate aspect-[4/5] w-full overflow-hidden lg:aspect-[4/5] lg:rounded-l-3xl">
                   <Image
                     src={expert.photo}
                     alt={expert.photoAlt}
@@ -192,9 +192,9 @@ export default function ExpertsPage() {
                   />
                   <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent"
                   />
-                  <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm lg:hidden">
+                  <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/95 backdrop-blur-sm">
                     <FlaskConical className="h-3 w-3" />
                     {t(`${expert.id}.specialty`)}
                   </div>
