@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
-import { GlassCard } from "@/components/ui/glass-card";
 import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
@@ -164,32 +163,8 @@ export default function ExpertsPage() {
       </PageHeader>
 
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        {/* Open access callout */}
-        <GlassCard
-          variant="strong"
-          className="relative overflow-hidden p-6 sm:p-8 lg:p-10"
-        >
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[var(--gold)] opacity-20 blur-3xl"
-          />
-          <div className="relative grid gap-6 lg:grid-cols-[auto,1fr] lg:items-center lg:gap-8">
-            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--aurora-1)] via-primary to-[var(--cta)] text-white shadow-lg glow-primary">
-              <Unlock className="h-6 w-6" />
-            </div>
-            <div>
-              <h2 className="font-heading text-xl font-bold sm:text-2xl">
-                {t("openTitle")}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                {t("openBody")}
-              </p>
-            </div>
-          </div>
-        </GlassCard>
-
         {/* Experts list */}
-        <div className="mt-12 space-y-10">
+        <div className="space-y-10">
           {EXPERTS.map((expert) => (
             <article
               key={expert.id}
