@@ -1,9 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, X, ChevronDown, LogOut, User, Crown } from "lucide-react";
+import { locales, type Locale } from "@/i18n/routing";
+import { useTheme } from "next-themes";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  LogOut,
+  User,
+  Crown,
+  Sun,
+  Moon,
+  Globe,
+  Check,
+  Settings,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import {
@@ -12,11 +27,25 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { useUser } from "@/components/auth-provider";
+
+const FLAGS: Record<Locale, string> = {
+  ru: "🇷🇺",
+  en: "🇬🇧",
+  zh: "🇨🇳",
+};
 
 interface NavLeaf {
   label: string;
@@ -41,8 +70,14 @@ interface NavItem {
 export function Header() {
   const t = useTranslations();
   const pathname = usePathname();
+  const params = useParams();
+  const currentLocale = (params.locale as Locale) ?? "ru";
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, loading, signOut } = useUser();
+  const { theme, setTheme } = useTheme();
+  const [themeMounted, setThemeMounted] = useState(false);
+  useEffect(() => setThemeMounted(true), []);
+  const isDark = themeMounted && theme === "dark";
 
   const navItems: NavItem[] = [
     {
@@ -261,39 +296,156 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop Actions */}
-          <div className="hidden items-center gap-1 lg:flex">
-            <ThemeToggle />
-            <LanguageSwitcher />
-            {!loading && user ? (
-              <>
-                <Link
-                  href="/cabinet"
-                  className={cn(
-                    buttonVariants({ variant: "outline", size: "sm" }),
-                    "ml-1 h-8 gap-1.5 rounded-full text-xs"
+          {/* Desktop Actions — consolidated account/settings menu */}
+          <div className="hidden items-center gap-1.5 lg:flex">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={
+                  user ? (
+                    <button
+                      type="button"
+                      aria-label={t("a11y.userMenu")}
+                      className={cn(
+                        "group/trigger inline-flex h-9 items-center gap-1.5 rounded-full border border-border/60 bg-background/40 pl-1 pr-2.5 text-xs font-semibold transition-all",
+                        "hover:border-primary/40 hover:bg-foreground/[0.04]",
+                        "data-popup-open:border-primary/50 data-popup-open:bg-foreground/[0.05]"
+                      )}
+                    >
+                      <span
+                        aria-hidden
+                        className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-primary via-[var(--cta)] to-[var(--gold)] text-[11px] font-bold uppercase text-white shadow-sm"
+                      >
+                        {(user.email?.charAt(0) ?? "?").toUpperCase()}
+                      </span>
+                      <span className="hidden font-mono text-[11px] uppercase tracking-wider text-muted-foreground xl:inline">
+                        {currentLocale}
+                      </span>
+                      <ChevronDown className="h-3 w-3 text-muted-foreground transition-transform group-data-popup-open/trigger:rotate-180" />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-label={t("a11y.settings")}
+                      className={cn(
+                        "group/trigger inline-flex h-9 items-center gap-1.5 rounded-full border border-border/60 bg-background/40 px-3 text-xs font-semibold text-muted-foreground transition-all",
+                        "hover:border-primary/40 hover:bg-foreground/[0.04] hover:text-foreground",
+                        "data-popup-open:border-primary/50 data-popup-open:bg-foreground/[0.05] data-popup-open:text-foreground"
+                      )}
+                    >
+                      <Globe className="h-3.5 w-3.5" />
+                      <span className="font-mono text-[11px] uppercase tracking-wider">
+                        {currentLocale}
+                      </span>
+                      <ChevronDown className="h-3 w-3 transition-transform group-data-popup-open/trigger:rotate-180" />
+                    </button>
+                  )
+                }
+              />
+              <DropdownMenuContent
+                align="end"
+                sideOffset={8}
+                className="w-60 p-1.5"
+              >
+                {user && (
+                  <>
+                    <div className="flex items-center gap-2.5 rounded-md px-2 py-1.5">
+                      <span
+                        aria-hidden
+                        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary via-[var(--cta)] to-[var(--gold)] text-sm font-bold uppercase text-white shadow-sm"
+                      >
+                        {(user.email?.charAt(0) ?? "?").toUpperCase()}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                          {t("nav.account")}
+                        </div>
+                        <div className="truncate text-xs font-medium text-foreground">
+                          {user.email}
+                        </div>
+                      </div>
+                    </div>
+                    <DropdownMenuItem
+                      render={<Link href="/cabinet" />}
+                      className="gap-2 px-2 py-1.5 text-sm"
+                    >
+                      <User className="h-4 w-4 text-muted-foreground" />
+                      {t("nav.cabinet")}
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                  </>
+                )}
+
+                <DropdownMenuLabel className="px-2 pt-1 pb-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  {t("nav.theme")}
+                </DropdownMenuLabel>
+                <DropdownMenuItem
+                  closeOnClick={false}
+                  onClick={() => setTheme("light")}
+                  className="gap-2 px-2 py-1.5 text-sm"
+                >
+                  <Sun className="h-4 w-4 text-muted-foreground" />
+                  <span className="flex-1">{t("a11y.lightTheme")}</span>
+                  {themeMounted && !isDark && (
+                    <Check className="h-3.5 w-3.5 text-primary" />
                   )}
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  closeOnClick={false}
+                  onClick={() => setTheme("dark")}
+                  className="gap-2 px-2 py-1.5 text-sm"
                 >
-                  <User className="h-3.5 w-3.5" />
-                  {t("nav.cabinet")}
-                </Link>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={signOut}
-                  className="h-8 gap-1.5 rounded-full text-xs text-muted-foreground"
-                >
-                  <LogOut className="h-3.5 w-3.5" />
-                  {t("nav.logout")}
-                </Button>
-              </>
-            ) : !loading ? (
+                  <Moon className="h-4 w-4 text-muted-foreground" />
+                  <span className="flex-1">{t("a11y.darkTheme")}</span>
+                  {themeMounted && isDark && (
+                    <Check className="h-3.5 w-3.5 text-primary" />
+                  )}
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                <DropdownMenuLabel className="px-2 pt-1 pb-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  {t("nav.language")}
+                </DropdownMenuLabel>
+                {locales.map((loc) => (
+                  <DropdownMenuItem
+                    key={loc}
+                    render={<Link href={pathname} locale={loc} />}
+                    className={cn(
+                      "gap-2 px-2 py-1.5 text-sm",
+                      loc === currentLocale && "bg-primary/8 text-primary"
+                    )}
+                  >
+                    <span className="text-base leading-none">{FLAGS[loc]}</span>
+                    <span className="flex-1">{t(`lang.${loc}`)}</span>
+                    {loc === currentLocale && (
+                      <Check className="h-3.5 w-3.5" />
+                    )}
+                  </DropdownMenuItem>
+                ))}
+
+                {user && (
+                  <>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      variant="destructive"
+                      onClick={signOut}
+                      className="gap-2 px-2 py-1.5 text-sm"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      {t("nav.logout")}
+                    </DropdownMenuItem>
+                  </>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {!loading && !user && (
               <>
                 <Link
                   href="/login"
                   className={cn(
-                    buttonVariants({ variant: "outline", size: "sm" }),
-                    "ml-1 h-8 rounded-full text-xs"
+                    buttonVariants({ variant: "ghost", size: "sm" }),
+                    "h-9 rounded-full px-3 text-xs"
                   )}
                 >
                   {t("nav.login")}
@@ -302,13 +454,13 @@ export function Header() {
                   href="/membership/join"
                   className={cn(
                     buttonVariants({ size: "sm" }),
-                    "h-8 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 glow-cta text-xs"
+                    "h-9 rounded-full bg-cta px-4 text-cta-foreground hover:bg-cta/90 glow-cta text-xs"
                   )}
                 >
                   {t("nav.joinCta")}
                 </Link>
               </>
-            ) : null}
+            )}
           </div>
 
           {/* Mobile Menu Trigger */}

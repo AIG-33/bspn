@@ -31,7 +31,9 @@
     "switchLanguage": "切换语言",
     "switchTheme": "切换主题",
     "lightTheme": "浅色主题",
-    "darkTheme": "深色主题"
+    "darkTheme": "深色主题",
+    "userMenu": "用户菜单",
+    "settings": "设置"
   },
   "lang": {
     "ru": "Русский",
@@ -92,7 +94,10 @@
     "aboutGroup": "关于联盟",
     "aboutPeopleGroup": "人物与成就",
     "businessAnalytics": "分析与综述",
-    "businessServices": "会员服务"
+    "businessServices": "会员服务",
+    "theme": "主题",
+    "language": "语言",
+    "account": "账户"
   },
   "onboarding": {
     "tag": "面向政府的企业之声",

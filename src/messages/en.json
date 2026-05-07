@@ -31,7 +31,9 @@
     "switchLanguage": "Switch language",
     "switchTheme": "Switch theme",
     "lightTheme": "Light theme",
-    "darkTheme": "Dark theme"
+    "darkTheme": "Dark theme",
+    "userMenu": "User menu",
+    "settings": "Settings"
   },
   "lang": {
     "ru": "Русский",
@@ -92,7 +94,10 @@
     "aboutGroup": "About BSPN",
     "aboutPeopleGroup": "People & achievements",
     "businessAnalytics": "Analytics & reviews",
-    "businessServices": "Business services"
+    "businessServices": "Business services",
+    "theme": "Theme",
+    "language": "Language",
+    "account": "Account"
   },
   "onboarding": {
     "tag": "The business voice in government",

@@ -31,7 +31,9 @@
     "switchLanguage": "Сменить язык",
     "switchTheme": "Сменить тему",
     "lightTheme": "Светлая тема",
-    "darkTheme": "Тёмная тема"
+    "darkTheme": "Тёмная тема",
+    "userMenu": "Меню пользователя",
+    "settings": "Настройки"
   },
   "lang": {
     "ru": "Русский",
@@ -92,7 +94,10 @@
     "aboutGroup": "О союзе",
     "aboutPeopleGroup": "Люди и достижения",
     "businessAnalytics": "Аналитика и обзоры",
-    "businessServices": "Услуги бизнесу"
+    "businessServices": "Услуги бизнесу",
+    "theme": "Тема",
+    "language": "Язык",
+    "account": "Аккаунт"
   },
   "onboarding": {
     "tag": "Голос бизнеса в госорганах",
