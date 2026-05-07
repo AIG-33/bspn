@@ -37,15 +37,28 @@ export function Header() {
       children: [
         { label: t("nav.aboutMission"), href: "/about/mission" },
         { label: t("nav.aboutHistory"), href: "/about/history" },
+        { label: t("nav.kunyavsky"), href: "/about/kunyavsky" },
+        { label: t("nav.symbolika"), href: "/about/symbolika" },
         { label: t("nav.aboutLeadership"), href: "/about/leadership" },
+        { label: t("nav.specialists"), href: "/specialists" },
         { label: t("nav.aboutAchievements"), href: "/about/achievements" },
+        { label: t("nav.awards"), href: "/awards" },
         { label: t("nav.aboutAssociations"), href: "/about/associations" },
+        { label: t("nav.councils"), href: "/councils" },
+        { label: t("nav.partners"), href: "/partners" },
+        { label: t("nav.regulations"), href: "/regulations" },
       ],
     },
     {
       label: t("nav.forBusiness"),
-      href: "/faq",
+      href: "/business",
       children: [
+        { label: t("nav.businessLegislation"), href: "/business/legislation-review" },
+        { label: t("nav.businessEconomy"), href: "/business/economy" },
+        { label: t("nav.businessSocialLabor"), href: "/business/social-labor" },
+        { label: t("nav.businessResearch"), href: "/business/research" },
+        { label: t("nav.businessPress"), href: "/business/press" },
+        { label: t("nav.legislation"), href: "/legislation" },
         { label: t("nav.faq"), href: "/faq" },
         { label: t("nav.courtPractice"), href: "/court-practice" },
         { label: t("nav.experts"), href: "/experts" },
@@ -53,6 +66,15 @@ export function Header() {
         { label: t("nav.consumerProtection"), href: "/consumer-protection" },
         { label: t("nav.dataProtection"), href: "/data-protection" },
         { label: t("nav.arbitration"), href: "/arbitration" },
+      ],
+    },
+    {
+      label: t("nav.foreignBusiness"),
+      href: "/foreign-business",
+      children: [
+        { label: t("nav.foreignBusiness"), href: "/foreign-business" },
+        { label: t("nav.investments"), href: "/investments" },
+        { label: t("nav.international"), href: "/international" },
       ],
     },
     {
@@ -67,6 +89,7 @@ export function Header() {
     },
     { label: t("nav.events"), href: "/events" },
     { label: t("nav.news"), href: "/news" },
+    { label: t("nav.media"), href: "/media" },
     { label: t("nav.contacts"), href: "/contacts" },
   ];
 

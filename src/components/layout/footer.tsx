@@ -15,20 +15,27 @@ export function Footer() {
 
   const quickLinks = [
     { label: t("nav.about"), href: "/about" },
-    { label: t("nav.membership"), href: "/membership" },
-    { label: t("nav.faq"), href: "/faq" },
-    { label: t("nav.news"), href: "/news" },
-    { label: t("nav.events"), href: "/events" },
+    { label: t("nav.kunyavsky"), href: "/about/kunyavsky" },
+    { label: t("nav.symbolika"), href: "/about/symbolika" },
+    { label: t("nav.partners"), href: "/partners" },
+    { label: t("nav.awards"), href: "/awards" },
     { label: t("nav.contacts"), href: "/contacts" },
   ];
 
   const businessLinks = [
-    { label: t("nav.courtPractice"), href: "/court-practice" },
-    { label: t("nav.experts"), href: "/experts" },
+    { label: t("nav.businessLegislation"), href: "/business/legislation-review" },
+    { label: t("nav.businessEconomy"), href: "/business/economy" },
     { label: t("nav.advocacy"), href: "/advocacy" },
-    { label: t("nav.consumerProtection"), href: "/consumer-protection" },
-    { label: t("nav.dataProtection"), href: "/data-protection" },
+    { label: t("nav.councils"), href: "/councils" },
     { label: t("nav.arbitration"), href: "/arbitration" },
+    { label: t("nav.dataProtection"), href: "/data-protection" },
+  ];
+
+  const investorLinks = [
+    { label: t("nav.foreignBusiness"), href: "/foreign-business" },
+    { label: t("nav.investments"), href: "/investments" },
+    { label: t("nav.international"), href: "/international" },
+    { label: t("nav.aboutAssociations"), href: "/about/associations" },
   ];
 
   return (
@@ -44,7 +51,7 @@ export function Footer() {
 
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="space-y-5 lg:col-span-4">
+          <div className="space-y-5 lg:col-span-3">
             <div className="flex items-center gap-2.5">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md ring-1 ring-white/15">
                 <SiteLogo
@@ -104,12 +111,30 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <h3 className="mb-4 font-heading text-xs font-semibold uppercase tracking-wider text-white/60">
               {t("footer.forBusiness")}
             </h3>
             <ul className="space-y-2.5">
               {businessLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <h3 className="mb-4 font-heading text-xs font-semibold uppercase tracking-wider text-white/60">
+              {t("footer.investorsCol")}
+            </h3>
+            <ul className="space-y-2.5">
+              {investorLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

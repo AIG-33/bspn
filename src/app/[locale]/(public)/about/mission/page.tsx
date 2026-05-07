@@ -1,8 +1,35 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
-import { Shield, BookOpen, Handshake, Heart } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { buttonVariants } from "@/components/ui/button-variants";
+import { cn } from "@/lib/utils";
+import { Shield, BookOpen, Handshake, Heart, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "mission" });
+  return {
+    title: t("pageTitle"),
+    description: t("pageDescription"),
+    alternates: {
+      canonical: `/${locale}/about/mission`,
+      languages: {
+        ru: "/ru/about/mission",
+        en: "/en/about/mission",
+        zh: "/zh/about/mission",
+      },
+    },
+  };
+}
 
 const VALUES: { key: number; icon: LucideIcon }[] = [
   { key: 1, icon: Handshake },
@@ -13,6 +40,7 @@ const VALUES: { key: number; icon: LucideIcon }[] = [
 
 export default function MissionPage() {
   const t = useTranslations("mission");
+  const tc = useTranslations("common");
 
   return (
     <>
@@ -61,12 +89,31 @@ export default function MissionPage() {
         </div>
 
         <div className="mx-auto mt-20 max-w-3xl text-center">
+          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--aurora-1)] via-primary to-[var(--cta)] shadow-lg">
+            <Image
+              src="/images/bspn-logo-mark@2x.png"
+              alt="«Вялес» — символ БСПН"
+              width={72}
+              height={72}
+              className="h-[78%] w-[78%] object-contain"
+            />
+          </div>
           <h2 className="font-heading text-3xl font-bold sm:text-4xl">
             {t("symbolTitle")}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {t("symbolDesc")}
           </p>
+          <Link
+            href="/about/symbolika"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "mt-6 rounded-full"
+            )}
+          >
+            {tc("readMore")}
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </div>
       </div>
     </>
