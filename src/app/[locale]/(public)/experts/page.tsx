@@ -179,47 +179,43 @@ export default function ExpertsPage() {
                 className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full bg-[var(--cta)] opacity-[0.07] blur-3xl"
               />
 
-              <div className="relative grid gap-0 lg:grid-cols-[260px,1fr]">
-                {/* Photo column */}
-                <div className="relative isolate aspect-[4/5] w-full overflow-hidden lg:aspect-[4/5] lg:rounded-l-3xl">
-                  <Image
-                    src={expert.photo}
-                    alt={expert.photoAlt}
-                    fill
-                    sizes="(min-width: 1024px) 260px, 100vw"
-                    priority
-                    className="object-cover"
-                  />
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent"
-                  />
-                  <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/95 backdrop-blur-sm">
-                    <FlaskConical className="h-3 w-3" />
-                    {t(`${expert.id}.specialty`)}
+              <div className="relative p-6 sm:p-8 lg:p-10">
+                {/* Header: small photo + name/role inline */}
+                <div className="flex items-start gap-4 sm:gap-5">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl ring-1 ring-border/60 sm:h-24 sm:w-24">
+                    <Image
+                      src={expert.photo}
+                      alt={expert.photoAlt}
+                      fill
+                      sizes="96px"
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-heading text-xl font-bold leading-tight sm:text-2xl">
+                      {t(`${expert.id}.name`)}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-primary sm:text-base">
+                      {t(`${expert.id}.role`)}
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-foreground/[0.05] px-2.5 py-1 font-mono">
+                        <expert.specialtyIcon className="h-3 w-3 text-primary" />
+                        {t(`${expert.id}.specialty`)}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 px-2.5 py-1">
+                        {t(`${expert.id}.since`)}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Content column */}
-                <div className="p-6 sm:p-8 lg:p-10">
-                  <h3 className="font-heading text-2xl font-bold leading-tight sm:text-3xl">
-                    {t(`${expert.id}.name`)}
-                  </h3>
-                  <p className="mt-1 text-base font-medium text-primary">
-                    {t(`${expert.id}.role`)}
-                  </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-foreground/[0.05] px-3 py-1.5 font-mono">
-                      <expert.specialtyIcon className="h-3.5 w-3.5 text-primary" />
-                      {t(`${expert.id}.specialty`)}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 px-3 py-1.5">
-                      {t(`${expert.id}.since`)}
-                    </span>
-                  </div>
+                {/* Body */}
+                <div className="mt-6">
 
                   {/* Bio */}
-                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {t(`${expert.id}.bio`)}
                   </p>
 
