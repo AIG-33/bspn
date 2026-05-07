@@ -95,7 +95,7 @@ export function Header() {
         {
           title: t("nav.businessServices"),
           items: [
-            { label: t("nav.experts"), href: "/experts", memberOnly: true },
+            { label: t("nav.experts"), href: "/experts" },
             { label: t("nav.advocacy"), href: "/advocacy", memberOnly: true },
             { label: t("nav.consumerProtection"), href: "/consumer-protection", memberOnly: true },
             { label: t("nav.dataProtection"), href: "/data-protection", memberOnly: true },

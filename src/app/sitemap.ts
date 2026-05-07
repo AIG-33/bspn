@@ -39,7 +39,7 @@ const ROUTES: { path: string; priority: number; changeFrequency: CF }[] = [
   { path: "/faq", priority: 0.8, changeFrequency: "weekly" },
   { path: "/court-practice", priority: 0.7, changeFrequency: "weekly" },
   { path: "/advocacy", priority: 0.85, changeFrequency: "monthly" },
-  { path: "/experts", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/experts", priority: 0.85, changeFrequency: "monthly" },
   { path: "/consumer-protection", priority: 0.7, changeFrequency: "monthly" },
   { path: "/data-protection", priority: 0.75, changeFrequency: "monthly" },
   { path: "/international", priority: 0.85, changeFrequency: "monthly" },
