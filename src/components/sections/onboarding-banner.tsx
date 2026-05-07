@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Sparkles, ArrowRight, MessageCircle, ClipboardList, TrendingUp } from "lucide-react";
+import { Megaphone, ArrowRight, Landmark, MessageSquareQuote, Scale } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
@@ -11,9 +11,9 @@ export function OnboardingBanner() {
   const t = useTranslations("onboarding");
 
   const steps = [
-    { icon: ClipboardList, title: t("step1Title"), desc: t("step1Desc") },
-    { icon: MessageCircle, title: t("step2Title"), desc: t("step2Desc") },
-    { icon: TrendingUp, title: t("step3Title"), desc: t("step3Desc") },
+    { icon: MessageSquareQuote, title: t("step1Title"), desc: t("step1Desc") },
+    { icon: Landmark, title: t("step2Title"), desc: t("step2Desc") },
+    { icon: Scale, title: t("step3Title"), desc: t("step3Desc") },
   ];
 
   return (
@@ -35,7 +35,7 @@ export function OnboardingBanner() {
           <div className="relative grid gap-8 lg:grid-cols-[1fr,2fr] lg:gap-12">
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-cta/10 px-3 py-1 text-xs font-medium text-cta">
-                <Sparkles className="h-3.5 w-3.5" />
+                <Megaphone className="h-3.5 w-3.5" />
                 {t("tag")}
               </div>
               <h2 className="mt-4 font-heading text-2xl font-bold leading-tight sm:text-3xl">
@@ -56,7 +56,7 @@ export function OnboardingBanner() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
-                  href="/about"
+                  href="/about/achievements"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
                     "rounded-xl"

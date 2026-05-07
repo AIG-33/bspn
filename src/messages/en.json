@@ -95,17 +95,17 @@
     "businessServices": "Business services"
   },
   "onboarding": {
-    "tag": "New here? That's fine.",
-    "title": "Don't know much about business? You're in the right place.",
-    "subtitle": "BSPN is a union of 94+ companies that since 1990 explains the rules in plain language, defends businesses in courts and government offices, opens contacts and markets. You're not alone — we'll meet you here.",
-    "step1Title": "Tell us about you",
-    "step1Desc": "A short application — 2 minutes. No complex jargon.",
-    "step2Title": "Talk to a person",
-    "step2Desc": "A BSPN expert will call you within 24 hours and find the right format.",
-    "step3Title": "Become stronger",
-    "step3Desc": "Get protection, consultations, contacts, and access to events.",
+    "tag": "The business voice in government",
+    "title": "Solve what you can't move alone",
+    "subtitle": "BSPN unites 94+ active Belarusian companies. Since 1990 we bring business issues to government, drive legislative change and defend entrepreneurs in court. When the union speaks, the system listens.",
+    "step1Title": "Tell us the issue",
+    "step1Desc": "Describe what's blocking your business: inspections, rulings, contested norms. BSPN lawyers and experts take it on within 24 hours.",
+    "step2Title": "Escalate to government",
+    "step2Desc": "Systemic issues are taken to inter-agency councils, working groups and meetings with ministries and Parliament.",
+    "step3Title": "Change the rules",
+    "step3Desc": "35 years on: dozens of legislative amendments, overturned inspections and rulings, contracts worth millions defended.",
     "ctaPrimary": "Join the union",
-    "ctaSecondary": "I want to read first",
+    "ctaSecondary": "Cases & wins",
     "trust": "94+ companies from 14 industries already trust BSPN"
   },
   "hero": {
