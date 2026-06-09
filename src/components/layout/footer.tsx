@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
-import { Mail, Phone, MapPin, ArrowRight, Crown } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Crown, Send } from "lucide-react";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { buttonVariants } from "@/components/ui/button-variants";
@@ -174,6 +174,26 @@ export function Footer() {
                 <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
+
+            <a
+              href={SITE.socialLinks.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-4 flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 p-4 backdrop-blur-md transition-colors hover:bg-white/10"
+            >
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#229ED9] text-white shadow-lg">
+                <Send className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-semibold text-white">
+                  {t("footer.telegramTitle")}
+                </span>
+                <span className="block text-xs leading-snug text-white/60">
+                  {t("footer.telegramSubtitle")}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-white/50 transition-transform group-hover:translate-x-0.5" />
+            </a>
           </div>
         </div>
 
