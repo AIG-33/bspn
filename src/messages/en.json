@@ -716,6 +716,87 @@
       { "area": "Labor relations", "title": "Reinstatement dispute", "summary": "A former employee challenged the dismissal. Union experts reviewed the procedure and prepared the employer's position.", "amount": "—", "status": "inProgress", "outcome": "Hearing ongoing" }
     ]
   },
+  "arbitrationPage": {
+    "pageTitle": "Arbitration Court at BSPN",
+    "pageDescription": "Fast, confidential and affordable resolution of commercial disputes between companies — without state courts.",
+    "tag": "For business",
+    "intro": "The arbitration (third-party) court at BSPN hears economic disputes between business entities. Its decision is binding, issued faster and cheaper than in a state court, and remains confidential.",
+    "advantagesTitle": "Advantages",
+    "advantages": [
+      { "title": "Fast", "desc": "A dispute is heard in weeks, not months. The decision is final and not subject to appeal." },
+      { "title": "Cheaper", "desc": "The arbitration fee is usually lower than the state duty, especially for large disputes." },
+      { "title": "Confidential", "desc": "Hearings are closed — the parties' reputation and trade secrets are protected." },
+      { "title": "Industry arbitrators", "desc": "Your case is heard by experts who understand the specifics of your business." }
+    ],
+    "stepsTitle": "How a case proceeds",
+    "steps": [
+      { "title": "Arbitration agreement", "desc": "The parties add an arbitration clause to the contract or sign a separate agreement." },
+      { "title": "Filing a claim", "desc": "The claimant files a statement of claim and pays the arbitration fee." },
+      { "title": "Hearing", "desc": "Arbitrators are appointed and the hearing is held with the parties." },
+      { "title": "Decision", "desc": "A binding decision is issued; if not fulfilled, a writ of execution is granted." }
+    ],
+    "scopeTitle": "Disputes we hear",
+    "scope": [
+      "Disputes from supply, sale and contractor agreements",
+      "Recovery of debts and penalties",
+      "Lease and leasing disputes",
+      "Corporate and investment disputes",
+      "Disputes in services and transportation",
+      "Other economic disputes between legal entities and sole traders"
+    ],
+    "ctaTitle": "Need to resolve a dispute out of court?",
+    "ctaBody": "Add an arbitration clause to your contract or send a request — BSPN specialists will guide you.",
+    "ctaButton": "Send a request",
+    "ctaSecondary": "Court practice"
+  },
+  "internationalPage": {
+    "pageTitle": "International Relations",
+    "pageDescription": "BSPN is part of the global social-partnership network: ILO, UNDP, the EEC of the EAEU and foreign business associations.",
+    "tag": "Recognition on the global stage",
+    "intro": "For over 30 years BSPN has represented Belarusian business in international organizations. This means access to expertise, joint projects and protection that newcomer local associations cannot offer.",
+    "orgsTitle": "Our partners",
+    "orgs": [
+      { "name": "International Labour Organization (ILO)", "role": "Social partnership", "desc": "BSPN represents the interests of Belarusian employers in the tripartite dialogue of state, business and trade unions." },
+      { "name": "United Nations Development Programme (UNDP)", "role": "Development projects", "desc": "Joint initiatives for entrepreneurship development, sustainable business and SME support." },
+      { "name": "Eurasian Economic Commission (EEC)", "role": "EAEU integration", "desc": "Participation in shaping the EAEU common market, industrial cooperation and removing barriers for business." },
+      { "name": "Foreign business unions", "role": "Business contacts", "desc": "Partnership agreements with entrepreneur associations of Russia, China and far-arc countries." }
+    ],
+    "benefitsTitle": "What members gain",
+    "benefits": [
+      { "title": "Expertise", "desc": "Access to international standards, research and best practices." },
+      { "title": "Projects", "desc": "Participation in international programs and grant initiatives." },
+      { "title": "Market access", "desc": "Contacts and support when entering EAEU and Asian markets." },
+      { "title": "Protection", "desc": "The union's international status is a shield and a guarantee of its standing." }
+    ],
+    "ctaTitle": "Go international with BSPN",
+    "ctaBody": "Members get access to international partners, projects and business missions.",
+    "ctaButton": "Join BSPN",
+    "ctaSecondary": "For foreign business"
+  },
+  "directorsClubPage": {
+    "pageTitle": "Directors' Club",
+    "pageDescription": "A closed community of top executives of BSPN member companies: networking, experience sharing and direct access to the union's expertise.",
+    "tag": "For union members",
+    "intro": "The Republican Directors' Club brings together the heads of BSPN member companies. It is a trusted environment for matters you cannot discuss publicly, where partnerships and deals are born.",
+    "formatsTitle": "Meeting formats",
+    "formats": [
+      { "title": "Business breakfasts", "desc": "Regular informal meetings discussing current topics over a cup of coffee." },
+      { "title": "Closed sessions", "desc": "Discussing sensitive business matters among peers." },
+      { "title": "Field sessions", "desc": "Visits to members' enterprises and joint business missions." },
+      { "title": "Mentorship", "desc": "Anchor executives passing experience to young entrepreneurs." }
+    ],
+    "benefitsTitle": "Why join",
+    "benefits": [
+      { "title": "Networking", "desc": "Direct contact with the top executives of 90+ companies across industries." },
+      { "title": "Experience sharing", "desc": "Ready solutions to problems your peers have already solved." },
+      { "title": "Partnerships", "desc": "Joint projects, deals and cooperation within the union." },
+      { "title": "Trust", "desc": "An environment without outsiders where you can speak openly." }
+    ],
+    "ctaTitle": "Become part of the Directors' Club",
+    "ctaBody": "Club access is open to executives of BSPN member companies.",
+    "ctaButton": "Join BSPN",
+    "ctaSecondary": "Membership benefits"
+  },
   "page": {
     "advocacy": {
       "title": "Government Relations",

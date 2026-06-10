@@ -49,7 +49,7 @@ export function Footer() {
         <div className="absolute inset-0 dot-pattern text-white/[0.06]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pt-16 pb-28 sm:px-6 lg:px-8 lg:pb-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-3">
             <div className="flex items-center gap-2.5">
