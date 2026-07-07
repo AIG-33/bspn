@@ -11,6 +11,11 @@ import {
   BarChart3,
   Newspaper,
   ArrowRight,
+  Landmark,
+  Scale,
+  Gavel,
+  UserSearch,
+  Globe,
 } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
@@ -31,6 +36,14 @@ export async function generateMetadata({
   });
 }
 
+const SERVICES = [
+  { href: "/advocacy", titleKey: "advocacy", descKey: "advocacyDesc", icon: Landmark },
+  { href: "/court-practice", titleKey: "courtPractice", descKey: "courtPracticeDesc", icon: Scale },
+  { href: "/arbitration", titleKey: "arbitration", descKey: "arbitrationDesc", icon: Gavel },
+  { href: "/experts", titleKey: "experts", descKey: "expertsDesc", icon: UserSearch },
+  { href: "/international", titleKey: "international", descKey: "internationalDesc", icon: Globe },
+];
+
 const SUBSECTIONS = [
   {
     href: "/business/legislation-review",
@@ -45,6 +58,7 @@ const SUBSECTIONS = [
 
 export default function BusinessIndexPage() {
   const t = useTranslations("business");
+  const td = useTranslations("directions");
   const tc = useTranslations("common");
 
   return (
@@ -54,6 +68,44 @@ export default function BusinessIndexPage() {
         description={t("sectionDescription")}
       />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mb-8">
+          <h2 className="font-heading text-2xl font-bold sm:text-3xl">
+            {t("servicesTitle")}
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+            {t("servicesSubtitle")}
+          </p>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map(({ href, titleKey, descKey, icon: Icon }) => (
+            <Link key={href} href={href} className="group">
+              <GlassCard hoverable className="h-full p-6 sm:p-7">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[var(--cta)] text-white shadow-lg">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="font-heading text-lg font-semibold">
+                  {td(titleKey)}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {td(descKey)}
+                </p>
+                <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary">
+                  {tc("readMore")}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </GlassCard>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mb-8 mt-16">
+          <h2 className="font-heading text-2xl font-bold sm:text-3xl">
+            {t("analyticsTitle")}
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+            {t("analyticsSubtitle")}
+          </p>
+        </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SUBSECTIONS.map(({ href, key, icon: Icon }) => (
             <Link key={href} href={href} className="group">
@@ -61,9 +113,9 @@ export default function BusinessIndexPage() {
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[var(--cta)] text-white shadow-lg">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h2 className="font-heading text-lg font-semibold">
+                <h3 className="font-heading text-lg font-semibold">
                   {t(`${key}.pageTitle`)}
-                </h2>
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {t(`${key}.intro`)}
                 </p>

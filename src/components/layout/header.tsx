@@ -81,74 +81,39 @@ export function Header() {
 
   const navItems: NavItem[] = [
     {
-      label: t("nav.about"),
-      href: "/about",
-      wide: true,
-      groups: [
-        {
-          title: t("nav.aboutGroup"),
-          items: [
-            { label: t("nav.aboutMission"), href: "/about/mission" },
-            { label: t("nav.aboutHistory"), href: "/about/history" },
-            { label: t("nav.kunyavsky"), href: "/about/kunyavsky" },
-            { label: t("nav.symbolika"), href: "/about/symbolika" },
-            { label: t("nav.aboutAssociations"), href: "/about/associations" },
-            { label: t("nav.regulations"), href: "/regulations" },
-          ],
-        },
-        {
-          title: t("nav.aboutPeopleGroup"),
-          items: [
-            { label: t("nav.aboutLeadership"), href: "/about/leadership" },
-            { label: t("nav.specialists"), href: "/specialists" },
-            { label: t("nav.aboutAchievements"), href: "/about/achievements" },
-            { label: t("nav.awards"), href: "/awards" },
-            { label: t("nav.councils"), href: "/councils" },
-            { label: t("nav.partners"), href: "/partners" },
-            { label: t("nav.media"), href: "/media" },
-          ],
-        },
-      ],
-    },
-    {
-      label: t("nav.forBusiness"),
+      label: t("nav.help"),
       href: "/business",
-      wide: true,
       groups: [
         {
-          title: t("nav.businessAnalytics"),
+          title: t("nav.helpServices"),
+          items: [
+            { label: t("nav.advocacy"), href: "/advocacy" },
+            { label: t("nav.courtPractice"), href: "/court-practice" },
+            { label: t("nav.arbitration"), href: "/arbitration" },
+            { label: t("nav.expertsShort"), href: "/experts" },
+            { label: t("nav.international"), href: "/international" },
+          ],
+        },
+        {
+          title: t("nav.helpAnalytics"),
           items: [
             { label: t("nav.businessLegislation"), href: "/business/legislation-review" },
             { label: t("nav.businessEconomy"), href: "/business/economy" },
             { label: t("nav.businessSocialLabor"), href: "/business/social-labor" },
-            { label: t("nav.businessResearch"), href: "/business/research" },
-            { label: t("nav.businessPress"), href: "/business/press" },
-            { label: t("nav.legislation"), href: "/legislation" },
-            { label: t("nav.faq"), href: "/faq" },
-          ],
-        },
-        {
-          title: t("nav.businessServices"),
-          items: [
-            { label: t("nav.experts"), href: "/experts" },
-            { label: t("nav.advocacy"), href: "/advocacy", memberOnly: true },
-            { label: t("nav.consumerProtection"), href: "/consumer-protection", memberOnly: true },
-            { label: t("nav.dataProtection"), href: "/data-protection", memberOnly: true },
-            { label: t("nav.arbitration"), href: "/arbitration", memberOnly: true },
-            { label: t("nav.courtPractice"), href: "/court-practice", memberOnly: true },
           ],
         },
       ],
     },
     {
-      label: t("nav.foreignBusiness"),
-      href: "/foreign-business",
+      label: t("nav.results"),
+      href: "/about/achievements",
       groups: [
         {
           items: [
-            { label: t("nav.foreignBusiness"), href: "/foreign-business" },
-            { label: t("nav.investments"), href: "/investments" },
-            { label: t("nav.international"), href: "/international" },
+            { label: t("nav.cases"), href: "/about/achievements" },
+            { label: t("nav.councils"), href: "/councils" },
+            { label: t("nav.awards"), href: "/awards" },
+            { label: t("nav.media"), href: "/media" },
           ],
         },
       ],
@@ -169,14 +134,16 @@ export function Header() {
       ],
     },
     {
-      label: t("nav.newsEvents"),
-      href: "/news",
+      label: t("nav.about"),
+      href: "/about",
       groups: [
         {
           items: [
-            { label: t("nav.news"), href: "/news" },
-            { label: t("nav.events"), href: "/events" },
-            { label: t("nav.blog"), href: "/blog" },
+            { label: t("nav.aboutMission"), href: "/about/mission" },
+            { label: t("nav.aboutHistory"), href: "/about/history" },
+            { label: t("nav.aboutLeadership"), href: "/about/leadership" },
+            { label: t("nav.aboutAssociations"), href: "/about/associations" },
+            { label: t("nav.partners"), href: "/partners" },
           ],
         },
       ],

@@ -2,16 +2,7 @@ import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Mail, Phone } from "lucide-react";
-
-const BOARD = [
-  { name: "Иванов И.И.", initials: "ИИ" },
-  { name: "Петрова М.А.", initials: "ПМ" },
-  { name: "Сидоров К.В.", initials: "СК" },
-  { name: "Козлова Е.Н.", initials: "КЕ" },
-  { name: "Морозов Д.С.", initials: "МД" },
-  { name: "Волкова О.П.", initials: "ВО" },
-];
+import { Mail, Phone, Users2 } from "lucide-react";
 
 export default function LeadershipPage() {
   const t = useTranslations("leadership");
@@ -67,25 +58,16 @@ export default function LeadershipPage() {
         <h2 className="mt-20 font-heading text-3xl font-bold sm:text-4xl">
           {t("boardTitle")}
         </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BOARD.map(({ name, initials }) => (
-            <GlassCard key={name} className="p-4">
-              <div className="flex items-center gap-4">
-                <Avatar className="h-12 w-12 shrink-0">
-                  <AvatarFallback className="bg-muted text-muted-foreground text-sm font-heading">
-                    {initials}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="font-heading text-sm font-semibold">{name}</h3>
-                  <p className="text-xs text-muted-foreground">
-                    {t("boardRole")}
-                  </p>
-                </div>
-              </div>
-            </GlassCard>
-          ))}
-        </div>
+        <GlassCard className="mt-8 p-6 sm:p-8">
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Users2 className="h-5 w-5" />
+            </div>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              {t("boardDesc")}
+            </p>
+          </div>
+        </GlassCard>
 
         <GlassCard className="mt-20 p-8 sm:p-10">
           <h2 className="font-heading text-3xl font-bold sm:text-4xl">

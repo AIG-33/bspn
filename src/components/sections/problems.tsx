@@ -2,34 +2,33 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Badge } from "@/components/ui/badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import {
-  ShieldAlert,
   Landmark,
+  ShieldAlert,
+  ScrollText,
   Scale,
   UserSearch,
-  Lock,
-  HelpCircle,
   Globe,
   ArrowUpRight,
+  MessageCircleQuestion,
+  ArrowRight,
 } from "lucide-react";
 
-const directions = [
-  { key: "consumerProtection", href: "/consumer-protection", icon: ShieldAlert, membersOnly: true },
-  { key: "advocacy", href: "/advocacy", icon: Landmark, membersOnly: false },
-  { key: "courtPractice", href: "/court-practice", icon: Scale, membersOnly: false },
-  { key: "experts", href: "/experts", icon: UserSearch, membersOnly: false },
-  { key: "dataProtection", href: "/data-protection", icon: Lock, membersOnly: true },
-  { key: "faq", href: "/faq", icon: HelpCircle, membersOnly: false },
-  { key: "international", href: "/international", icon: Globe, membersOnly: false },
+const PROBLEMS = [
+  { key: "p1", href: "/advocacy", icon: Landmark },
+  { key: "p2", href: "/court-practice", icon: ShieldAlert },
+  { key: "p3", href: "/business/legislation-review", icon: ScrollText },
+  { key: "p4", href: "/arbitration", icon: Scale },
+  { key: "p5", href: "/experts", icon: UserSearch },
+  { key: "p6", href: "/international", icon: Globe },
 ] as const;
 
-export function DirectionsSection() {
-  const t = useTranslations("directions");
+export function ProblemsSection() {
+  const t = useTranslations("problems");
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28">
+    <section className="relative overflow-hidden py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary">
@@ -43,8 +42,8 @@ export function DirectionsSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {directions.map(({ key, href, icon: Icon, membersOnly }) => (
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {PROBLEMS.map(({ key, href, icon: Icon }) => (
             <Link key={key} href={href} className="group">
               <GlassCard hoverable className="h-full p-5 sm:p-6">
                 <div className="flex items-start justify-between gap-3">
@@ -56,25 +55,24 @@ export function DirectionsSection() {
                 <h3 className="mt-4 font-heading text-base font-semibold leading-snug">
                   {t(key)}
                 </h3>
-                <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+                <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
                   {t(`${key}Desc`)}
                 </p>
-                <Badge
-                  variant={membersOnly ? "secondary" : "outline"}
-                  className="mt-4 text-[10px] font-medium uppercase tracking-wider"
-                >
-                  {membersOnly ? (
-                    <>
-                      <Lock className="mr-1 h-3 w-3" />
-                      {t("membersOnly")}
-                    </>
-                  ) : (
-                    t("openAccess")
-                  )}
-                </Badge>
               </GlassCard>
             </Link>
           ))}
+        </div>
+
+        <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border/80 px-6 py-5 text-center sm:flex-row sm:gap-3">
+          <MessageCircleQuestion className="h-5 w-5 shrink-0 text-primary" />
+          <span className="text-sm font-medium">{t("hint")}</span>
+          <Link
+            href="/contacts"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+          >
+            {t("hintCta")}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
       </div>
     </section>

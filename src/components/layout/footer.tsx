@@ -17,18 +17,18 @@ export function Footer() {
     { label: t("nav.about"), href: "/about" },
     { label: t("nav.kunyavsky"), href: "/about/kunyavsky" },
     { label: t("nav.symbolika"), href: "/about/symbolika" },
-    { label: t("nav.partners"), href: "/partners" },
-    { label: t("nav.awards"), href: "/awards" },
+    { label: t("nav.regulations"), href: "/regulations" },
+    { label: t("nav.specialists"), href: "/specialists" },
     { label: t("nav.contacts"), href: "/contacts" },
   ];
 
   const businessLinks: { label: string; href: string; memberOnly?: boolean }[] = [
+    { label: t("nav.advocacy"), href: "/advocacy" },
+    { label: t("nav.courtPractice"), href: "/court-practice" },
+    { label: t("nav.arbitration"), href: "/arbitration" },
+    { label: t("nav.expertsShort"), href: "/experts" },
     { label: t("nav.businessLegislation"), href: "/business/legislation-review" },
-    { label: t("nav.businessEconomy"), href: "/business/economy" },
-    { label: t("nav.advocacy"), href: "/advocacy", memberOnly: true },
     { label: t("nav.councils"), href: "/councils" },
-    { label: t("nav.arbitration"), href: "/arbitration", memberOnly: true },
-    { label: t("nav.dataProtection"), href: "/data-protection", memberOnly: true },
   ];
 
   const investorLinks = [
