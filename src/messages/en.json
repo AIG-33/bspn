@@ -330,8 +330,6 @@
   "mission": {
     "pageTitle": "Mission & Values",
     "pageDescription": "Social partnership, professionalism, voluntarism",
-    "quote": "\"Promoting entrepreneurship and protecting the lawful rights and interests of businesses is the foundation of Belarus's economic prosperity\"",
-    "quoteAuthor": "— BSPN motto, based on the principles of Prof. M.S. Kunyavsky",
     "p1": "BSPN is the largest business association in Belarus, founded in 1990. Our mission is to unite entrepreneurs to protect their interests, foster a healthy business climate and strengthen social partnership.",
     "p2": "BSPN acts as an intermediary between business and government, taking part in 20+ collegial bodies under ministries and agencies of the Republic of Belarus. Our voice matters in the discussion of every key bill that affects business.",
     "valuesTitle": "Our values",
@@ -346,32 +344,6 @@
     "symbolTitle": "BSPN symbol",
     "symbolDesc": "The BSPN symbol is \"Veles\" — the god of work and prosperity in Slavic mythology — embodying the creative force of entrepreneurship and wisdom in business."
   },
-  "history": {
-    "pageTitle": "History of BSPN",
-    "pageDescription": "From founding in 1990 to becoming Belarus's leading business association",
-    "memorialName": "Prof. M.S. Kunyavsky",
-    "memorialDesc": "The union bears the name of Professor Mikhail Kunyavsky — an outstanding economist and one of BSPN's founders and first leader. His ideas of social partnership and constructive dialogue between business and the state remain the foundation of the union.",
-    "1990Title": "Union founded",
-    "1990Desc": "BSPN was established as one of the first business associations in the post-Soviet space.",
-    "1992Title": "First industry associations",
-    "1992Desc": "First industry associations created, uniting companies by economic sectors.",
-    "1998Title": "International recognition",
-    "1998Desc": "BSPN joined international business organizations and built partnerships with European business associations.",
-    "2000Title": "Republican Directors Club",
-    "2000Desc": "The Directors Club was founded — a venue for discussing strategic questions of business development.",
-    "2005Title": "Arbitration court",
-    "2005Desc": "BSPN established an arbitration court for alternative dispute resolution.",
-    "2010Title": "20 years of BSPN",
-    "2010Desc": "The union's anniversary. By this time BSPN was represented in 15+ collegial state bodies.",
-    "2015Title": "Expanded expertise",
-    "2015Desc": "New directions launched: data protection, digital transformation, startup support.",
-    "2020Title": "30 years — new challenges",
-    "2020Desc": "Adapting to new conditions: online consultations, remote events and digital member services.",
-    "2025Title": "27th BSPN Congress",
-    "2025Desc": "Approved the 2026–2028 development strategy with a focus on digital transformation and international cooperation.",
-    "2026Title": "New website and strategy",
-    "2026Desc": "Launching the new website as a service hub and the strategy to attract new members."
-  },
   "leadership": {
     "pageTitle": "Leadership & Structure",
     "pageDescription": "BSPN Board and Co-Chairs",
@@ -383,14 +355,7 @@
     "leader2Role": "Co-Chair, BSPN",
     "leader2Desc": "Oversees expertise, legal support and member relations.",
     "boardTitle": "BSPN Board",
-    "boardRole": "Board Member",
-    "structureTitle": "Organizational structure",
-    "structure1Title": "Congress",
-    "structure1Desc": "The supreme governing body. Held at least once every three years.",
-    "structure2Title": "Board",
-    "structure2Desc": "Collegial executive body. Coordinates day-to-day activity.",
-    "structure3Title": "Staff",
-    "structure3Desc": "7 staff members: economists, lawyers, international relations specialists."
+    "boardRole": "Board Member"
   },
   "achievements": {
     "pageTitle": "Achievements",
@@ -528,51 +493,6 @@
     "ctaTitle": "Ready to join?",
     "ctaDesc": "Membership pays off after the first consultation. Become part of a community of 94+ companies."
   },
-  "memberTypes": {
-    "pageTitle": "Membership types",
-    "pageDescription": "Pick the format that fits — from getting acquainted to full representation",
-    "popular": "Recommended",
-    "select": "Choose",
-    "associatedName": "Associate",
-    "associatedDesc": "For companies that want to get acquainted with BSPN",
-    "associatedPrice": "from 200",
-    "solidaryName": "Solidary",
-    "solidaryDesc": "For small businesses and sole proprietors",
-    "solidaryPrice": "from 350",
-    "activeName": "Active",
-    "activeDesc": "For mid-size businesses — the full service set",
-    "activePrice": "from 500",
-    "fullName": "Authorized",
-    "fullDesc": "For large businesses and industry leaders",
-    "fullPrice": "from 1,000",
-    "f1": "Open events attendance",
-    "f2": "News and reviews newsletter",
-    "f3": "Basic consultations",
-    "f4": "Member directory (view)",
-    "f5": "Document templates",
-    "f6": "Legal and economic consultations",
-    "f7": "Government representation",
-    "f8": "International contacts",
-    "f9": "Personal dashboard",
-    "f10": "All document templates",
-    "f11": "Member directory (full access)",
-    "f12": "All Active membership benefits",
-    "f13": "Seat on the BSPN Board",
-    "f14": "Priority expert support",
-    "f15": "Shaping BSPN's positions",
-    "f16": "Personal manager",
-    "f17": "Participation in international missions",
-    "f18": "Logo placement on the BSPN site",
-    "f19": "Personalized analytical reports",
-    "conditionsTitle": "Joining conditions",
-    "cond1Title": "Who can join",
-    "cond1Desc": "Legal entities and sole proprietors registered in the Republic of Belarus that share BSPN's goals.",
-    "cond2Title": "How joining works",
-    "cond2Desc": "Submit the online application → receive a call from BSPN within 24 hours → get Board approval → pay the dues.",
-    "cond3Title": "Dues",
-    "cond3Desc": "Annual dues depend on membership type and company size. There's no entrance fee.",
-    "ctaText": "Not sure which type fits? Reach out — we'll help you choose."
-  },
   "join": {
     "pageTitle": "Join BSPN",
     "pageDescription": "Fill out the application in 2 minutes — we'll get back to you within 24 hours",
@@ -671,19 +591,92 @@
     "ctaButton": "Join BSPN",
     "ctaSecondary": "Public councils",
     "directions": [
-      { "icon": "TrendingDown", "title": "Reducing administrative pressure", "description": "Monitoring and countering excessive inspections, simplifying permits, cutting reporting.", "results": ["Inspections cut by 40%", "12 redundant reporting forms abolished"] },
-      { "icon": "FileText", "title": "Improving legislation", "description": "Participating in drafting regulations, reviewing bills, initiating legislative changes.", "results": ["30+ bills reflect BSPN proposals", "5 restrictive norms repealed"] },
-      { "icon": "Scale", "title": "Level playing field", "description": "Countering market monopolization, ensuring equal access to public procurement, protection from dumping.", "results": ["8 markets opened to small business", "Entry barriers lowered in 3 industries"] },
-      { "icon": "Building2", "title": "Dialogue with the state", "description": "Representing business in government bodies, joining working groups and coordination councils.", "results": ["15+ regular dialogue platforms", "Weekly consultations with MART"] },
-      { "icon": "Users", "title": "Protecting entrepreneurs' rights", "description": "Legal aid in disputes with state bodies, court representation, pre-trial settlement.", "results": ["200+ successful cases a year", "85% positive decisions"] },
-      { "icon": "Megaphone", "title": "Public advocacy", "description": "Media campaigns, public hearings, publishing the business community's positions on key issues.", "results": ["50+ publications a year", "Regular media appearances"] }
+      {
+        "icon": "TrendingDown",
+        "title": "Reducing administrative pressure",
+        "description": "Monitoring and countering excessive inspections, simplifying permits, cutting reporting.",
+        "results": [
+          "Inspections cut by 40%",
+          "12 redundant reporting forms abolished"
+        ]
+      },
+      {
+        "icon": "FileText",
+        "title": "Improving legislation",
+        "description": "Participating in drafting regulations, reviewing bills, initiating legislative changes.",
+        "results": [
+          "30+ bills reflect BSPN proposals",
+          "5 restrictive norms repealed"
+        ]
+      },
+      {
+        "icon": "Scale",
+        "title": "Level playing field",
+        "description": "Countering market monopolization, ensuring equal access to public procurement, protection from dumping.",
+        "results": [
+          "8 markets opened to small business",
+          "Entry barriers lowered in 3 industries"
+        ]
+      },
+      {
+        "icon": "Building2",
+        "title": "Dialogue with the state",
+        "description": "Representing business in government bodies, joining working groups and coordination councils.",
+        "results": [
+          "15+ regular dialogue platforms",
+          "Weekly consultations with MART"
+        ]
+      },
+      {
+        "icon": "Users",
+        "title": "Protecting entrepreneurs' rights",
+        "description": "Legal aid in disputes with state bodies, court representation, pre-trial settlement.",
+        "results": [
+          "200+ successful cases a year",
+          "85% positive decisions"
+        ]
+      },
+      {
+        "icon": "Megaphone",
+        "title": "Public advocacy",
+        "description": "Media campaigns, public hearings, publishing the business community's positions on key issues.",
+        "results": [
+          "50+ publications a year",
+          "Regular media appearances"
+        ]
+      }
     ],
     "initiatives": [
-      { "title": "Simplifying company liquidation", "status": "active", "deadline": "Q2 2026", "description": "An initiative to shorten and simplify voluntary company liquidation from 6 to 2 months." },
-      { "title": "Price-setting reform", "status": "discussion", "deadline": "Q3 2026", "description": "Proposals to liberalize pricing and shorten the list of socially significant goods with regulated prices." },
-      { "title": "Digitalizing permit procedures", "status": "active", "deadline": "Q4 2026", "description": "Moving all permit procedures online via a single public-services portal." },
-      { "title": "Support for exporters", "status": "completed", "deadline": "Delivered", "description": "Expanding export support tools and simplifying customs procedures for small business." },
-      { "title": "Tax Code — business proposals", "status": "discussion", "deadline": "2026", "description": "Comprehensive proposals to amend the Tax Code: simpler administration, lower rates for SMEs." }
+      {
+        "title": "Simplifying company liquidation",
+        "status": "active",
+        "deadline": "Q2 2026",
+        "description": "An initiative to shorten and simplify voluntary company liquidation from 6 to 2 months."
+      },
+      {
+        "title": "Price-setting reform",
+        "status": "discussion",
+        "deadline": "Q3 2026",
+        "description": "Proposals to liberalize pricing and shorten the list of socially significant goods with regulated prices."
+      },
+      {
+        "title": "Digitalizing permit procedures",
+        "status": "active",
+        "deadline": "Q4 2026",
+        "description": "Moving all permit procedures online via a single public-services portal."
+      },
+      {
+        "title": "Support for exporters",
+        "status": "completed",
+        "deadline": "Delivered",
+        "description": "Expanding export support tools and simplifying customs procedures for small business."
+      },
+      {
+        "title": "Tax Code — business proposals",
+        "status": "discussion",
+        "deadline": "2026",
+        "description": "Comprehensive proposals to amend the Tax Code: simpler administration, lower rates for SMEs."
+      }
     ]
   },
   "courtPracticePage": {
@@ -709,11 +702,46 @@
     "ctaButton": "Get help",
     "ctaSecondary": "Arbitration court",
     "cases": [
-      { "area": "Disputes with state bodies", "title": "Reversal of a price-regulation fine", "summary": "A regulator fined a manufacturer under Resolution No. 713. Union lawyers proved there was no violation.", "amount": "85,000 BYN", "status": "won", "outcome": "Fine fully cancelled" },
-      { "area": "Tax disputes", "title": "Recovery of over-collected VAT", "summary": "The tax authority assessed additional VAT on an export transaction. BSPN supported the appeal to the higher authority and court.", "amount": "120,000 BYN", "status": "won", "outcome": "Assessment cancelled, amount refunded" },
-      { "area": "Protection from consumer extremism", "title": "Bad-faith consumer claim", "summary": "A consumer demanded compensation many times the value of the goods. The union helped the member build a defense.", "amount": "30,000 BYN", "status": "settled", "outcome": "Settled on the company's terms" },
-      { "area": "Commercial disputes", "title": "Recovery of receivables", "summary": "A counterparty avoided paying for delivered goods. The BSPN arbitration court heard the case on a fast track.", "amount": "210,000 BYN", "status": "won", "outcome": "Debt recovered with interest" },
-      { "area": "Labor relations", "title": "Reinstatement dispute", "summary": "A former employee challenged the dismissal. Union experts reviewed the procedure and prepared the employer's position.", "amount": "—", "status": "inProgress", "outcome": "Hearing ongoing" }
+      {
+        "area": "Disputes with state bodies",
+        "title": "Reversal of a price-regulation fine",
+        "summary": "A regulator fined a manufacturer under Resolution No. 713. Union lawyers proved there was no violation.",
+        "amount": "85,000 BYN",
+        "status": "won",
+        "outcome": "Fine fully cancelled"
+      },
+      {
+        "area": "Tax disputes",
+        "title": "Recovery of over-collected VAT",
+        "summary": "The tax authority assessed additional VAT on an export transaction. BSPN supported the appeal to the higher authority and court.",
+        "amount": "120,000 BYN",
+        "status": "won",
+        "outcome": "Assessment cancelled, amount refunded"
+      },
+      {
+        "area": "Protection from consumer extremism",
+        "title": "Bad-faith consumer claim",
+        "summary": "A consumer demanded compensation many times the value of the goods. The union helped the member build a defense.",
+        "amount": "30,000 BYN",
+        "status": "settled",
+        "outcome": "Settled on the company's terms"
+      },
+      {
+        "area": "Commercial disputes",
+        "title": "Recovery of receivables",
+        "summary": "A counterparty avoided paying for delivered goods. The BSPN arbitration court heard the case on a fast track.",
+        "amount": "210,000 BYN",
+        "status": "won",
+        "outcome": "Debt recovered with interest"
+      },
+      {
+        "area": "Labor relations",
+        "title": "Reinstatement dispute",
+        "summary": "A former employee challenged the dismissal. Union experts reviewed the procedure and prepared the employer's position.",
+        "amount": "—",
+        "status": "inProgress",
+        "outcome": "Hearing ongoing"
+      }
     ]
   },
   "arbitrationPage": {
@@ -723,17 +751,41 @@
     "intro": "The arbitration (third-party) court at BSPN hears economic disputes between business entities. Its decision is binding, issued faster and cheaper than in a state court, and remains confidential.",
     "advantagesTitle": "Advantages",
     "advantages": [
-      { "title": "Fast", "desc": "A dispute is heard in weeks, not months. The decision is final and not subject to appeal." },
-      { "title": "Cheaper", "desc": "The arbitration fee is usually lower than the state duty, especially for large disputes." },
-      { "title": "Confidential", "desc": "Hearings are closed — the parties' reputation and trade secrets are protected." },
-      { "title": "Industry arbitrators", "desc": "Your case is heard by experts who understand the specifics of your business." }
+      {
+        "title": "Fast",
+        "desc": "A dispute is heard in weeks, not months. The decision is final and not subject to appeal."
+      },
+      {
+        "title": "Cheaper",
+        "desc": "The arbitration fee is usually lower than the state duty, especially for large disputes."
+      },
+      {
+        "title": "Confidential",
+        "desc": "Hearings are closed — the parties' reputation and trade secrets are protected."
+      },
+      {
+        "title": "Industry arbitrators",
+        "desc": "Your case is heard by experts who understand the specifics of your business."
+      }
     ],
     "stepsTitle": "How a case proceeds",
     "steps": [
-      { "title": "Arbitration agreement", "desc": "The parties add an arbitration clause to the contract or sign a separate agreement." },
-      { "title": "Filing a claim", "desc": "The claimant files a statement of claim and pays the arbitration fee." },
-      { "title": "Hearing", "desc": "Arbitrators are appointed and the hearing is held with the parties." },
-      { "title": "Decision", "desc": "A binding decision is issued; if not fulfilled, a writ of execution is granted." }
+      {
+        "title": "Arbitration agreement",
+        "desc": "The parties add an arbitration clause to the contract or sign a separate agreement."
+      },
+      {
+        "title": "Filing a claim",
+        "desc": "The claimant files a statement of claim and pays the arbitration fee."
+      },
+      {
+        "title": "Hearing",
+        "desc": "Arbitrators are appointed and the hearing is held with the parties."
+      },
+      {
+        "title": "Decision",
+        "desc": "A binding decision is issued; if not fulfilled, a writ of execution is granted."
+      }
     ],
     "scopeTitle": "Disputes we hear",
     "scope": [
@@ -756,17 +808,45 @@
     "intro": "For over 30 years BSPN has represented Belarusian business in international organizations. This means access to expertise, joint projects and protection that newcomer local associations cannot offer.",
     "orgsTitle": "Our partners",
     "orgs": [
-      { "name": "International Labour Organization (ILO)", "role": "Social partnership", "desc": "BSPN represents the interests of Belarusian employers in the tripartite dialogue of state, business and trade unions." },
-      { "name": "United Nations Development Programme (UNDP)", "role": "Development projects", "desc": "Joint initiatives for entrepreneurship development, sustainable business and SME support." },
-      { "name": "Eurasian Economic Commission (EEC)", "role": "EAEU integration", "desc": "Participation in shaping the EAEU common market, industrial cooperation and removing barriers for business." },
-      { "name": "Foreign business unions", "role": "Business contacts", "desc": "Partnership agreements with entrepreneur associations of Russia, China and far-arc countries." }
+      {
+        "name": "International Labour Organization (ILO)",
+        "role": "Social partnership",
+        "desc": "BSPN represents the interests of Belarusian employers in the tripartite dialogue of state, business and trade unions."
+      },
+      {
+        "name": "United Nations Development Programme (UNDP)",
+        "role": "Development projects",
+        "desc": "Joint initiatives for entrepreneurship development, sustainable business and SME support."
+      },
+      {
+        "name": "Eurasian Economic Commission (EEC)",
+        "role": "EAEU integration",
+        "desc": "Participation in shaping the EAEU common market, industrial cooperation and removing barriers for business."
+      },
+      {
+        "name": "Foreign business unions",
+        "role": "Business contacts",
+        "desc": "Partnership agreements with entrepreneur associations of Russia, China and far-arc countries."
+      }
     ],
     "benefitsTitle": "What members gain",
     "benefits": [
-      { "title": "Expertise", "desc": "Access to international standards, research and best practices." },
-      { "title": "Projects", "desc": "Participation in international programs and grant initiatives." },
-      { "title": "Market access", "desc": "Contacts and support when entering EAEU and Asian markets." },
-      { "title": "Protection", "desc": "The union's international status is a shield and a guarantee of its standing." }
+      {
+        "title": "Expertise",
+        "desc": "Access to international standards, research and best practices."
+      },
+      {
+        "title": "Projects",
+        "desc": "Participation in international programs and grant initiatives."
+      },
+      {
+        "title": "Market access",
+        "desc": "Contacts and support when entering EAEU and Asian markets."
+      },
+      {
+        "title": "Protection",
+        "desc": "The union's international status is a shield and a guarantee of its standing."
+      }
     ],
     "ctaTitle": "Go international with BSPN",
     "ctaBody": "Members get access to international partners, projects and business missions.",
@@ -777,20 +857,43 @@
     "pageTitle": "Directors' Club",
     "pageDescription": "A closed community of top executives of BSPN member companies: networking, experience sharing and direct access to the union's expertise.",
     "tag": "For union members",
-    "intro": "The Republican Directors' Club brings together the heads of BSPN member companies. It is a trusted environment for matters you cannot discuss publicly, where partnerships and deals are born.",
     "formatsTitle": "Meeting formats",
     "formats": [
-      { "title": "Business breakfasts", "desc": "Regular informal meetings discussing current topics over a cup of coffee." },
-      { "title": "Closed sessions", "desc": "Discussing sensitive business matters among peers." },
-      { "title": "Field sessions", "desc": "Visits to members' enterprises and joint business missions." },
-      { "title": "Mentorship", "desc": "Anchor executives passing experience to young entrepreneurs." }
+      {
+        "title": "Business breakfasts",
+        "desc": "Regular informal meetings discussing current topics over a cup of coffee."
+      },
+      {
+        "title": "Closed sessions",
+        "desc": "Discussing sensitive business matters among peers."
+      },
+      {
+        "title": "Field sessions",
+        "desc": "Visits to members' enterprises and joint business missions."
+      },
+      {
+        "title": "Mentorship",
+        "desc": "Anchor executives passing experience to young entrepreneurs."
+      }
     ],
     "benefitsTitle": "Why join",
     "benefits": [
-      { "title": "Networking", "desc": "Direct contact with the top executives of 90+ companies across industries." },
-      { "title": "Experience sharing", "desc": "Ready solutions to problems your peers have already solved." },
-      { "title": "Partnerships", "desc": "Joint projects, deals and cooperation within the union." },
-      { "title": "Trust", "desc": "An environment without outsiders where you can speak openly." }
+      {
+        "title": "Networking",
+        "desc": "Direct contact with the top executives of 90+ companies across industries."
+      },
+      {
+        "title": "Experience sharing",
+        "desc": "Ready solutions to problems your peers have already solved."
+      },
+      {
+        "title": "Partnerships",
+        "desc": "Joint projects, deals and cooperation within the union."
+      },
+      {
+        "title": "Trust",
+        "desc": "An environment without outsiders where you can speak openly."
+      }
     ],
     "ctaTitle": "Become part of the Directors' Club",
     "ctaBody": "Club access is open to executives of BSPN member companies.",
@@ -859,7 +962,7 @@
       "orgFormLabel": "Legal form",
       "orgForm": "Republican association of commercial organisations",
       "orgUnpLabel": "Tax ID (UNP)",
-      "orgUnp": "100073850",
+      "orgUnp": "190006230",
       "orgFoundedLabel": "Founded",
       "orgFounded": "1990",
       "orgDirectorLabel": "Director",
@@ -967,7 +1070,7 @@
           "id": "operator",
           "title": "1. Personal Data Operator",
           "paragraphs": [
-            "The personal data operator is the Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky (short name — BSPN), payer's account number (UNP) 100073850, registered address: 22 Fabrichnaya Str., 220033, Minsk, Republic of Belarus.",
+            "The personal data operator is the Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky (short name — BSPN), payer's account number (UNP) 190006230, registered address: 22 Fabrichnaya Str., 220033, Minsk, Republic of Belarus.",
             "Contact for the person responsible for the organisation of personal data processing: e-mail info@bspn.by, phone +375 17 210-18-42."
           ]
         },
@@ -1207,32 +1310,13 @@
           "id": "contacts",
           "title": "13. Details and contacts",
           "paragraphs": [
-            "Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky, UNP 100073850.",
+            "Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky, UNP 190006230.",
             "Address: 22 Fabrichnaya Str., 220033, Minsk, Republic of Belarus.",
             "Phone: +375 17 210-18-42, e-mail: info@bspn.by."
           ]
         }
       ]
     }
-  },
-  "kunyavsky": {
-    "pageTitle": "Professor M.S. Kunyavsky — Founder of BSPN",
-    "pageDescription": "Mikhail Sergeyevich Kunyavsky — economist, scholar and the founding leader of the Belarusian Union of Entrepreneurs and Employers. His ideas of social partnership and constructive dialogue between business and state remain the foundation of BSPN.",
-    "lifespan": "1933–2007",
-    "title": "Professor M.S. Kunyavsky: scholar, citizen, founder",
-    "intro": "Belarus's largest business association — BSPN — bears the name of Professor Mikhail Sergeyevich Kunyavsky. It is a tribute to the man who, back in the early 1990s, understood that a market economy without a strong, organized business community would not survive — and took the steps to bring that community into being.",
-    "section1Title": "Economist and scholar",
-    "section1Body": "Doctor of Economic Sciences, professor. A long-standing leader and mentor whose academic work on enterprise management, economic restructuring and social partnership is still cited in Belarusian and international academia.",
-    "section2Title": "Architect of the business union",
-    "section2Body": "In 1990, under M.S. Kunyavsky's leadership, one of the first independent business associations in the post-Soviet space was established. Its mission — to represent the real sector in dialogue with the state, fight for predictable rules of the game and defend entrepreneurs through the difficult transition years.",
-    "section3Title": "Ideas that stay with us",
-    "section3Body": "Social partnership as a way of resolving conflicts among business, trade unions and government. Professionalism as a standard — economists and lawyers, not activists. Voluntary participation. Honest public dialogue. These principles are written into BSPN's statutes to this day.",
-    "section4Title": "Legacy",
-    "section4Body": "In 2008 the BSPN Board established the union's highest award — the Crystal Vyales — awarded annually for contribution to the development of entrepreneurship in Belarus. Since 2007, when Mikhail Sergeyevich passed away, the union has officially carried his name. This is not a ceremonial gesture: it is a reminder that every decision of the union must have a human dimension and long-term meaning.",
-    "fact1": "Doctor of Economic Sciences, professor",
-    "fact2": "Co-founder of BSPN (1990)",
-    "fact3": "First leader of the union",
-    "fact4": "Architect of social partnership in Belarus"
   },
   "symbolika": {
     "pageTitle": "BSPN Symbolism — the Vyales sign",
@@ -1418,15 +1502,11 @@
     "pageDescription": "The principles by which the Business Union of Entrepreneurs and Employers operates: charter, Board regulations, decision-making procedures, transparency and accountability.",
     "intro": "A strong union is not only ideas — it is predictable procedure. BSPN's regulations describe how decisions are taken, how the union's position is formed and how members participate in governance.",
     "block1Title": "Charter and founding documents",
-    "block1Body": "BSPN is a voluntary non-profit association of legal entities and individual entrepreneurs. It operates under the Charter approved by the Congress and the Civil Code of the Republic of Belarus. UNP 100073850.",
     "block2Title": "Highest governance bodies",
-    "block2Body": "The supreme body is the BSPN Congress (held at least once every 3 years). Between congresses the union is led by the Board chaired by Co-Chairs. Day-to-day work is run by the Office and BSPN specialists.",
     "block3Title": "Decision-making",
-    "block3Body": "Decisions on union positions, legislative initiatives and major programs are taken by the Board through open vote. Strategic matters (Charter amendments, admission of new associations, reorganization) — only by the Congress with a qualified majority.",
     "block4Title": "Transparency and accountability",
     "block4Body": "Each year the Board publishes a union activity report — financial, legislative and representative. The report is available to all BSPN members and shared with business media and partners.",
     "block5Title": "Ethics and conflict of interest",
-    "block5Body": "Board members and Office staff follow the BSPN Code of Business Ethics. In case of a conflict of interest a Board member must declare it and abstain from voting.",
     "downloadsTitle": "Documents for members",
     "download1": "BSPN Charter (current version)",
     "download2": "Board Regulations",

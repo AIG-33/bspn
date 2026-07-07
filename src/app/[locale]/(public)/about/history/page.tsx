@@ -2,16 +2,17 @@ import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 
+// Вехи — по исторической справке из Регламента работы БСПН
 const TIMELINE_YEARS = [
   "1990",
+  "1991",
   "1992",
-  "1998",
-  "2000",
+  "1995",
+  "1999",
   "2005",
-  "2010",
-  "2015",
-  "2020",
-  "2025",
+  "2007",
+  "2013",
+  "2024",
   "2026",
 ];
 

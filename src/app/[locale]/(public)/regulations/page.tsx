@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/sections/page-header";
-import { FileText, Vote, Crown, Eye, Scale, Download } from "lucide-react";
+import { FileText, Vote, Crown, Eye, Scale, Download, Handshake } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -64,6 +64,33 @@ export default function RegulationsPage() {
             </section>
           ))}
         </div>
+
+        <section className="mx-auto mt-16 max-w-3xl">
+          <div className="flex items-start gap-4">
+            <span className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[var(--cta)] text-white shadow-lg">
+              <Handshake className="h-5 w-5" />
+            </span>
+            <div>
+              <h2 className="font-heading text-xl font-semibold sm:text-2xl">
+                {t("ethicsTitle")}
+              </h2>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                {t("ethicsIntro")}
+              </p>
+              <ul className="mt-4 space-y-2">
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                  <li
+                    key={n}
+                    className="flex items-start gap-2 text-sm leading-relaxed text-foreground/90"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    {t(`ethics${n}`)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto mt-16 max-w-3xl">
           <h2 className="font-heading text-xl font-semibold sm:text-2xl">
