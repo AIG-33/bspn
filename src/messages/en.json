@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "BSPN — Belarus Business Union: market entry, investments and government relations for foreign and local companies",
-    "description": "Since 1990 BSPN (Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky) defends business interests before Belarusian government authorities, helps foreign companies enter the Belarus market, supports inbound investment and provides legal expertise. ~150 member companies, 7 industry associations, 20+ government advisory councils.",
-    "keywords": "BSPN, business union Belarus, doing business in Belarus, enter Belarus market, foreign companies Belarus, market entry Belarus, invest in Belarus, Belarus investment, government relations Belarus, business advocacy Belarus, lobbying Belarus, legal support Belarus, Belarus tax consulting, Minsk business, Kunyavsky union, employers union Belarus, arbitration court Belarus, Belarus Hi-Tech Park, free economic zones Belarus, Eurasian Economic Union, EAEU market access",
+    "description": "Since 1990 BSPN (Belarusian Union of Entrepreneurs and Employers named after Prof. M.S. Kunyavsky) defends business interests before Belarusian government authorities, helps foreign companies enter the Belarus market, supports inbound investment and provides expert guidance. ~150 member companies, 7 industry associations, 20+ government advisory councils.",
+    "keywords": "BSPN, business union Belarus, doing business in Belarus, enter Belarus market, foreign companies Belarus, market entry Belarus, invest in Belarus, Belarus investment, government relations Belarus, business advocacy Belarus, lobbying Belarus, expert support Belarus, Belarus tax consulting, Minsk business, Kunyavsky union, employers union Belarus, arbitration court Belarus, Belarus Hi-Tech Park, free economic zones Belarus, Eurasian Economic Union, EAEU market access",
     "siteName": "BSPN — Belarus Business Union",
     "ogTitle": "BSPN — Belarus Business Union of 150+ companies since 1990",
     "ogDescription": "Government relations in Belarus, market entry for foreign companies, investment advisory, legal protection and SME advocacy. Your gateway to doing business in Belarus."
@@ -104,7 +104,7 @@
     "title": "Solve what you can't move alone",
     "subtitle": "BSPN unites 94+ active Belarusian companies. Since 1990 we bring business issues to government, drive legislative change and defend entrepreneurs in court. When the union speaks, the system listens.",
     "step1Title": "Tell us the issue",
-    "step1Desc": "Describe what's blocking your business: inspections, rulings, contested norms. BSPN lawyers and experts take it on within 24 hours.",
+    "step1Desc": "Describe what's blocking your business: inspections, rulings, contested norms. BSPN experts take it on within 24 hours.",
     "step2Title": "Escalate to government",
     "step2Desc": "Systemic issues are taken to inter-agency councils, working groups and meetings with ministries and Parliament.",
     "step3Title": "Change the rules",
@@ -135,7 +135,7 @@
     "subtitle": "Each direction means concrete results for every member company",
     "protection": {
       "title": "Protection",
-      "description": "Lobbying in 20+ government bodies, legal support, court representation",
+      "description": "Lobbying in 20+ government bodies, expert support, dispute assistance",
       "message": "We protect your business at the legislative level"
     },
     "knowledge": {
@@ -165,7 +165,7 @@
     "courtPractice": "Court Practice",
     "courtPracticeDesc": "Decision database and dispute guidance",
     "experts": "Expert Directory",
-    "expertsDesc": "Lawyers, economists, industry specialists",
+    "expertsDesc": "Economists and industry practitioners",
     "dataProtection": "Personal Data Protection",
     "dataProtectionDesc": "Checklists, audits, policy and consent templates",
     "faq": "FAQ Knowledge Base",
@@ -336,7 +336,7 @@
     "value1Title": "Social partnership",
     "value1Desc": "We build constructive dialogue between business and government. BSPN is a bridge that ensures business interests are accounted for in economic policy.",
     "value2Title": "Professionalism",
-    "value2Desc": "Our team — economists, lawyers and industry experts with deep experience. We provide qualified expertise on every aspect of running a business in Belarus.",
+    "value2Desc": "Our team — economists and industry experts with deep experience. We provide qualified expertise on every aspect of running a business in Belarus.",
     "value3Title": "Voluntarism",
     "value3Desc": "Membership in BSPN is a conscious choice by companies that understand the value of a collective business voice and shared problem-solving.",
     "value4Title": "Openness and transparency",
@@ -353,7 +353,7 @@
     "leader1Desc": "Coordinates the union's work with state bodies and international organizations.",
     "leader2Name": "Zhanna Tarasevich",
     "leader2Role": "Co-Chair, BSPN",
-    "leader2Desc": "Oversees expertise, legal support and member relations.",
+    "leader2Desc": "Oversees expertise and member relations.",
     "boardTitle": "BSPN Board",
     "boardRole": "Board Member"
   },
@@ -361,7 +361,7 @@
     "pageTitle": "Achievements",
     "pageDescription": "Concrete BSPN results for Belarusian business",
     "stat1": "Legislative initiatives",
-    "stat2": "Legal consultations",
+    "stat2": "Expert consultations",
     "stat3": "Member organizations",
     "stat4": "Partner countries",
     "stat5": "Government councils",
@@ -415,7 +415,7 @@
     "section4Title": "Member directory",
     "section4Desc": "94+ companies from 14 industries. Available to BSPN members.",
     "highlightsTitle": "What's included with membership",
-    "h1": "Free legal and economic consultations",
+    "h1": "Free consultations with subject-matter experts",
     "h2": "Representation in 20+ government councils",
     "h3": "Access to 15+ document templates",
     "h4": "Participation in events and the Directors Club",
@@ -431,7 +431,7 @@
     "pillar1Item3": "Defense during audits and disputes with state bodies",
     "pillar1Item4": "Petitions to government on members' behalf",
     "pillar2Title": "Knowledge & expertise",
-    "pillar2Item1": "Free legal and economic consultations",
+    "pillar2Item1": "Free consultations with subject-matter experts",
     "pillar2Item2": "Plain-language explanations of legal changes",
     "pillar2Item3": "Document templates (15+ ready-made)",
     "pillar2Item4": "Access to analytical reviews",
@@ -460,7 +460,7 @@
     "add6Desc": "Membership pays off after 1–2 consultations",
     "calcTitle": "ROI calculator",
     "calcSubtitle": "See how much BSPN membership saves you per year",
-    "calcConsult": "Legal consultations per year",
+    "calcConsult": "Expert consultations per year",
     "calcDocs": "Document drafts per year",
     "calcWithout": "Cost without BSPN",
     "calcDues": "BSPN dues (per year)",
@@ -469,7 +469,7 @@
     "compareCol1": "Service",
     "compareWith": "With BSPN",
     "compareWithout": "Without",
-    "row1": "Legal consultations",
+    "row1": "Expert consultations",
     "row1With": "Free",
     "row1Without": "from 200 BYN/hour",
     "row2": "Document templates",
@@ -520,7 +520,7 @@
     "placeholderIndustry": "Choose an industry",
     "placeholderMessage": "Tell us more about your expectations...",
     "interest1": "Government affairs protection",
-    "interest2": "Legal consultations",
+    "interest2": "Expert consultations",
     "interest3": "Tax matters",
     "interest4": "Networking and events",
     "interest5": "International contacts",
@@ -698,14 +698,14 @@
     "statusInProgress": "In progress",
     "disclaimer": "Cases are anonymized to protect members' confidentiality. Specific cases are available to BSPN members on request.",
     "ctaTitle": "Need legal protection?",
-    "ctaBody": "BSPN members receive legal support, court representation and pre-trial dispute settlement.",
+    "ctaBody": "BSPN members receive expert support, help preparing your dispute position and pre-trial settlement.",
     "ctaButton": "Get help",
     "ctaSecondary": "Arbitration court",
     "cases": [
       {
         "area": "Disputes with state bodies",
         "title": "Reversal of a price-regulation fine",
-        "summary": "A regulator fined a manufacturer under Resolution No. 713. Union lawyers proved there was no violation.",
+        "summary": "A regulator fined a manufacturer under Resolution No. 713. Union experts proved there was no violation.",
         "amount": "85,000 BYN",
         "status": "won",
         "outcome": "Fine fully cancelled"
@@ -913,7 +913,7 @@
     },
     "experts": {
       "title": "Expert Directory",
-      "description": "Lawyers, economists and industry experts — pick by topic",
+      "description": "Economists and industry practitioners — pick by topic",
       "comingSoon": "The expert directory is available in the dashboard"
     },
     "faq": {
@@ -1338,7 +1338,7 @@
   },
   "foreignBusiness": {
     "pageTitle": "Belarus Market Entry for Foreign Companies — BSPN Advisory",
-    "pageDescription": "BSPN helps foreign companies enter the Belarus market: company formation, banking, taxation, legal support, partner search, government relations and access to the EAEU through Belarus.",
+    "pageDescription": "BSPN helps foreign companies enter the Belarus market: company formation, banking, taxation, expert support, partner search, government relations and access to the EAEU through Belarus.",
     "hero": {
       "tag": "Foreign companies · Belarus market · EAEU",
       "title": "Launch your business in Belarus — backed by a 35-year-old union that government listens to",
@@ -1517,8 +1517,8 @@
   },
   "specialists": {
     "pageTitle": "BSPN Specialists — the team of experts",
-    "pageDescription": "Lawyers, economists, sector coordinators and international cooperation specialists. The BSPN team is responsible for consultations, expertise on draft laws and member support.",
-    "intro": "Behind every call to BSPN there is a specific specialist. A team of economists, lawyers and sector coordinators works directly with members — from first consultation to representation in government bodies.",
+    "pageDescription": "Economists, sector coordinators and international cooperation specialists. The BSPN team is responsible for consultations, expertise on draft laws and member support.",
+    "intro": "Behind every call to BSPN there is a specific specialist. A team of economists and sector coordinators works directly with members — from first consultation to representation in government bodies.",
     "areaLegalTitle": "Legal practice",
     "areaLegalDesc": "Corporate law, taxes, labor law, data protection, representation in courts and during inspections.",
     "areaEconTitle": "Economics and analytics",
@@ -1570,7 +1570,7 @@
     "legislationReview": {
       "pageTitle": "Belarus Legislation Review for Business",
       "pageDescription": "Weekly monitoring of changes in Belarus's tax, labor, corporate and regulatory legislation. BSPN positions on key draft laws.",
-      "intro": "Understand the new rules before they come into force. The BSPN team of lawyers and economists tracks draft regulations, prepares concise briefings for members and forms a public union position on systemic changes.",
+      "intro": "Understand the new rules before they come into force. The BSPN team of experts and economists tracks draft regulations, prepares concise briefings for members and forms a public union position on systemic changes.",
       "block1Title": "Tax law",
       "block1Body": "Changes to the Tax Code, rates, exemptions, special regimes (HTP, Great Stone, FEZ), MNS positions.",
       "block2Title": "Corporate and economic law",
@@ -1632,7 +1632,7 @@
       "feature2Title": "Member case studies",
       "feature2Body": "Stories of how companies have solved typical Belarusian-business problems.",
       "feature3Title": "Expert columns",
-      "feature3Body": "BSPN's lawyers, economists and sector coordinators on what hurts and what to change.",
+      "feature3Body": "BSPN's economists and sector coordinators on what hurts and what to change.",
       "feature4Title": "Event announcements",
       "feature4Body": "Announcements of congresses, forums, Directors Club meetings and BSPN thematic sessions."
     }
