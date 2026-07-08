@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AnimatedCounter } from "@/components/sections/animated-counter";
+import { QuarterResults } from "@/components/sections/quarter-results";
 import {
   Scale,
   FileText,
@@ -31,6 +32,10 @@ export default function AchievementsPage() {
         title={t("pageTitle")}
         description={t("pageDescription")}
       />
+
+      {/* Свежие результаты квартала — блок переехал с главной */}
+      <QuarterResults showMoreLink={false} />
+
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {STATS.map(({ key, value, suffix, icon: Icon }) => (

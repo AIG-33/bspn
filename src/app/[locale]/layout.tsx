@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
@@ -108,7 +108,9 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale as Locale);
 
-  const messages = (await import(`@/messages/${locale}.json`)).default;
+  // Словарь с fallback на ru (см. src/i18n/request.ts) — иначе client-компоненты
+  // на en/zh не видят ключи, которых нет в их локали.
+  const messages = await getMessages();
 
   const tSite = await getTranslations({ locale, namespace: "site" });
   const tMeta = await getTranslations({ locale, namespace: "meta" });

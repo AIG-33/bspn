@@ -28,7 +28,7 @@ const QUARTER_STATS = [
   { valueKey: "statConsult", labelKey: "statConsultLabel", icon: MessagesSquare },
 ] as const;
 
-export function QuarterResults() {
+export function QuarterResults({ showMoreLink = true }: { showMoreLink?: boolean }) {
   const t = useTranslations("quarter");
 
   return (
@@ -87,15 +87,17 @@ export function QuarterResults() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <Link
-            href="/about/achievements"
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-xl")}
-          >
-            {t("more")}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </div>
+        {showMoreLink && (
+          <div className="mt-10 text-center">
+            <Link
+              href="/about/achievements"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-xl")}
+            >
+              {t("more")}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
