@@ -194,6 +194,26 @@ export function Footer() {
               </span>
               <ArrowRight className="h-4 w-4 shrink-0 text-white/50 transition-transform group-hover:translate-x-0.5" />
             </a>
+
+            <a
+              href={SITE.socialLinks.telegramGroup}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-3 flex items-center gap-3 rounded-2xl border border-amber-300/25 bg-amber-300/5 p-4 backdrop-blur-md transition-colors hover:bg-amber-300/10"
+            >
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--gold)] to-amber-600 text-white shadow-lg">
+                <Crown className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-semibold text-white">
+                  {t("footer.telegramGroupTitle")}
+                </span>
+                <span className="block text-xs leading-snug text-white/60">
+                  {t("footer.telegramGroupSubtitle")}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-white/50 transition-transform group-hover:translate-x-0.5" />
+            </a>
           </div>
         </div>
 

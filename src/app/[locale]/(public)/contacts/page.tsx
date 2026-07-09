@@ -3,7 +3,8 @@ import { PageHeader } from "@/components/sections/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { YandexMap } from "@/components/sections/yandex-map";
 import { OrganizationCard } from "@/components/sections/organization-card";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { SITE } from "@/lib/constants";
+import { MapPin, Phone, Mail, Clock, Send, Crown, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const BSPN_LAT = 53.885448;
@@ -97,6 +98,62 @@ export default function ContactsPage() {
               <div key={titleKey}>{content}</div>
             );
           })}
+        </div>
+
+        <div className="mt-10 grid gap-3 sm:grid-cols-2">
+          <a
+            href={SITE.socialLinks.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block transition-transform hover:-translate-y-1"
+          >
+            <GlassCard hoverable className="h-full p-5">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#229ED9] text-white shadow-md">
+                  <Send className="h-5 w-5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-heading text-base font-semibold">
+                    {t("telegramChannelTitle")}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    {t("telegramChannelDesc")}
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    @bspn_by
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </div>
+            </GlassCard>
+          </a>
+
+          <a
+            href={SITE.socialLinks.telegramGroup}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block transition-transform hover:-translate-y-1"
+          >
+            <GlassCard hoverable className="h-full p-5">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--gold)] to-amber-600 text-white shadow-md">
+                  <Crown className="h-5 w-5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-heading text-base font-semibold">
+                    {t("telegramGroupTitle")}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    {t("telegramGroupDesc")}
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    {t("telegramGroupAction")}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </div>
+            </GlassCard>
+          </a>
         </div>
 
         <div className="mt-10">

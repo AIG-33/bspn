@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# telegram bot state
+scripts/.telegram-bot-state.json
+
+# MS Office lock files
+~$*
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

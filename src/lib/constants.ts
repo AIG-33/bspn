@@ -3,6 +3,8 @@ export const SITE = {
   foundedYear: 1990,
   socialLinks: {
     telegram: "https://t.me/bspn_by",
+    // Закрытая группа членов союза: вступление по заявке с одобрением админа
+    telegramGroup: "https://t.me/+tjktBIc_64plZWMy",
     facebook: "https://facebook.com/bspn.by",
     linkedin: "https://linkedin.com/company/bspn",
   },

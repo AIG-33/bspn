@@ -2,12 +2,15 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SITE } from "@/lib/constants";
 import {
   LayoutDashboard,
   TrendingUp,
   FileText,
   CalendarDays,
   MessageSquare,
+  Send,
+  ArrowRight,
 } from "lucide-react";
 
 export default async function CabinetPage({
@@ -70,6 +73,30 @@ export default async function CabinetPage({
           </GlassCard>
         ))}
       </div>
+
+      <a
+        href={SITE.socialLinks.telegramGroup}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block transition-transform hover:-translate-y-0.5"
+      >
+        <GlassCard hoverable className="p-6">
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#229ED9] text-white shadow-lg">
+              <Send className="h-6 w-6" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h2 className="font-heading text-base font-semibold sm:text-lg">
+                {t("telegramGroupTitle")}
+              </h2>
+              <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                {t("telegramGroupDesc")}
+              </p>
+            </div>
+            <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground" />
+          </div>
+        </GlassCard>
+      </a>
 
       <GlassCard className="p-6">
         <p className="text-sm text-muted-foreground">{t("comingSoon")}</p>
