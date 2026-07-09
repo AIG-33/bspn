@@ -9,11 +9,12 @@ import { cn } from "@/lib/utils";
 import { CheckCircle2, Check, Minus, ArrowRight, Star } from "lucide-react";
 
 // Порядок колонок: Ассоциированное / Солидарное / Действительное / Полномочное
+// Годовые взносы — по информационному письму БСПН от 05.01.2026 № 01-05/2-1
 const TIERS = [
-  { key: "associated", popular: false, highlights: 3 },
-  { key: "solidary", popular: false, highlights: 4 },
-  { key: "active", popular: true, highlights: 4 },
-  { key: "full", popular: false, highlights: 4 },
+  { key: "associated", popular: false, highlights: 3, numericPrice: false },
+  { key: "solidary", popular: false, highlights: 4, numericPrice: true },
+  { key: "active", popular: true, highlights: 4, numericPrice: true },
+  { key: "full", popular: false, highlights: 4, numericPrice: true },
 ] as const;
 
 // Матрица услуг из Приложения 1 Регламента работы БСПН.
@@ -99,12 +100,20 @@ export default function MembershipTypesPage() {
               </p>
 
               <div className="mt-4">
-                <span className="font-mono text-3xl font-bold">
-                  {t(`${tier.key}Price`)}
-                </span>
-                <span className="ml-1 text-sm text-muted-foreground">
-                  {tCommon("byPerYear")}
-                </span>
+                {tier.numericPrice ? (
+                  <>
+                    <span className="font-mono text-3xl font-bold">
+                      {t(`${tier.key}Price`)}
+                    </span>
+                    <span className="ml-1 text-sm text-muted-foreground">
+                      {tCommon("byPerYear")}
+                    </span>
+                  </>
+                ) : (
+                  <span className="font-heading text-lg font-semibold text-muted-foreground">
+                    {t(`${tier.key}Price`)}
+                  </span>
+                )}
               </div>
 
               <ul className="mt-6 flex-1 space-y-3">
@@ -138,6 +147,10 @@ export default function MembershipTypesPage() {
             </GlassCard>
           ))}
         </div>
+
+        <p className="mx-auto mt-6 max-w-3xl text-center text-sm text-muted-foreground">
+          {t("entranceFeeNote")}
+        </p>
 
         {/* Полная матрица услуг по Регламенту */}
         <div className="mt-20">

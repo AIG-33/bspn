@@ -53,7 +53,7 @@ function RoiCalculator() {
 
   const consultCost = 250;
   const docCost = 400;
-  const dues = 500;
+  const dues = 1800;
   const without = consultations * consultCost + documents * docCost;
   const savings = without - dues;
 

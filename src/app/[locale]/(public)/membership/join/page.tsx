@@ -22,11 +22,19 @@ import {
   CheckCircle2,
   User,
   Building2,
+  FileText,
   Heart,
   Send,
   Loader2,
+  Download,
 } from "lucide-react";
 import { submitApplication } from "@/lib/actions/applications";
+import {
+  downloadMembershipDocs,
+  type BasisKey,
+  type MembershipTypeKey,
+  type OwnershipKey,
+} from "@/lib/docs/membership-docs";
 
 const INDUSTRY_KEYS = [
   "industry1",
@@ -53,22 +61,51 @@ const INTEREST_KEYS = [
   "interest7",
 ] as const;
 
+const OWNERSHIP_KEYS: OwnershipKey[] = [
+  "private",
+  "state",
+  "stateUnder50",
+  "stateOver50",
+];
+
+const MEMBERSHIP_KEYS: MembershipTypeKey[] = ["solidary", "active", "full"];
+
 export default function JoinPage() {
   const t = useTranslations("join");
+  const tTypes = useTranslations("memberTypes");
   const tCommon = useTranslations("common");
 
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState("");
 
   const [form, setForm] = useState({
+    // Контакт
     name: "",
+    position: "",
     email: "",
     phone: "",
+    // Компания
     company: "",
     unp: "",
+    okpo: "",
     industry: "",
+    ownership: "" as OwnershipKey | "",
+    postalCode: "",
+    city: "",
+    address: "",
+    activity: "",
+    employees: "",
+    founded: "",
+    website: "",
+    // Членство и реквизиты
+    membershipType: "active" as MembershipTypeKey,
+    basis: "charter" as BasisKey,
+    iban: "",
+    bank: "",
+    // Интересы
     interests: [] as string[],
     message: "",
     consent: false,
@@ -93,6 +130,7 @@ export default function JoinPage() {
   const STEPS = [
     { icon: User, label: t("stepContact") },
     { icon: Building2, label: t("stepCompany") },
+    { icon: FileText, label: t("stepMembership") },
     { icon: Heart, label: t("stepInterests") },
     { icon: Send, label: t("stepConfirm") },
   ];
@@ -100,15 +138,58 @@ export default function JoinPage() {
   const canProceed = () => {
     switch (step) {
       case 0:
-        return form.name && form.email && form.phone;
+        return form.name && form.position && form.email && form.phone;
       case 1:
-        return form.company && form.industry;
+        return (
+          form.company &&
+          form.industry &&
+          form.ownership &&
+          form.city &&
+          form.address &&
+          form.activity
+        );
       case 2:
-        return form.interests.length > 0;
+        return form.membershipType && form.basis;
       case 3:
+        return form.interests.length > 0;
+      case 4:
         return form.consent;
       default:
         return false;
+    }
+  };
+
+  const docData = () => ({
+    contactName: form.name,
+    position: form.position,
+    email: form.email,
+    phone: form.phone,
+    company: form.company,
+    unp: form.unp,
+    okpo: form.okpo,
+    ownership: form.ownership,
+    postalCode: form.postalCode,
+    city: form.city,
+    address: form.address,
+    activity: form.activity,
+    employees: form.employees,
+    founded: form.founded,
+    website: form.website,
+    membershipType: form.membershipType,
+    basis: form.basis,
+    iban: form.iban,
+    bank: form.bank,
+    interests: form.interests.map((key) =>
+      t(key as (typeof INTEREST_KEYS)[number])
+    ),
+  });
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      await downloadMembershipDocs(docData());
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -116,20 +197,34 @@ export default function JoinPage() {
     setLoading(true);
     setError("");
 
+    const extras = [
+      form.ownership &&
+        `Форма собственности: ${t(`ownership${form.ownership[0].toUpperCase()}${form.ownership.slice(1)}` as "ownershipPrivate")}`,
+      form.basis === "poa" && "Основание полномочий: доверенность",
+      form.iban && `IBAN: ${form.iban}`,
+      form.bank && `Банк: ${form.bank}`,
+      form.okpo && `ОКПО: ${form.okpo}`,
+      form.website && `Сайт: ${form.website}`,
+    ]
+      .filter(Boolean)
+      .join("; ");
+
     const result = await submitApplication({
       companyName: form.company,
       companyUnp: form.unp,
-      companyAddress: "",
-      companyActivity: form.industry,
-      companyEmployees: "",
-      companyYear: "",
+      companyAddress: [form.postalCode, form.city, form.address]
+        .filter(Boolean)
+        .join(", "),
+      companyActivity: `${form.industry}. ${form.activity}`,
+      companyEmployees: form.employees,
+      companyYear: form.founded,
       contactName: form.name,
-      contactPosition: "",
+      contactPosition: form.position,
       contactEmail: form.email,
       contactPhone: form.phone,
-      membershipType: "standard",
+      membershipType: form.membershipType,
       goals: form.interests,
-      additionalInfo: form.message,
+      additionalInfo: [form.message, extras].filter(Boolean).join("\n\n"),
       documentsConsent: form.consent,
     });
 
@@ -165,6 +260,42 @@ export default function JoinPage() {
             {t("successEmail")}{" "}
             <strong className="text-foreground">{form.email}</strong>
           </p>
+
+          <GlassCard className="mt-10 p-6 text-left sm:p-8">
+            <h3 className="flex items-center gap-2 font-heading text-lg font-bold">
+              <FileText className="h-5 w-5 text-primary" />
+              {t("docsTitle")}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {t("docsText")}
+            </p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {(["docsItem1", "docsItem2", "docsItem3"] as const).map(
+                (key) => (
+                  <li key={key} className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                    {t(key)}
+                  </li>
+                )
+              )}
+            </ul>
+            <Button
+              onClick={handleDownload}
+              disabled={downloading}
+              className="mt-6 w-full gap-2 rounded-xl bg-cta text-cta-foreground hover:bg-cta/90 glow-cta"
+              size="lg"
+            >
+              {downloading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Download className="h-4 w-4" />
+              )}
+              {downloading ? t("docsPreparing") : t("docsButton")}
+            </Button>
+            <p className="mt-3 text-center text-xs text-muted-foreground">
+              {t("docsHint")}
+            </p>
+          </GlassCard>
         </div>
       </>
     );
@@ -238,6 +369,16 @@ export default function JoinPage() {
                   />
                 </div>
                 <div>
+                  <Label htmlFor="position">{t("labelPosition")}</Label>
+                  <Input
+                    id="position"
+                    value={form.position}
+                    onChange={(e) => updateForm("position", e.target.value)}
+                    placeholder={t("placeholderPosition")}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
                   <Label htmlFor="email">{t("labelEmail")}</Label>
                   <Input
                     id="email"
@@ -279,15 +420,49 @@ export default function JoinPage() {
                     className="mt-1.5"
                   />
                 </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <Label htmlFor="unp">{t("labelUnp")}</Label>
+                    <Input
+                      id="unp"
+                      value={form.unp}
+                      onChange={(e) => updateForm("unp", e.target.value)}
+                      placeholder={t("placeholderUnp")}
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="okpo">{t("labelOkpo")}</Label>
+                    <Input
+                      id="okpo"
+                      value={form.okpo}
+                      onChange={(e) => updateForm("okpo", e.target.value)}
+                      placeholder={t("placeholderOkpo")}
+                      className="mt-1.5"
+                    />
+                  </div>
+                </div>
                 <div>
-                  <Label htmlFor="unp">{t("labelUnp")}</Label>
-                  <Input
-                    id="unp"
-                    value={form.unp}
-                    onChange={(e) => updateForm("unp", e.target.value)}
-                    placeholder={t("placeholderUnp")}
-                    className="mt-1.5"
-                  />
+                  <Label>{t("labelOwnership")}</Label>
+                  <div className="mt-2 grid gap-2.5 sm:grid-cols-2">
+                    {OWNERSHIP_KEYS.map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => updateForm("ownership", key)}
+                        className={cn(
+                          "rounded-2xl border p-3 text-left text-sm transition-all",
+                          form.ownership === key
+                            ? "border-primary bg-primary/10"
+                            : "border-foreground/10 hover:border-primary/30 hover:bg-foreground/5"
+                        )}
+                      >
+                        {t(
+                          `ownership${key[0].toUpperCase()}${key.slice(1)}` as "ownershipPrivate"
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <div>
                   <Label>{t("labelIndustry")}</Label>
@@ -307,11 +482,170 @@ export default function JoinPage() {
                     </SelectContent>
                   </Select>
                 </div>
+                <div className="grid gap-4 sm:grid-cols-[1fr,2fr]">
+                  <div>
+                    <Label htmlFor="postalCode">{t("labelPostalCode")}</Label>
+                    <Input
+                      id="postalCode"
+                      value={form.postalCode}
+                      onChange={(e) => updateForm("postalCode", e.target.value)}
+                      placeholder={t("placeholderPostalCode")}
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="city">{t("labelCity")}</Label>
+                    <Input
+                      id="city"
+                      value={form.city}
+                      onChange={(e) => updateForm("city", e.target.value)}
+                      placeholder={t("placeholderCity")}
+                      className="mt-1.5"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="address">{t("labelAddress")}</Label>
+                  <Input
+                    id="address"
+                    value={form.address}
+                    onChange={(e) => updateForm("address", e.target.value)}
+                    placeholder={t("placeholderAddress")}
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="activity">{t("labelActivity")}</Label>
+                  <Textarea
+                    id="activity"
+                    value={form.activity}
+                    onChange={(e) => updateForm("activity", e.target.value)}
+                    placeholder={t("placeholderActivity")}
+                    className="mt-1.5"
+                    rows={2}
+                  />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <Label htmlFor="employees">{t("labelEmployees")}</Label>
+                    <Input
+                      id="employees"
+                      value={form.employees}
+                      onChange={(e) => updateForm("employees", e.target.value)}
+                      placeholder={t("placeholderEmployees")}
+                      className="mt-1.5"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="founded">{t("labelFounded")}</Label>
+                    <Input
+                      id="founded"
+                      value={form.founded}
+                      onChange={(e) => updateForm("founded", e.target.value)}
+                      placeholder={t("placeholderFounded")}
+                      className="mt-1.5"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="website">{t("labelWebsite")}</Label>
+                  <Input
+                    id="website"
+                    value={form.website}
+                    onChange={(e) => updateForm("website", e.target.value)}
+                    placeholder={t("placeholderWebsite")}
+                    className="mt-1.5"
+                  />
+                </div>
               </div>
             </div>
           )}
 
           {step === 2 && (
+            <div className="space-y-5">
+              <h2 className="font-heading text-xl font-bold">
+                {t("stepMembershipTitle")}
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                {t("stepMembershipSubtitle")}
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <Label>{t("labelMembershipType")}</Label>
+                  <div className="mt-2 grid gap-3 sm:grid-cols-3">
+                    {MEMBERSHIP_KEYS.map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => updateForm("membershipType", key)}
+                        className={cn(
+                          "rounded-2xl border p-4 text-left transition-all",
+                          form.membershipType === key
+                            ? "border-primary bg-primary/10"
+                            : "border-foreground/10 hover:border-primary/30 hover:bg-foreground/5"
+                        )}
+                      >
+                        <span className="block font-heading text-sm font-semibold">
+                          {tTypes(`${key}Name`)}
+                        </span>
+                        <span className="mt-1 block font-mono text-lg font-bold">
+                          {tTypes(`${key}Price`)}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {tCommon("byPerYear")}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {t("membershipHint")}
+                  </p>
+                </div>
+                <div>
+                  <Label>{t("labelBasis")}</Label>
+                  <div className="mt-2 grid gap-3 sm:grid-cols-2">
+                    {(["charter", "poa"] as const).map((key) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => updateForm("basis", key)}
+                        className={cn(
+                          "rounded-2xl border p-3.5 text-left text-sm transition-all",
+                          form.basis === key
+                            ? "border-primary bg-primary/10"
+                            : "border-foreground/10 hover:border-primary/30 hover:bg-foreground/5"
+                        )}
+                      >
+                        {t(key === "charter" ? "basisCharter" : "basisPoa")}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="iban">{t("labelIban")}</Label>
+                  <Input
+                    id="iban"
+                    value={form.iban}
+                    onChange={(e) => updateForm("iban", e.target.value)}
+                    placeholder={t("placeholderIban")}
+                    className="mt-1.5 font-mono"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="bank">{t("labelBank")}</Label>
+                  <Input
+                    id="bank"
+                    value={form.bank}
+                    onChange={(e) => updateForm("bank", e.target.value)}
+                    placeholder={t("placeholderBank")}
+                    className="mt-1.5"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 3 && (
             <div className="space-y-5">
               <h2 className="font-heading text-xl font-bold">
                 {t("step3Title")}
@@ -362,18 +696,22 @@ export default function JoinPage() {
             </div>
           )}
 
-          {step === 3 && (
+          {step === 4 && (
             <div className="space-y-5">
               <h2 className="font-heading text-xl font-bold">
                 {t("step4Title")}
               </h2>
               <div className="space-y-3 rounded-2xl bg-muted/50 p-5 text-sm">
-                <Row label={t("summaryName")} value={form.name} />
+                <Row label={t("summaryName")} value={`${form.name}, ${form.position}`} />
                 <Row label={t("labelEmail").replace(" *", "")} value={form.email} />
                 <Row label={t("labelPhone").replace(" *", "")} value={form.phone} />
                 <Row label={t("summaryCompany")} value={form.company} />
                 <Row label={t("summaryIndustry")} value={form.industry} />
                 {form.unp && <Row label={t("summaryUnp")} value={form.unp} />}
+                <Row
+                  label={t("summaryMembership")}
+                  value={tTypes(`${form.membershipType}Name`)}
+                />
                 <div>
                   <span className="text-muted-foreground">
                     {t("summaryInterests")}:

@@ -8,11 +8,12 @@ import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Check } from "lucide-react";
 
+// Годовые взносы — по информационному письму БСПН от 05.01.2026 № 01-05/2-1
 const TIERS = [
-  { key: "associated", popular: false },
-  { key: "solidary", popular: false },
-  { key: "active", popular: true },
-  { key: "full", popular: false },
+  { key: "associated", popular: false, numericPrice: false },
+  { key: "solidary", popular: false, numericPrice: true },
+  { key: "active", popular: true, numericPrice: true },
+  { key: "full", popular: false, numericPrice: true },
 ] as const;
 
 const INCLUDED = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
@@ -38,7 +39,7 @@ export function MembershipTeaser() {
         </div>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {TIERS.map(({ key, popular }) => (
+          {TIERS.map(({ key, popular, numericPrice }) => (
             <GlassCard
               key={key}
               className={cn(
@@ -58,12 +59,20 @@ export function MembershipTeaser() {
                 {tTypes(`${key}Desc`)}
               </p>
               <div className="mt-4">
-                <span className="font-mono text-2xl font-bold">
-                  {tTypes(`${key}Price`)}
-                </span>
-                <span className="ml-1.5 text-xs text-muted-foreground">
-                  {t("perYear")}
-                </span>
+                {numericPrice ? (
+                  <>
+                    <span className="font-mono text-2xl font-bold">
+                      {tTypes(`${key}Price`)}
+                    </span>
+                    <span className="ml-1.5 text-xs text-muted-foreground">
+                      {t("perYear")}
+                    </span>
+                  </>
+                ) : (
+                  <span className="font-heading text-base font-semibold text-muted-foreground">
+                    {tTypes(`${key}Price`)}
+                  </span>
+                )}
               </div>
             </GlassCard>
           ))}
